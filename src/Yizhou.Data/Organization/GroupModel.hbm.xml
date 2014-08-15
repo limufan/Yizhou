@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="Yizhou.Data.Organization" assembly="Yizhou.Data">
+    <class name="GroupModel" table="org_group">
+        <id name="ID" type="string" column="group_id"></id>
+        <property name="Name" type="String" column="group_name"></property>
+        <property name="GroupType" type="int" column="group_type"></property>
+        <property name="CreateTime" type="DateTime" column="group_createTime"></property>
+        <property name="CreatorId" type="String" column="group_creatorId"></property>
+        <property name="Members" type="string" length="20000" column="group_members"></property>
+        <property name="Remark" type="string" length="20000" column="group_remark"></property>
+    </class>
+</hibernate-mapping>

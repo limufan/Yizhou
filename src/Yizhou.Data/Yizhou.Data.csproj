@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9608677-8712-4DC3-9903-464D89EC8D50}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yizhou.Data</RootNamespace>
+    <AssemblyName>Yizhou.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\lib\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KehuDataProvider.cs" />
+    <Compile Include="YizhouDataManager.cs" />
+    <Compile Include="DataProviders\DepartmentDataProvider.cs" />
+    <Compile Include="DataProviders\FunctionDataProvider.cs" />
+    <Compile Include="DataProviders\GroupDataProvider.cs" />
+    <Compile Include="DataProviders\PositionDataProvider.cs" />
+    <Compile Include="DataProviders\UserDataProvider.cs" />
+    <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="DataInitializer.cs" />
+    <Compile Include="Organization\DepartmentModel.cs" />
+    <Compile Include="Organization\FunctionModel.cs" />
+    <Compile Include="Organization\GroupModel.cs" />
+    <Compile Include="Organization\OperationLogModel.cs" />
+    <Compile Include="Organization\PositionModel.cs" />
+    <Compile Include="Organization\SignInLogModel.cs" />
+    <Compile Include="Organization\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypificationJsonSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Organization\DepartmentModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\FunctionModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\GroupModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\OperationLogModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\PositionModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\SignInLogModel.hbm.xml" />
+    <EmbeddedResource Include="Organization\UserModel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yizhou.Api\Yizhou.Api.csproj">
+      <Project>{87e111d2-0349-4847-a365-117e35603931}</Project>
+      <Name>Yizhou.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yizhou.Core\Yizhou.Core.csproj">
+      <Project>{d9c28b46-8de3-4c93-8da6-6c28bb63b68c}</Project>
+      <Name>Yizhou.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

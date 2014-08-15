@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9C28B46-8DE3-4C93-8DA6-6C28BB63B68C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yizhou.Core</RootNamespace>
+    <AssemblyName>Yizhou.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\lib\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\lib\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\lib\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\lib\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChangeEventArgs.cs" />
+    <Compile Include="Chanpin.cs" />
+    <Compile Include="CreatedEventArgs.cs" />
+    <Compile Include="DeleteEventArgs.cs" />
+    <Compile Include="Dingdan.cs" />
+    <Compile Include="DingdanInfo.cs" />
+    <Compile Include="DingdanMingxi.cs" />
+    <Compile Include="DingdanMingxiInfo.cs" />
+    <Compile Include="JiekuanFangshi.cs" />
+    <Compile Include="Kehu.cs" />
+    <Compile Include="KehuFilter.cs" />
+    <Compile Include="KehuManager.cs" />
+    <Compile Include="OperationEventArgs.cs" />
+    <Compile Include="Organization\AuthenticatedUser.cs" />
+    <Compile Include="Organization\AuthenticatedUserManagement.cs" />
+    <Compile Include="Organization\AuthenticationHelper.cs" />
+    <Compile Include="Organization\AuthenticationManagement.cs" />
+    <Compile Include="Organization\AuthenticationService.cs" />
+    <Compile Include="Organization\Authenticator.cs" />
+    <Compile Include="Organization\Cryptography.cs" />
+    <Compile Include="Organization\Department.cs" />
+    <Compile Include="Organization\DepartmentChangeInfo.cs" />
+    <Compile Include="Organization\DepartmentCreateInfo.cs" />
+    <Compile Include="Organization\DepartmentManagement.cs" />
+    <Compile Include="Organization\DepartmentUserSearcher.cs" />
+    <Compile Include="Organization\EveryoneGroup.cs" />
+    <Compile Include="Organization\Function.cs" />
+    <Compile Include="Organization\FunctionManagement.cs" />
+    <Compile Include="Organization\FunctionService.cs" />
+    <Compile Include="Organization\Group.cs" />
+    <Compile Include="Organization\GroupManagement.cs" />
+    <Compile Include="Organization\GroupService.cs" />
+    <Compile Include="Organization\Member.cs" />
+    <Compile Include="Organization\OperationLogManagement.cs" />
+    <Compile Include="Organization\OrganizationManagement.cs" />
+    <Compile Include="Organization\PasswordComplexValidator.cs" />
+    <Compile Include="Organization\Position.cs" />
+    <Compile Include="Organization\PositionManagement.cs" />
+    <Compile Include="Organization\PositionService.cs" />
+    <Compile Include="Organization\PositionUserSearcher.cs" />
+    <Compile Include="Organization\User.cs" />
+    <Compile Include="Organization\UserManagement.cs" />
+    <Compile Include="Organization\UserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexHelper.cs" />
+    <Compile Include="Shoukuan.cs" />
+    <Compile Include="SystemTime.cs" />
+    <Compile Include="TEventHandler.cs" />
+    <Compile Include="ThrowingLogger.cs" />
+    <Compile Include="YewulvFangshi.cs" />
+    <Compile Include="YizhouCoreManager.cs" />
+    <Compile Include="YizhouHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Yizhou.Api\Yizhou.Api.csproj">
+      <Project>{87e111d2-0349-4847-a365-117e35603931}</Project>
+      <Name>Yizhou.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
