@@ -12,16 +12,25 @@ namespace Yizhou.Data
     {
         public DataInitializer(YizhouCoreManager yizhouManager, YizhouDataManager dataManager)
         {
-            Position topPosition = yizhouManager.OrgManager.PositionManager.Create(yizhouManager.OrgManager.System, new PositionCreateInfo { Name = "益州" });
+            if (yizhouManager.OrgManager.DepartmentManager.Departments.Count == 0)
+            {
+                this.InitOrg(yizhouManager, dataManager);
+            }
+        }
+
+        private void InitOrg(YizhouCoreManager yizhouManager, YizhouDataManager dataManager)
+        {
+
+            Position topPosition = yizhouManager.OrgManager.PositionManager.Create(yizhouManager.OrgManager.System, new PositionCreateInfo { Name = "总经理" });
             dataManager.PositionDataProvider.Insert(topPosition);
             Department topDepartment = yizhouManager.OrgManager.DepartmentManager.Create(yizhouManager.OrgManager.System,
                     new DepartmentCreateInfo
                     {
-                        Name = "总经理",
+                        Name = "益州",
                         ManagerPosition = topPosition
                     });
             dataManager.DepartmentDataProvider.Insert(topDepartment);
-            yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
+            User admin = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {
                 Name = "Administrator",
                 Account = "admin",
@@ -29,6 +38,7 @@ namespace Yizhou.Data
                 Role = UserRole.Administrator,
                 Status = UserStatus.Normal
             });
+            dataManager.UserDataProvider.Insert(admin);
 
             Position yewuyuanPosition = yizhouManager.OrgManager.PositionManager.Create(yizhouManager.OrgManager.System, new PositionCreateInfo { Name = "业务员", ParentId = topPosition.ID });
             dataManager.PositionDataProvider.Insert(yewuyuanPosition);
@@ -61,6 +71,7 @@ namespace Yizhou.Data
                 Status = UserStatus.Normal,
                 MainPositionId = yewuyuanPosition.ID
             });
+            dataManager.UserDataProvider.Insert(lianglin);
 
             User yangke = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {

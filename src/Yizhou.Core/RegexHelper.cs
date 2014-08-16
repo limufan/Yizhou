@@ -43,7 +43,11 @@ namespace Yizhou.Core
 
         public static Regex GetRegex(string keyword)
         {
-            return new Regex(keyword.ToLower());
+            if (keyword == null)
+            {
+                keyword = "";
+            }
+            return new Regex(keyword, RegexOptions.IgnoreCase);
         }
     }
 }

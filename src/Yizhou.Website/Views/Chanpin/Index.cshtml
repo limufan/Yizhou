@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row btn-toolbar" >
+                <div class="col-sm-3">
+                    <form class="input-group">
+                        <input id="txtKeyword" type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button type="submit" id="btnSearch" class="btn btn-default">查询</button>
+                        </div><!-- /btn-group -->
+                    </form>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group">
+                        <a id="btnCreate" href="@this.Url.Action("Create")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>创建</a>
+                        <button id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
+                    </div>
+                </div>
+            </div>
+
+            <div id="chanpinGrid">
+                
+            </div>
+        
+            <div id="chanpinGridPager" class="pull-right" style="height: 30px">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        var chanpinGrid = $("#chanpinGrid").datagrid({
+                columns:[
+			        {title: "产品名称", width: 180, field:"name", render: function(datarow, args){ 
+                        return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Chanpin/Edit", {id: args.data.id})) ;
+                    }},
+			        {title: "规格", width: 80, field:"guige"},
+			        {title: "单位", width: 80, field:"danwei"},
+			        {title: "销售底价", width: 80, field:"xiaoshouDijia"},
+			        {title: "成本价", width: 80, field:"chengbenjia"},
+			        {title: "备注", width: 180, field:"beizhu"}
+                ],
+                height: "auto"
+            }).data("datagrid");
+        var chanpinGridPager = $("#chanpinGridPager").pager({change: function(event, args){
+                search(args.start);
+            }}).data("pager");
+        function search(start){
+            var keyword = $("#txtKeyword").val();
+            var args = {keyword: keyword, start: start, size: 20};
+            $.get($.resolveUrl("Chanpin/GetChanpinList"), {argsJson : $.toJSON(args)}, function(model){
+                if(model.result){
+                    chanpinGrid.setValue(model.chanpinList);
+                    chanpinGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
+                }
+                else{
+                    alert(model.message);
+                }
+            });
+        }
+        $("#btnSearch").click(function(){
+            search(0);
+            return false;
+        });
+        $("#btnDelete").click(function(){
+            var rows = chanpinGrid.getSelectedRows();
+            if(!rows.length){
+                $.messageBox.info("请选择要删除的产品");
+                return false;
+            }
+            if(!confirm("确实要删除吗?")){
+                return false;
+            }
+            var chanpinIdArray = $.map(rows, function(row){
+                return row.datarow("getValue").id;
+            })
+            $.post("/Chanpin/Delete", { chanpinId: chanpinIdArray.toString() }, function(model){
+                if(model.result){
+                    chanpinGrid.deleteSelectedRows();
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+            return false;
+        });
+        search(0);
+    })
+</script>

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">创建客户</h2>
+<fieldset>
+    <legend>详细信息</legend>
+</fieldset>
+<form id="detailsform" class="form-horizontal" role="form">
+    @{this.Html.RenderPartial("Details");}
+    <div class="form-group">
+		<div class="col-sm-offset-3 control-input">
+		  	<button id="btnSave" type="submit" class="btn btn-default">保存</button>
+		  	<button id="btnCancel" type="button" class="btn btn-default">取消</button>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+    $("#detailsform").horizontalForm();
+	var form = $("#detailsform").form().data("form");
+    $("#btnSave").click(function(){
+        if(form.validate()){
+            var value = form.getValue();
+            $.post("/Kehu/CreatePost", {argsJson: $.toJSON(value)}, function(model){
+                if(model.result){
+                    location = "/Kehu";
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+        }
+        return false;
+    })
+    
+    $("#btnCancel").click(function(){
+        location = "/Kehu";
+        return false;
+    });
+</script>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Yizhou.Data.DataModels" assembly="Yizhou.Data">
+    <class name="KehuDataModel" table="yizhou_kehu">
+        <id name="Id" type="string" column="kehu_id"></id>
+        <property name="Name" type="String" column="kehu_name"></property>
+        <property name="CreateTime" type="DateTime" column="kehu_createTime"></property>
+        <property name="Yewuyuan" type="String" column="kehu_yewuyuan"></property>
+        <property name="Yewulv" type="double" column="kehu_yewulv"></property>
+        <property name="YewulvFangshi" type="int" column="kehu_yewulvFangshi"></property>
+        <property name="JiekuanFangshi" type="int" column="kehu_jiekuanFangshi"></property>
+        <property name="Lianxidianhua" type="String" column="kehu_lianxidianhua"></property>
+        <property name="GongsiDizhi" type="String" column="kehu_gongsiDizhi"></property>
+        <property name="ShouhuoDizhi" type="String" column="kehu_shouhuoDizhi"></property>
+        <property name="Shouhuoren" type="String" column="kehu_shouhuoren"></property>
+        <property name="ShouhuorenDianhua" type="String" column="kehu_shouhuorenDianhua"></property>
+        <property name="Chuanzhen" type="String" column="kehu_chuanzhen"></property>
+        <property name="Email" type="String" column="kehu_email"></property>
+        <property name="Beizhu" type="String" column="kehu_beizhu" length="20000"></property>
+    </class>
+</hibernate-mapping>

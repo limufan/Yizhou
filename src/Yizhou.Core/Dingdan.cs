@@ -83,6 +83,45 @@ namespace Yizhou.Core
 
         public string Beizhu { set; get; }
 
+        private string _keywords;
+
+        public string Keywords
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this._keywords))
+                {
+                    this.BuildKeyword();
+                }
+                return this._keywords;
+            }
+        }
+
+        public void Changed()
+        {
+            if (this.MingxiList == null)
+            {
+                this.MingxiList = new List<DingdanMingxi>();
+            }
+            if (this.ShoukuanList == null)
+            {
+                this.ShoukuanList = new List<Shoukuan>();
+            }
+            this.BuildKeyword();
+            this.Jisuan();
+        }
+
+        private void BuildKeyword()
+        {
+            this._keywords = this.Beizhu + this.Danhao + YizhouHelper.GetName(this.JiekuanFangshi) + this.Kehu.Name + this.ShouhuoDizhi +
+                this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan;
+        }
+
+        public Dingdan Clone()
+        {
+            return this.MemberwiseClone() as Dingdan;
+        }
+
         public void Jisuan()
         {
             this.JisuanJiekuanRiqi();
@@ -97,17 +136,17 @@ namespace Yizhou.Core
             if (this.JiekuanFangshi == JiekuanFangshi.Yigeyue)
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(1);
-                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month));
+                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
             else if (this.JiekuanFangshi == JiekuanFangshi.Lianggeyue)
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(2);
-                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month));
+                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
             else if (this.JiekuanFangshi == JiekuanFangshi.Sangeyue)
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(3);
-                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month));
+                this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
             else
             {

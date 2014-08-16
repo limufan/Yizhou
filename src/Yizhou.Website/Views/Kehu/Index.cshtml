@@ -2,5 +2,95 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row btn-toolbar" >
+                <div class="col-sm-3">
+                    <form class="input-group">
+                        <input id="txtKeyword" type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button type="submit" id="btnSearch" class="btn btn-default">查询</button>
+                        </div><!-- /btn-group -->
+                    </form>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group">
+                        <a id="btnCreate" href="@this.Url.Action("Create")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>创建</a>
+                        <button id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
+                    </div>
+                </div>
+            </div>
 
-<h2>Index</h2>
+            <div id="kehuGrid">
+                
+            </div>
+        
+            <div id="kehuGridPager" class="pull-right" style="height: 30px">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        var kehuGrid = $("#kehuGrid").datagrid({
+                columns:[
+			        {title: "客户名称", width: 180, field:"name", render: function(datarow, args){ 
+                        return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Kehu/Edit", {id: args.data.id})) ;
+                    }},
+			        {title: "业务员", width: 80, field:"yewuyuan"},
+			        {title: "业务率", width: 80, field:"yewulv"},
+			        {title: "业务率方式", width: 80, field:"yewulvFangshi"},
+			        {title: "结款方式", width: 80, field:"jiekuanFangshi"},
+			        {title: "公司地址", width: 180, field:"gongsiDizhi"},
+			        {title: "公司电话", width: 120, field:"lianxidianhua"}
+                ],
+                height: "auto"
+            }).data("datagrid");
+        var kehuGridPager = $("#kehuGridPager").pager({change: function(event, args){
+                search(args.start);
+            }}).data("pager");
+        function search(start){
+            var keyword = $("#txtKeyword").val();
+            var args = {keyword: keyword, start: start, size: 20};
+            $.get($.resolveUrl("Kehu/GetKehuList"), {argsJson : $.toJSON(args)}, function(model){
+                if(model.result){
+                    kehuGrid.setValue(model.kehuList);
+                    kehuGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
+                }
+                else{
+                    alert(model.message);
+                }
+            });
+        }
+        $("#btnSearch").click(function(){
+            search(0);
+            return false;
+        });
+        $("#btnDelete").click(function(){
+            var rows = kehuGrid.getSelectedRows();
+            if(!rows.length){
+                $.messageBox.info("请选择要删除的客户");
+                return false;
+            }
+            if(!confirm("确实要删除吗?")){
+                return false;
+            }
+            var kehuIdArray = $.map(rows, function(row){
+                return row.datarow("getValue").id;
+            })
+            $.post("/Kehu/Delete", { kehuId: kehuIdArray.toString() }, function(model){
+                if(model.result){
+                    kehuGrid.deleteSelectedRows();
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+            return false;
+        });
+        search(0);
+    })
+</script>

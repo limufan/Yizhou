@@ -9,7 +9,7 @@ using Yizhou.Website.Models;
 
 namespace Yizhou.Website.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         //
         // GET: /Login/
@@ -25,11 +25,11 @@ namespace Yizhou.Website.Controllers
             try
             {
                 string token = WebHelper.AuthenticationService.SignIn(account, password, Request.UserHostAddress);
-                resultModel.data = this.Url.Action("Redirect", new { url = returnUrl, token = token, remember = remember });
+                resultModel.Add("data", this.Url.Action("Redirect", new { url = returnUrl, token = token, remember = remember }));
             }
             catch (Exception ex)
             {
-                resultModel.result = ControllerResult.Error;
+                resultModel.result = false;
                 resultModel.message = ex.Message;
                 WebHelper.Logger.Error(ex.Message, ex);
             }

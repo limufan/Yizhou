@@ -6,6 +6,7 @@ using Yizhou.Core;
 
 namespace Yizhou.Website.Api
 {
+    [Serializable]
     public class KehuBaseModel
     {
         public KehuBaseModel()
@@ -54,6 +55,7 @@ namespace Yizhou.Website.Api
         public string beizhu;
     }
 
+    [Serializable]
     public class KehuDetailsModel : KehuBaseModel
     {
         public KehuDetailsModel()
@@ -76,6 +78,7 @@ namespace Yizhou.Website.Api
         public JiekuanFangshi jiekuanFangshi;
     }
 
+    [Serializable]
     public class KehuGridModel : KehuBaseModel
     {
         public KehuGridModel()
@@ -98,12 +101,21 @@ namespace Yizhou.Website.Api
         public string jiekuanFangshi;
     }
 
+    [Serializable]
     public class KehuFilterModel
     {
         public string keyword;
 
-        public int pageIndex;
+        public int start;
 
-        public int pageSize;
+        public int size;
+    }
+
+    [Serializable]
+    public class KehuInputModel
+    {
+        public string id;
+
+        public string name;
     }
 }

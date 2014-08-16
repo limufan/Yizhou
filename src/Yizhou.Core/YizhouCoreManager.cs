@@ -15,6 +15,8 @@ namespace Yizhou.Core
             this.Logger = log4net.LogManager.GetLogger("logger");
             this.OrgManager = new OrganizationManagement();
             this.KehuManager = new KehuManager();
+            this.ChanpinManager = new ChanpinManager();
+            this.DingdanManager = new DingdanManager();
         }
 
         ILog _logger;
@@ -37,5 +39,9 @@ namespace Yizhou.Core
         public OrganizationManagement OrgManager { set; get; }
 
         public KehuManager KehuManager { set; get; }
+
+        public ChanpinManager ChanpinManager { set; get; }
+
+        public DingdanManager DingdanManager { set; get; }
     }
 }

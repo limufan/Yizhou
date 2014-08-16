@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace Yizhou.Website.Models
 {
-    public enum ControllerResult
+    public class ControllerResultModel : Dictionary<string, object>
     {
-        Succeed,
-        Error
-    }
+        public ControllerResultModel()
+        {
+            this.result = true;
+        }
 
-    public class ControllerResultModel
-    {
-        public ControllerResult result;
+        public bool result
+        {
+            set
+            {
+                this["result"] = value;
+            }
+        }
 
-        public string message;
-
-        public object data;
+        public string message
+        {
+            set
+            {
+                this["message"] = value;
+            }
+        }
     }
 }

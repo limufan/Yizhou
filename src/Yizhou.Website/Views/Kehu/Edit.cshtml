@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">编辑客户</h2>
+<fieldset>
+    <legend>详细信息</legend>
+</fieldset>
+<form id="detailsform" class="form-horizontal" role="form">
+    @{this.Html.RenderPartial("Details");}
+    <div class="form-group">
+		<div class="col-sm-offset-3 control-input">
+		  	<button id="btnSave" type="submit" class="btn btn-default">保存</button>
+		  	<button id="btnCancel" type="button" class="btn btn-default">取消</button>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+    var kehuId = '@Request["Id"]';
+    var kehuModel = @this.Html.Raw(this.ViewBag.kehuModelJson);
+    $("#detailsform").horizontalForm();
+	var form = $("#detailsform").form().data("form");
+    form.setValue(kehuModel);
+    $("#btnSave").click(function(){
+        if(form.validate()){
+            var value = form.getValue();
+            value.id = kehuId;
+            $.post("/Kehu/EditPost", {argsJson: $.toJSON(value)}, function(model){
+                if(model.result){
+                    location = "/Kehu";
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+        }
+        return false;
+    });
+    $("#btnCancel").click(function(){
+        location = "/Kehu";
+        return false;
+    });
+</script>

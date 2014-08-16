@@ -96,7 +96,7 @@
         $("#btnSingIn").button("loading");
         $.post("@this.Url.Action("SignIn")", {account: account, password: password, remember: remember, returnUrl: returnUrl}, function(model){
             $("#btnSingIn").button("reset");
-            if(model.result == 0){
+            if(model.result){
                 location = model.data;
             }
             else{

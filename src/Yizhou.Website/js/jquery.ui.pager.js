@@ -91,6 +91,10 @@
                 }
                 return pageCount;
             },
+            setPageInfo: function(pageInfo){
+                this.options.pageInfo = pageInfo;
+                this._render();
+            },
             _setOption: function (key, value) {
                 $.Widget.prototype._setOption.apply( this, arguments );
                 if(key == 'pageInfo'){

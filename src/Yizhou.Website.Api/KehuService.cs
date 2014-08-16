@@ -21,6 +21,7 @@ namespace Yizhou.Website.Api
         public void Create(KehuDetailsModel createModel)
         {
             Kehu kehu = new Kehu();
+            kehu.Id = Guid.NewGuid().ToString();
             this.SetKehuInfo(kehu, createModel);
 
             this._dataManager.KehuDataProvider.Insert(kehu);
@@ -34,6 +35,7 @@ namespace Yizhou.Website.Api
             this.SetKehuInfo(kehuClone, changeModel);
             this._dataManager.KehuDataProvider.Update(kehuClone);
             this.SetKehuInfo(kehu, changeModel);
+            kehu.Changed();
         }
 
         private void SetKehuInfo(Kehu kehu, KehuDetailsModel detailsModel)
@@ -43,7 +45,6 @@ namespace Yizhou.Website.Api
             kehu.CreateTime = DateTime.Now;
             kehu.Email = detailsModel.email;
             kehu.GongsiDizhi = detailsModel.gongsiDizhi;
-            kehu.Id = Guid.NewGuid().ToString();
             kehu.JiekuanFangshi = detailsModel.jiekuanFangshi;
             kehu.Lianxidianhua = detailsModel.lianxidianhua;
             kehu.Name = detailsModel.name;
@@ -71,11 +72,11 @@ namespace Yizhou.Website.Api
         public List<KehuGridModel> GetKehu(KehuFilterModel model, out int totalCount)
         {
             KehuFilter filter = new KehuFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword); 
-            int skipCount = (model.pageIndex - 1) * model.pageSize;
+            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
+            int skipCount = model.start;
             List<Kehu> kehuList = this._coreManager.KehuManager.GetKehu(filter);
             totalCount = kehuList.Count;
-            return kehuList.Skip(skipCount).Take(model.pageSize).Select(k => new KehuGridModel(k)).ToList();
+            return kehuList.Skip(skipCount).Take(model.size).Select(k => new KehuGridModel(k)).ToList();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Yizhou.Core
 {
     public enum YewulvFangshi
     {
-        Zhongliang,
-        Jine
+        Jine,
+        Zhongliang
     }
 }

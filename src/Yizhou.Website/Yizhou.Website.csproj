@@ -105,6 +105,8 @@
     <Compile Include="Controllers\DingdanController.cs" />
     <Compile Include="Controllers\KehuController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ChanpinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,7 +140,6 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="img\forward_24.gif" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
@@ -155,7 +156,6 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\chengyuanDialog.js" />
     <Content Include="js\coldewForm.js" />
-    <Content Include="js\jianglaiZhipaiDialog.js" />
     <Content Include="js\jquery-1.8.0.min.js" />
     <Content Include="js\jquery-1.8.3.js" />
     <Content Include="js\jquery-extend.js" />
@@ -166,7 +166,6 @@
     <Content Include="js\jquery.metadata.js" />
     <Content Include="js\jquery.tmpl.min.js" />
     <Content Include="js\jquery.ui.chengyuan.js" />
-    <Content Include="js\jquery.ui.formDesigner.js" />
     <Content Include="js\jquery.ui.pager.js" />
     <Content Include="js\jquery.ui.tree.js" />
     <Content Include="js\json.js" />
@@ -175,7 +174,6 @@
     <Content Include="js\metadataSearchPopover.js" />
     <Content Include="js\metadataSelectDialog.js" />
     <Content Include="js\objectLayoutDesigner.js" />
-    <Content Include="js\objectLayoutDesigner.template.html" />
     <Content Include="js\positionCreateDialog.js" />
     <Content Include="js\positionManager.js" />
     <Content Include="js\positionSelectDialog.js" />
@@ -187,19 +185,10 @@
     <Content Include="js\userEditDialog.js" />
     <Content Include="js\userInfoMoidfyDialog.js" />
     <Content Include="js\webui.min.js" />
+    <Content Include="js\userInput.js" />
     <Content Include="ltlorg-js\chanpinEditDialog.js" />
     <Content Include="ltlorg-js\shoukuanEditDialog.js" />
     <Content Include="Web.config" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +211,10 @@
       <Project>{87e111d2-0349-4847-a365-117e35603931}</Project>
       <Name>Yizhou.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Yizhou.Website.Api\Yizhou.Website.Api.csproj">
+      <Project>{ff278459-d3ed-4f8e-9967-b52e9ac395ed}</Project>
+      <Name>Yizhou.Website.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -231,6 +224,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Kehu\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Kehu\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Kehu\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Kehu\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chanpin\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chanpin\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chanpin\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chanpin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

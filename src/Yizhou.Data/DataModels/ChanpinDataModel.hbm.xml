@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Yizhou.Data.DataModels" assembly="Yizhou.Data">
+    <class name="ChanpinDataModel" table="yizhou_chanpin">
+        <id name="Id" type="string" column="chanpin_id"></id>
+        <property name="Name" type="String" column="chanpin_name"></property>
+        <property name="Guige" type="String" column="chanpin_guige"></property>
+        <property name="Danwei" type="String" column="chanpin_danwei"></property>
+        <property name="XiaoshouDijia" type="double" column="chanpin_xiaoshouDijia"></property>
+        <property name="Chengbenjia" type="double" column="chanpin_chengbenjia"></property>
+        <property name="Beizhu" type="String" column="chanpin_beizhu" length="20000"></property>
+    </class>
+</hibernate-mapping>

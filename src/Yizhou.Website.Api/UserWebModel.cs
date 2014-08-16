@@ -6,6 +6,7 @@ using Yizhou.Core.Organization;
 
 namespace Yizhou.Website.Api
 {
+    [Serializable]
     public class UserInputModel
     {
         public UserInputModel()
@@ -19,6 +20,14 @@ namespace Yizhou.Website.Api
             this.account = user.Account;
         }
 
+        public string name;
+
+        public string account;
+    }
+
+    [Serializable]
+    public class UserComplexSelectSourceModel
+    {
         public string name;
 
         public string account;

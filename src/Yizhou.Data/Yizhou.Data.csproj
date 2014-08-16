@@ -48,13 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModels\DingdanDataModel.cs" />
+    <Compile Include="DataModels\DingdanMingxiDataModel.cs" />
+    <Compile Include="DataModels\KehuDataModel.cs" />
+    <Compile Include="DataModels\ChanpinDataModel.cs" />
     <Compile Include="KehuDataProvider.cs" />
     <Compile Include="YizhouDataManager.cs" />
-    <Compile Include="DataProviders\DepartmentDataProvider.cs" />
-    <Compile Include="DataProviders\FunctionDataProvider.cs" />
-    <Compile Include="DataProviders\GroupDataProvider.cs" />
-    <Compile Include="DataProviders\PositionDataProvider.cs" />
-    <Compile Include="DataProviders\UserDataProvider.cs" />
+    <Compile Include="DepartmentDataProvider.cs" />
+    <Compile Include="FunctionDataProvider.cs" />
+    <Compile Include="GroupDataProvider.cs" />
+    <Compile Include="PositionDataProvider.cs" />
+    <Compile Include="UserDataProvider.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="DataInitializer.cs" />
     <Compile Include="Organization\DepartmentModel.cs" />
@@ -66,6 +70,8 @@
     <Compile Include="Organization\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypificationJsonSettings.cs" />
+    <Compile Include="ChanpinDataProvider.cs" />
+    <Compile Include="DingdanDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Organization\DepartmentModel.hbm.xml" />
@@ -85,6 +91,15 @@
       <Project>{d9c28b46-8de3-4c93-8da6-6c28bb63b68c}</Project>
       <Name>Yizhou.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataModels\KehuDataModel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataModels\ChanpinDataModel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataModels\DingdanDataModel.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

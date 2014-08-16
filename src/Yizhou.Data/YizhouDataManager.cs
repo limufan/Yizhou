@@ -17,6 +17,8 @@ namespace Yizhou.Data
             this.FunctionDataProvider = new FunctionDataProvider(coreManager.OrgManager);
             this.GroupDataProvider = new GroupDataProvider(coreManager.OrgManager);
             this.KehuDataProvider = new KehuDataProvider(coreManager);
+            this.ChanpinDataProvider = new ChanpinDataProvider(coreManager);
+            this.DingdanDataProvider = new DingdanDataProvider(coreManager);
             this.Load();
         }
         public UserDataProvider UserDataProvider { set; get; }
@@ -31,6 +33,10 @@ namespace Yizhou.Data
 
         public KehuDataProvider KehuDataProvider { set; get; }
 
+        public ChanpinDataProvider ChanpinDataProvider { set; get; }
+
+        public DingdanDataProvider DingdanDataProvider { set; get; }
+
         public void Load()
         {
             this.PositionDataProvider.Load();
@@ -40,6 +46,8 @@ namespace Yizhou.Data
             this.FunctionDataProvider.Load();
             this.GroupDataProvider.Load();
             this.KehuDataProvider.Load();
+            this.ChanpinDataProvider.Load();
+            this.DingdanDataProvider.Load();
         }
     }
 }

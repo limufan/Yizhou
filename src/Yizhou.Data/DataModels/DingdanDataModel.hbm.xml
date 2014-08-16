@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Yizhou.Data.DataModels" assembly="Yizhou.Data">
+    <class name="DingdanDataModel" table="yizhou_dingdan">
+        <id name="Id" type="string" column="dingdan_id"></id>
+        <property name="Danhao" type="String" column="dingdan_danhao"></property>
+        <property name="XiadanRiqi" type="DateTime" column="dingdan_xiadanRiqi"></property>
+        <property name="FahuoRiqi" type="DateTime" column="dingdan_fahuoRiqi"></property>
+        <property name="Yewuyuan" type="String" column="dingdan_yewuyuan"></property>
+        <property name="KehuId" type="string" column="dingdan_kehuId"></property>
+        <property name="Shouhuoren" type="string" column="dingdan_shouhuoren"></property>
+        <property name="ShouhuorenDianhua" type="string" column="dingdan_shouhuorenDianhua"></property>
+        <property name="ShouhuoDizhi" type="String" column="dingdan_shouhuoDizhi"></property>
+        <property name="JiekuanFangshi" type="int" column="dingdan_jiekuanFangshi"></property>
+        <property name="MingxiListJson" type="String" column="dingdan_mingxiListJson" length="20000"></property>
+        <property name="ShoukuanListJson" type="String" column="dingdan_shoukuanListJson" length="20000"></property>
+        <property name="Beizhu" type="String" column="dingdan_beizhu" length="20000"></property>
+    </class>
+</hibernate-mapping>

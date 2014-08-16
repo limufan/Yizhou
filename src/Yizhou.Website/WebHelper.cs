@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using log4net;
 using Yizhou.Api.Organization;
+using Yizhou.Website.Api;
 
 namespace Yizhou.Website
 {
@@ -18,6 +19,8 @@ namespace Yizhou.Website
             UserService = (IUserService)ctx["UserService"];
             PositionService = (IPositionService)ctx["PositionService"];
             AuthenticationService = (IAuthenticationService)ctx["AuthenticationService"];
+            KehuService = (IKehuService)ctx["KehuService"];
+            ChanpinService = (IChanpinService)ctx["ChanpinService"];
         }
 
         public static ILog Logger { private set; get; }
@@ -27,6 +30,10 @@ namespace Yizhou.Website
         public static IPositionService PositionService { private set; get; }
 
         public static IAuthenticationService AuthenticationService { private set; get; }
+
+        public static IKehuService KehuService { private set; get; }
+
+        public static IChanpinService ChanpinService { private set; get; }
 
         public static UserInfo CurrentUserInfo
         {

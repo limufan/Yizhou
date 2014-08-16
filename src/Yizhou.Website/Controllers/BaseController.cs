@@ -22,12 +22,6 @@ namespace Yizhou.Website.Controllers
             }
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            this.ViewBag.currentUserAccount = CurrentUser.Account;
-            base.OnActionExecuting(filterContext);
-        }
-
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new NewtonJsonResult

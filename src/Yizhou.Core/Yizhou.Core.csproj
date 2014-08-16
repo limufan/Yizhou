@@ -59,13 +59,16 @@
   <ItemGroup>
     <Compile Include="ChangeEventArgs.cs" />
     <Compile Include="Chanpin.cs" />
+    <Compile Include="ChanpinFilter.cs" />
+    <Compile Include="ChanpinManager.cs" />
+    <Compile Include="ClassPropertyHelper.cs" />
     <Compile Include="CreatedEventArgs.cs" />
     <Compile Include="DeleteEventArgs.cs" />
     <Compile Include="Dingdan.cs" />
-    <Compile Include="DingdanInfo.cs" />
     <Compile Include="DingdanMingxi.cs" />
     <Compile Include="DingdanMingxiInfo.cs" />
     <Compile Include="JiekuanFangshi.cs" />
+    <Compile Include="JsonConvertHelper.cs" />
     <Compile Include="Kehu.cs" />
     <Compile Include="KehuFilter.cs" />
     <Compile Include="KehuManager.cs" />
@@ -109,6 +112,8 @@
     <Compile Include="YewulvFangshi.cs" />
     <Compile Include="YizhouCoreManager.cs" />
     <Compile Include="YizhouHelper.cs" />
+    <Compile Include="DingdanManager.cs" />
+    <Compile Include="DingdanFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yizhou.Api\Yizhou.Api.csproj">

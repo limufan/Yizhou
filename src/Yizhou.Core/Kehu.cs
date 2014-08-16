@@ -38,13 +38,30 @@ namespace Yizhou.Core
 
         public string Beizhu { set; get; }
 
-        public string Keywords { private set; get; }
+        private string _keywords;
+
+        public string Keywords
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this._keywords))
+                {
+                    this.BuildKeyword();
+                }
+                return this._keywords;
+            }
+        }
 
         public void Changed()
         {
-            this.Keywords = this.Beizhu + this.Chuanzhen +  this.Email + this.GongsiDizhi + YizhouHelper.GetName(this.JiekuanFangshi)
-                + this.Lianxidianhua + this.Name + this.ShouhuoDizhi + this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan.Name
-                + YizhouHelper.GetName(this.YewulvFangshi);
+            this.BuildKeyword();
+        }
+
+        private void BuildKeyword()
+        {
+            this._keywords = this.Beizhu + this.Chuanzhen + this.Email + this.GongsiDizhi + YizhouHelper.GetName(this.JiekuanFangshi)
+                   + this.Lianxidianhua + this.Name + this.ShouhuoDizhi + this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan.Name
+                   + YizhouHelper.GetName(this.YewulvFangshi);
         }
 
         public Kehu Clone()
