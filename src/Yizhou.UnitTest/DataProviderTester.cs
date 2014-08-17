@@ -83,18 +83,19 @@ namespace Yizhou.UnitTest
             this._coreManager.KehuManager.Add(kehu);
 
             DingdanDataProvider dataProvider = this._dataManager.DingdanDataProvider;
-            Dingdan dingdan = new Dingdan();
-            dingdan.Yewuyuan = this._coreManager.OrgManager.System;
-            dingdan.Kehu = kehu;
-            TestHelper.FillTestData(dingdan);
-            dingdan.Changed();
+            DingdanCreateInfo createInfo = new DingdanCreateInfo();
+            createInfo.Yewuyuan = this._coreManager.OrgManager.System;
+            createInfo.Kehu = kehu;
+            TestHelper.FillTestData(createInfo);
+            Dingdan dingdan = new Dingdan(createInfo);
             dataProvider.Insert(dingdan);
             dataProvider.Load();
             Dingdan reloadDingdan = this._coreManager.DingdanManager.GetDingdanById(dingdan.Id);
             TestHelper.AreEqual(dingdan, reloadDingdan);
 
-            dingdan.Beizhu = Guid.NewGuid().ToString();
-            dingdan.Changed();
+            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            changeInfo.Beizhu = Guid.NewGuid().ToString();
+            dingdan.Change(changeInfo);
             dataProvider.Update(dingdan);
             this._coreManager.DingdanManager.Remove(reloadDingdan);
             dataProvider.Load();

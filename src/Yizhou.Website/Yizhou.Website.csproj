@@ -186,6 +186,7 @@
     <Content Include="js\userInfoMoidfyDialog.js" />
     <Content Include="js\webui.min.js" />
     <Content Include="js\userInput.js" />
+    <Content Include="js\dingdanDetailsForm.js" />
     <Content Include="ltlorg-js\chanpinEditDialog.js" />
     <Content Include="ltlorg-js\shoukuanEditDialog.js" />
     <Content Include="Web.config" />
@@ -202,7 +203,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Views\Dingdan\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
@@ -245,6 +245,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Chanpin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\ChanpinDetailsModal.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

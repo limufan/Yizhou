@@ -52,6 +52,7 @@
     <Compile Include="DataModels\DingdanMingxiDataModel.cs" />
     <Compile Include="DataModels\KehuDataModel.cs" />
     <Compile Include="DataModels\ChanpinDataModel.cs" />
+    <Compile Include="DataModels\ShoukuanDataModel.cs" />
     <Compile Include="KehuDataProvider.cs" />
     <Compile Include="YizhouDataManager.cs" />
     <Compile Include="DepartmentDataProvider.cs" />

@@ -9,10 +9,19 @@ namespace Yizhou.Core
 {
     public class Dingdan
     {
-        public Dingdan()
+        public Dingdan(DingdanCreateInfo createInfo)
         {
-            this.MingxiList = new List<DingdanMingxi>();
-            this.ShoukuanList = new List<Shoukuan>();
+            ClassPropertyHelper.ChangeProperty(this, createInfo);
+            if (this.MingxiList == null)
+            {
+                this.MingxiList = new List<DingdanMingxi>();
+            }
+            if (this.ShoukuanList == null)
+            {
+                this.ShoukuanList = new List<Shoukuan>();
+            } 
+            this.BuildKeyword();
+            this.Jisuan();
         }
 
         public string Id { set; get; }
@@ -97,16 +106,9 @@ namespace Yizhou.Core
             }
         }
 
-        public void Changed()
+        public void Change(DingdanChangeInfo changeInfo)
         {
-            if (this.MingxiList == null)
-            {
-                this.MingxiList = new List<DingdanMingxi>();
-            }
-            if (this.ShoukuanList == null)
-            {
-                this.ShoukuanList = new List<Shoukuan>();
-            }
+            ClassPropertyHelper.ChangeProperty(this, changeInfo);
             this.BuildKeyword();
             this.Jisuan();
         }

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "编辑产品";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">编辑产品</h2>
+<fieldset>
+    <legend>详细信息</legend>
+</fieldset>
+<form id="detailsform" class="form-horizontal" role="form">
+    @{this.Html.RenderPartial("Details");}
+    <div class="form-group">
+		<div class="col-sm-offset-3 control-input">
+		  	<button id="btnSave" type="submit" class="btn btn-default">保存</button>
+		  	<button id="btnCancel" type="button" class="btn btn-default">取消</button>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+    var chanpinId = '@Request["Id"]';
+    var chanpinModel = @this.Html.Raw(this.ViewBag.chanpinModelJson);
+    $("#detailsform").horizontalForm();
+	var form = $("#detailsform").form().data("form");
+    form.setValue(chanpinModel);
+    $("#btnSave").click(function(){
+        if(form.validate()){
+            var value = form.getValue();
+            value.id = chanpinId;
+            $.post("/Chanpin/EditPost", {argsJson: $.toJSON(value)}, function(model){
+                if(model.result){
+                    location = "/Chanpin";
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+        }
+        return false;
+    });
+    $("#btnCancel").click(function(){
+        location = "/Chanpin";
+        return false;
+    });
+</script>

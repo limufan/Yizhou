@@ -12,15 +12,18 @@ namespace Yizhou.UnitTest
         [Test]
         public void JisuanInfoTest()
         {
-            Dingdan dingdan = new Dingdan();
-            dingdan.XiadanRiqi = new DateTime(2014, 8, 15);
-            dingdan.JiekuanFangshi = JiekuanFangshi.Yigeyue;
-            DingdanMingxi mingxi = new DingdanMingxi { Dingdan = dingdan, XiaoshouDijia = 11, XiaoshouDanjia = 10, Shuliang = 100, Yewulv = 0.2, YewulvFangshi = YewulvFangshi.Jine };
-            dingdan.MingxiList.Add(mingxi);
+            DingdanCreateInfo createInfo = new DingdanCreateInfo();
+            createInfo.XiadanRiqi = new DateTime(2014, 8, 15);
+            createInfo.JiekuanFangshi = JiekuanFangshi.Yigeyue;
+            createInfo.Kehu = new Kehu();
+            Dingdan dingdan = new Dingdan(createInfo);
+            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            DingdanMingxiCreateInfo mingxiCreateInfo = new DingdanMingxiCreateInfo { Dingdan = dingdan, XiaoshouDijia = 11, XiaoshouDanjia = 10, Shuliang = 100, Yewulv = 0.2, YewulvFangshi = YewulvFangshi.Jine };
+            DingdanMingxi mingxi = new DingdanMingxi(mingxiCreateInfo);
+            changeInfo.MingxiList.Add(mingxi);
             Shoukuan shoukuan = new Shoukuan { ShoukuanJine = 300, ShoukuanRiqi = dingdan.XiadanRiqi };
-            dingdan.ShoukuanList.Add(shoukuan);
-
-            dingdan.Jisuan();
+            changeInfo.ShoukuanList.Add(shoukuan);
+            dingdan.Change(changeInfo);
             Assert.AreEqual(dingdan.JiekuanRiqi, new DateTime(2014, 9, 30));
             Assert.AreEqual(dingdan.WeishoukuanJine, 700);
             Assert.AreEqual(dingdan.YingshoukuanJine, 1000);

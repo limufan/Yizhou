@@ -7,9 +7,9 @@ namespace Yizhou.Core
 {
     public class DingdanMingxi
     {
-        public DingdanMingxi()
+        public DingdanMingxi(DingdanMingxiCreateInfo createInfo)
         {
-            
+            ClassPropertyHelper.ChangeProperty(this, createInfo);
         }
 
         public Dingdan Dingdan { set; get; }

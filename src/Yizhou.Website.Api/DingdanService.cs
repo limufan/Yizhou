@@ -20,9 +20,16 @@ namespace Yizhou.Website.Api
 
         public void Create(DingdanDetailsModel createModel)
         {
-            Dingdan dingdan = new Dingdan();
-            this.SetDingdanInfo(dingdan, createModel);
-            dingdan.Id = Guid.NewGuid().ToString();
+            DingdanCreateInfo createInfo = new DingdanCreateInfo();
+            createInfo.Id = Guid.NewGuid().ToString();
+            createInfo.Kehu = this._coreManager.KehuManager.GetKehuById(createModel.kehu.id);
+            ClassPropertyHelper.ChangeProperty(createInfo, createModel);
+            createInfo.Danhao = this._coreManager.DingdanManager.ShengchengDingdanhao();
+            Dingdan dingdan = new Dingdan(createInfo);
+            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            changeInfo.MingxiList = createModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
+            changeInfo.ShoukuanList = createModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
+            dingdan.Change(changeInfo);
 
             this._dataManager.DingdanDataProvider.Insert(dingdan);
             this._coreManager.DingdanManager.Add(dingdan);
@@ -31,16 +38,33 @@ namespace Yizhou.Website.Api
         public void Change(DingdanDetailsModel changeModel)
         {
             Dingdan dingdan = this._coreManager.DingdanManager.GetDingdanById(changeModel.id);
+            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            changeInfo.Kehu = this._coreManager.KehuManager.GetKehuById(changeModel.kehu.id);
+            changeInfo.MingxiList = changeModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
+            changeInfo.ShoukuanList = changeModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
+            ClassPropertyHelper.ChangeProperty(changeInfo, changeModel);
+            //update to clone 
             Dingdan dingdanClone = dingdan.Clone();
-            this.SetDingdanInfo(dingdanClone, changeModel);
+            dingdanClone.Change(changeInfo);
             this._dataManager.DingdanDataProvider.Update(dingdanClone);
-            this.SetDingdanInfo(dingdan, changeModel);
-            dingdan.Changed();
+            //update
+            dingdan.Change(changeInfo);
         }
 
-        private void SetDingdanInfo(Dingdan dingdan, DingdanDetailsModel detailsModel)
+        private DingdanMingxi CreateDingdanMingxi(Dingdan dingdan, DingdanMingxiDetailsModel detailsModel)
         {
-            ClassPropertyHelper.ChangeProperty(dingdan, detailsModel);
+            DingdanMingxiCreateInfo mingxiInfo = new DingdanMingxiCreateInfo(); 
+            ClassPropertyHelper.ChangeProperty(mingxiInfo, detailsModel);
+            mingxiInfo.Dingdan = dingdan;
+            return new DingdanMingxi(mingxiInfo);
+        }
+
+        private Shoukuan CreateShoukuan(Dingdan dingdan, ShoukuanDetailsModel detailsModel)
+        {
+            Shoukuan shoukuan = new Shoukuan();
+            shoukuan.Dingdan = dingdan;
+            ClassPropertyHelper.ChangeProperty(shoukuan, detailsModel);
+            return shoukuan;
         }
 
         public void Delete(string dingdanId)

@@ -1,0 +1,153 @@
+﻿<div class="modal fade" id="chanpinDetailsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">修改个人信息</h3>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body"> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">产品名称<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <div name="chanpinName" class="form-control webui-complexSelect"  data-required="true" data-single="true" 
+                                        data-text-field="name" data-source="/Chanpin/ComplexSelectSource">
+							
+				                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">规格<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-textbox" name="guige" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">单位<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-textbox" name="danwei" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">数量<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="shuliang" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">桶数<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="tongshu" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">销售单价<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="xiaoshouDanjia" data-precision="2" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">实际单价<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="shijiDanjia" data-precision="2" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">销售底价<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="xiaoshouDijia" data-precision="2" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">总金额<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="zongjine" data-precision="2" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">业务率<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="yewulv" data-precision="2" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">总金额<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="zongjine" data-precision="2" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+			                    <label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>业务率方式</label>
+			                    <div class="control-input">
+                                    <div name='yewulvFangshi' data-required="true" class='webui-radioList'>
+				    	                <label class="radio-inline"><input type="radio" name="yewulvFangshi" value='0'/> 按金额</label>
+				    	                <label class="radio-inline"><input type="radio" name="yewulvFangshi" value='1'/> 按重量</label>
+			    	                </div>
+			                    </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">业务费<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="yewufei" data-precision="2" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+			                    <label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>是否开票</label>
+			                    <div class="control-input">
+                                    <div name='shifouKaipiao' data-required="true" class='webui-radioList'>
+				    	                <label class="radio-inline"><input type="radio" name="shifouKaipiao" value='true'/> 是</label>
+				    	                <label class="radio-inline"><input type="radio" name="shifouKaipiao" value='false'/> 否</label>
+			    	                </div>
+			                    </div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btnOk" type="submit">确定</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal" aria-hidden="true" >关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -14,14 +14,7 @@ namespace Yizhou.Website.Api
 
         }
 
-        public DingdanBaseModel(Dingdan chanpin)
-        {
-            ClassPropertyHelper.ChangeProperty(this, chanpin);
-        }
-
         public string id { set; get; }
-
-        public string danhao { set; get; }
 
         public DateTime xiadanRiqi { set; get; }
 
@@ -57,12 +50,13 @@ namespace Yizhou.Website.Api
         }
 
         public DingdanDetailsModel(Dingdan chanpin)
-            :base(chanpin)
         {
+            ClassPropertyHelper.ChangeProperty(this, chanpin);
             this.kehu = new KehuInputModel { id = chanpin.Kehu.Id, name = chanpin.Kehu.Name};
             this.yewuyuan = new UserInputModel(chanpin.Yewuyuan);
             this.jiekuanFangshi = chanpin.JiekuanFangshi;
-            this.mingxiList = chanpin.MingxiList;
+            this.mingxiList = chanpin.MingxiList.Select(m => new DingdanMingxiDetailsModel(m)).ToList();
+            this.shoukuanList = chanpin.ShoukuanList.Select(m => new ShoukuanDetailsModel(m)).ToList();
         }
 
         public KehuInputModel kehu { set; get; }
@@ -71,24 +65,29 @@ namespace Yizhou.Website.Api
 
         public JiekuanFangshi jiekuanFangshi { set; get; }
 
-        public List<DingdanMingxiWebModel> mingxiList { set; get; }
+        public List<DingdanMingxiDetailsModel> mingxiList { set; get; }
 
-        public List<Shoukuan> shoukuanList { set; get; }
+        public List<ShoukuanDetailsModel> shoukuanList { set; get; }
     }
 
     [Serializable]
     public class DingdanGridModel : DingdanBaseModel
     {
-        public DingdanGridModel()
-        {
-
-        }
-
         public DingdanGridModel(Dingdan chanpin)
-            : base(chanpin)
         {
-            
+            ClassPropertyHelper.ChangeProperty(this, chanpin);
+            this.kehu = chanpin.Kehu.Name;
+            this.yewuyuan = chanpin.Yewuyuan.Name;
+            this.jiekuanFangshi = YizhouHelper.GetName(chanpin.JiekuanFangshi);
         }
+
+        public string danhao { set; get; }
+
+        public string kehu { set; get; }
+
+        public string yewuyuan { set; get; }
+
+        public string jiekuanFangshi { set; get; }
     }
 
     [Serializable]

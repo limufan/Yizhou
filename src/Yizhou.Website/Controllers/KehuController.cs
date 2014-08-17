@@ -103,5 +103,13 @@ namespace Yizhou.Website.Controllers
             }
             return Json(resultModel, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult ComplexSelectSource(string keyword)
+        {
+            KehuFilterModel model = new KehuFilterModel { keyword = keyword, start = 0, size = 10 };
+            int totalCount;
+            List<KehuGridModel> kehuModels = WebHelper.KehuService.GetKehu(model, out totalCount);
+            return Json(kehuModels, JsonRequestBehavior.AllowGet);
+        }
     }
 }

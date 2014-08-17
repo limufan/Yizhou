@@ -47,7 +47,7 @@ namespace Yizhou.Data
             model.Yewuyuan = dingdan.Yewuyuan.Account;
             model.KehuId = dingdan.Kehu.Id;
             model.MingxiListJson = JsonConvert.SerializeObject(dingdan.MingxiList.Select(m => this.GetMingxiModel(m)).ToList());
-            model.ShoukuanListJson = JsonConvert.SerializeObject(dingdan.ShoukuanList);
+            model.ShoukuanListJson = JsonConvert.SerializeObject(dingdan.ShoukuanList.Select(s => new ShoukuanDataModel(s)).ToList());
         }
 
         private DingdanMingxiDataModel GetMingxiModel(DingdanMingxi mingxi)
@@ -64,16 +64,51 @@ namespace Yizhou.Data
             {
                 models.ForEach(m =>
                 {
-                    Dingdan dingdan = new Dingdan();
-                    ClassPropertyHelper.ChangeProperty(dingdan, m);
-                    dingdan.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(m.Yewuyuan);
-                    dingdan.MingxiList = JsonConvertHelper.TryDeserializeObject<List<DingdanMingxi>>(m.MingxiListJson);
-                    dingdan.ShoukuanList = JsonConvertHelper.TryDeserializeObject<List<Shoukuan>>(m.ShoukuanListJson);
-                    dingdan.Kehu = this._coreManager.KehuManager.GetKehuById(m.KehuId);
-                    dingdan.Changed();
+                    DingdanCreateInfo createInfo = new DingdanCreateInfo();
+                    ClassPropertyHelper.ChangeProperty(createInfo, m);
+                    createInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(m.Yewuyuan);
+                    createInfo.Kehu = this._coreManager.KehuManager.GetKehuById(m.KehuId);
+                    Dingdan dingdan = new Dingdan(createInfo);
+                    DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+                    changeInfo.MingxiList = this.CreateDingdanMingxiList(dingdan, JsonConvertHelper.TryDeserializeObject<List<DingdanMingxiDataModel>>(m.MingxiListJson));
+                    changeInfo.ShoukuanList = this.CreateShoukuanList(dingdan, JsonConvertHelper.TryDeserializeObject<List<ShoukuanDataModel>>(m.ShoukuanListJson));
+                    dingdan.Change(changeInfo);
                     this._coreManager.DingdanManager.Add(dingdan);
                 });
             }
+        }
+
+        private List<DingdanMingxi> CreateDingdanMingxiList(Dingdan dingdan, List<DingdanMingxiDataModel> models)
+        {
+            List<DingdanMingxi> mingxiList = new List<DingdanMingxi>();
+            if (models != null)
+            {
+                foreach (DingdanMingxiDataModel model in models)
+                {
+                    DingdanMingxiCreateInfo createInfo = new DingdanMingxiCreateInfo();
+                    createInfo.Dingdan = dingdan;
+                    ClassPropertyHelper.ChangeProperty(createInfo, model);
+                    DingdanMingxi mingxi = new DingdanMingxi(createInfo);
+                    mingxiList.Add(mingxi);
+                }
+            }
+            return mingxiList;
+        }
+
+        private List<Shoukuan> CreateShoukuanList(Dingdan dingdan, List<ShoukuanDataModel> models)
+        {
+            List<Shoukuan> mingxiList = new List<Shoukuan>();
+            if (models != null)
+            {
+                foreach (ShoukuanDataModel model in models)
+                {
+                    Shoukuan shoukuan = new Shoukuan();
+                    shoukuan.Dingdan = dingdan;
+                    ClassPropertyHelper.ChangeProperty(shoukuan, model);
+                    mingxiList.Add(shoukuan);
+                }
+            }
+            return mingxiList;
         }
     }
 }

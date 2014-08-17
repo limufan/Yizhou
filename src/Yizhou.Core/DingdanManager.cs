@@ -17,6 +17,21 @@ namespace Yizhou.Core
             this._dingdanList = new List<Dingdan>();
         }
 
+        public string ShengchengDingdanhao()
+        {
+            this._lock.AcquireReaderLock(0);
+            try
+            {
+                List<Dingdan> dingList = this._dingdanList.Where(d => d.XiadanRiqi.Year == DateTime.Today.Year && d.XiadanRiqi.Month == DateTime.Today.Month).ToList();
+                int sn = dingList.Count + 1;
+                return DateTime.Today.ToString("yyyyMM") + sn.ToString().PadLeft(3);
+            }
+            finally
+            {
+                this._lock.ReleaseReaderLock();
+            }
+        }
+
         public void Add(Dingdan dingdan)
         {
             this._lock.AcquireWriterLock(0);

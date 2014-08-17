@@ -21,6 +21,7 @@ namespace Yizhou.Website
             AuthenticationService = (IAuthenticationService)ctx["AuthenticationService"];
             KehuService = (IKehuService)ctx["KehuService"];
             ChanpinService = (IChanpinService)ctx["ChanpinService"];
+            DingdanService = (IDingdanService)ctx["DingdanService"];
         }
 
         public static ILog Logger { private set; get; }
@@ -34,6 +35,8 @@ namespace Yizhou.Website
         public static IKehuService KehuService { private set; get; }
 
         public static IChanpinService ChanpinService { private set; get; }
+
+        public static IDingdanService DingdanService { private set; get; }
 
         public static UserInfo CurrentUserInfo
         {

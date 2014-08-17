@@ -103,5 +103,13 @@ namespace Yizhou.Website.Controllers
             }
             return Json(resultModel, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult ComplexSelectSource(string keyword)
+        {
+            ChanpinFilterModel model = new ChanpinFilterModel { keyword = keyword, start = 0, size = 10 };
+            int totalCount;
+            List<ChanpinGridModel> chanpinModels = WebHelper.ChanpinService.GetChanpin(model, out totalCount);
+            return Json(chanpinModels, JsonRequestBehavior.AllowGet);
+        }
     }
 }

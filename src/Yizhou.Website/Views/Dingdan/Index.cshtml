@@ -1,6 +1,100 @@
 ﻿@{
-    ViewBag.Title = "订单管理";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row btn-toolbar" >
+                <div class="col-sm-3">
+                    <form class="input-group">
+                        <input id="txtKeyword" type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button type="submit" id="btnSearch" class="btn btn-default">查询</button>
+                        </div><!-- /btn-group -->
+                    </form>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group">
+                        <a id="btnCreate" href="@this.Url.Action("Create")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>创建</a>
+                        <button id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
+                    </div>
+                </div>
+            </div>
 
-<h2>订单管理</h2>
+            <div id="dingdanGrid">
+                
+            </div>
+        
+            <div id="dingdanGridPager" class="pull-right" style="height: 30px">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        var dingdanGrid = $("#dingdanGrid").datagrid({
+                columns:[
+			        {title: "订单号", width: 80, field:"danhao", render: function(datarow, args){ 
+                        return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Dingdan/Edit", {id: args.data.id})) ;
+                    }},
+			        {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
+			        {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
+			        {title: "结款日期", width: 80, field:"jiekuanRiqi", render: "date"},
+			        {title: "应收款金额", width: 80, field:"yingshoukuanJine"},
+			        {title: "已收款金额", width: 80, field:"yishoukuanJine"},
+			        {title: "未收款金额", width: 80, field:"weishoukuanJine"},
+			        {title: "提成", width: 50, field:"ticheng"},
+			        {title: "业务员", width: 80, field:"yewuyuan"},
+			        {title: "客户名称", width: 150, field:"kehu"},
+			        {title: "收货地址", width: 150, field:"shouhuoDizhi"}
+                ],
+                height: "auto"
+            }).data("datagrid");
+        var dingdanGridPager = $("#dingdanGridPager").pager({change: function(event, args){
+                search(args.start);
+            }}).data("pager");
+        function search(start){
+            var keyword = $("#txtKeyword").val();
+            var args = {keyword: keyword, start: start, size: 20};
+            $.get($.resolveUrl("Dingdan/GetDingdanList"), {argsJson : $.toJSON(args)}, function(model){
+                if(model.result){
+                    dingdanGrid.setValue(model.dingdanList);
+                    dingdanGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
+                }
+                else{
+                    alert(model.message);
+                }
+            });
+        }
+        $("#btnSearch").click(function(){
+            search(0);
+            return false;
+        });
+        $("#btnDelete").click(function(){
+            var rows = dingdanGrid.getSelectedRows();
+            if(!rows.length){
+                $.messageBox.info("请选择要删除的订单");
+                return false;
+            }
+            if(!confirm("确实要删除吗?")){
+                return false;
+            }
+            var dingdanIdArray = $.map(rows, function(row){
+                return row.datarow("getValue").id;
+            })
+            $.post("/Dingdan/Delete", { dingdanId: dingdanIdArray.toString() }, function(model){
+                if(model.result){
+                    dingdanGrid.deleteSelectedRows();
+                }
+                else{
+                    $.messageBox.info(model.message);
+                }
+            });
+            return false;
+        });
+        search(0);
+    })
+</script>

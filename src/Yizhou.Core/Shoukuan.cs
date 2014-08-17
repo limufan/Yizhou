@@ -7,6 +7,8 @@ namespace Yizhou.Core
 {
     public class Shoukuan
     {
+        public Dingdan Dingdan { set; get; }
+
         public DateTime ShoukuanRiqi { set; get; }
 
         public double ShoukuanJine { set; get; }

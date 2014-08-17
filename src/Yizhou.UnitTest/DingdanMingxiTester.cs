@@ -12,15 +12,19 @@ namespace Yizhou.UnitTest
         [Test]
         public void JisuanInfoTest()
         {
-            Dingdan dingdan = new Dingdan();
-            dingdan.XiadanRiqi = new DateTime(2014, 8, 15);
-            dingdan.JiekuanFangshi = JiekuanFangshi.Yigeyue;
-            DingdanMingxi mingxi = new DingdanMingxi { Dingdan = dingdan, XiaoshouDijia = 9, XiaoshouDanjia = 10, Shuliang = 1000, Yewulv = 0.03, YewulvFangshi = YewulvFangshi.Jine };
-            dingdan.MingxiList.Add(mingxi);
+            DingdanCreateInfo createInfo = new DingdanCreateInfo();
+            createInfo.XiadanRiqi = new DateTime(2014, 8, 15);
+            createInfo.JiekuanFangshi = JiekuanFangshi.Yigeyue;
+            createInfo.Kehu = new Kehu();
+            Dingdan dingdan = new Dingdan(createInfo);
+            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            DingdanMingxiCreateInfo mingxiCreateInfo = new DingdanMingxiCreateInfo { Dingdan = dingdan, XiaoshouDijia = 9, XiaoshouDanjia = 10, Shuliang = 1000, Yewulv = 0.03, YewulvFangshi = YewulvFangshi.Jine };
+            DingdanMingxi mingxi = new DingdanMingxi(mingxiCreateInfo);
+            changeInfo.MingxiList.Add(mingxi);
             Shoukuan shoukuan = new Shoukuan { ShoukuanJine = 300, ShoukuanRiqi = dingdan.XiadanRiqi };
-            dingdan.ShoukuanList.Add(shoukuan);
+            changeInfo.ShoukuanList.Add(shoukuan);
+            dingdan.Change(changeInfo);
 
-            dingdan.Jisuan();
             Assert.AreEqual(10000, mingxi.Zongjine);
             Assert.AreEqual(300, mingxi.Yewufei);
             Assert.AreEqual(9.7, Math.Round(mingxi.ShijiDanjia, 2));
