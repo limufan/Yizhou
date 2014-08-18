@@ -28,6 +28,8 @@ namespace Yizhou.Website.Api
             this.shouhuoren = kehu.Shouhuoren;
             this.shouhuorenDianhua = kehu.ShouhuorenDianhua;
             this.yewulv = kehu.Yewulv;
+            this.yewulvFangshi = kehu.YewulvFangshi;
+            this.jiekuanFangshi = kehu.JiekuanFangshi;
         }
 
         public string id;
@@ -53,6 +55,10 @@ namespace Yizhou.Website.Api
         public string email;
 
         public string beizhu;
+
+        public string yewulvFangshi;
+
+        public string jiekuanFangshi;
     }
 
     [Serializable]
@@ -67,15 +73,9 @@ namespace Yizhou.Website.Api
             :base(kehu)
         {
             this.yewuyuan = new UserInputModel(kehu.Yewuyuan);
-            this.yewulvFangshi = kehu.YewulvFangshi;
-            this.jiekuanFangshi = kehu.JiekuanFangshi;
         }
 
         public UserInputModel yewuyuan;
-
-        public YewulvFangshi yewulvFangshi;
-
-        public JiekuanFangshi jiekuanFangshi;
     }
 
     [Serializable]
@@ -90,15 +90,9 @@ namespace Yizhou.Website.Api
             : base(kehu)
         {
             this.yewuyuan = kehu.Yewuyuan.Name;
-            this.yewulvFangshi = YizhouHelper.GetName(kehu.YewulvFangshi);
-            this.jiekuanFangshi = YizhouHelper.GetName(kehu.JiekuanFangshi);
         }
 
         public string yewuyuan;
-
-        public string yewulvFangshi;
-
-        public string jiekuanFangshi;
     }
 
     [Serializable]

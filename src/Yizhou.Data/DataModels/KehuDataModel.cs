@@ -18,9 +18,9 @@ namespace Yizhou.Data.DataModels
 
         public virtual double Yewulv { set; get; }
 
-        public virtual YewulvFangshi YewulvFangshi { set; get; }
+        public virtual string YewulvFangshi { set; get; }
 
-        public virtual JiekuanFangshi JiekuanFangshi { set; get; }
+        public virtual string JiekuanFangshi { set; get; }
 
         public virtual string Lianxidianhua { set; get; }
 

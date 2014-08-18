@@ -18,7 +18,7 @@ namespace Yizhou.Website.Api
             this._dataManager = dataManager;
         }
 
-        public void Create(ChanpinDetailsModel createModel)
+        public ChanpinDetailsModel Create(ChanpinDetailsModel createModel)
         {
             Chanpin chanpin = new Chanpin();
             this.SetChanpinInfo(chanpin, createModel);
@@ -26,6 +26,7 @@ namespace Yizhou.Website.Api
 
             this._dataManager.ChanpinDataProvider.Insert(chanpin);
             this._coreManager.ChanpinManager.Add(chanpin);
+            return new ChanpinDetailsModel(chanpin);
         }
 
         public void Change(ChanpinDetailsModel changeModel)

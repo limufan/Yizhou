@@ -26,12 +26,14 @@ namespace Yizhou.Data.DataModels
 
         public virtual string ShouhuoDizhi { set; get; }
 
-        public virtual JiekuanFangshi JiekuanFangshi { set; get; }
+        public virtual string JiekuanFangshi { set; get; }
 
         public virtual string MingxiListJson { set; get; }
 
         public virtual string ShoukuanListJson { set; get; }
 
         public virtual string Beizhu { set; get; }
+
+        public virtual DateTime CreateTime { set; get; }
     }
 }

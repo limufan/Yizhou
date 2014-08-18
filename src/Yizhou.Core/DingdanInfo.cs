@@ -24,9 +24,11 @@ namespace Yizhou.Core
 
         public string ShouhuoDizhi { set; get; }
 
-        public JiekuanFangshi JiekuanFangshi { set; get; }
+        public string JiekuanFangshi { set; get; }
 
         public string Beizhu { set; get; }
+
+        public DateTime CreateTime { set; get; }
     }
 
     public class DingdanCreateInfo : DingdanBaseInfo

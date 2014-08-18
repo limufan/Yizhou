@@ -8,11 +8,7 @@ namespace Yizhou.Data.DataModels
 {
     public class DingdanMingxiDataModel
     {
-        public string ChanpinName { set; get; }
-
-        public string ChanpinGuige { set; get; }
-
-        public string ChanpinDanwei { set; get; }
+        public string ChanpinId { set; get; }
 
         public int Tongshu { set; get; }
 
@@ -24,7 +20,7 @@ namespace Yizhou.Data.DataModels
 
         public double Yewulv { set; get; }
 
-        public YewulvFangshi YewulvFangshi { set; get; }
+        public string YewulvFangshi { set; get; }
 
         public bool ShifouKaipiao { set; get; }
 

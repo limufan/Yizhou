@@ -7,7 +7,7 @@ namespace Yizhou.Website.Api
 {
     public interface IKehuService
     {
-        void Create(KehuDetailsModel createModel);
+        KehuDetailsModel Create(KehuDetailsModel createModel);
 
         void Change(KehuDetailsModel changeModel);
 

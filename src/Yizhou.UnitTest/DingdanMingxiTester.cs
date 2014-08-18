@@ -14,11 +14,11 @@ namespace Yizhou.UnitTest
         {
             DingdanCreateInfo createInfo = new DingdanCreateInfo();
             createInfo.XiadanRiqi = new DateTime(2014, 8, 15);
-            createInfo.JiekuanFangshi = JiekuanFangshi.Yigeyue;
+            createInfo.JiekuanFangshi = "1个月月结";
             createInfo.Kehu = new Kehu();
             Dingdan dingdan = new Dingdan(createInfo);
             DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
-            DingdanMingxiCreateInfo mingxiCreateInfo = new DingdanMingxiCreateInfo { Dingdan = dingdan, XiaoshouDijia = 9, XiaoshouDanjia = 10, Shuliang = 1000, Yewulv = 0.03, YewulvFangshi = YewulvFangshi.Jine };
+            DingdanMingxiCreateInfo mingxiCreateInfo = new DingdanMingxiCreateInfo { Dingdan = dingdan, XiaoshouDijia = 9, XiaoshouDanjia = 10, Shuliang = 1000, Yewulv = 0.03, YewulvFangshi = "按金额" };
             DingdanMingxi mingxi = new DingdanMingxi(mingxiCreateInfo);
             changeInfo.MingxiList.Add(mingxi);
             Shoukuan shoukuan = new Shoukuan { ShoukuanJine = 300, ShoukuanRiqi = dingdan.XiadanRiqi };

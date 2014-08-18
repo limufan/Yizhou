@@ -54,6 +54,7 @@ namespace Yizhou.Data
         {
             DingdanMingxiDataModel model = new DingdanMingxiDataModel();
             ClassPropertyHelper.ChangeProperty(model, mingxi);
+            model.ChanpinId = mingxi.Chanpin.Id;
             return model;
         }
 
@@ -87,6 +88,7 @@ namespace Yizhou.Data
                 {
                     DingdanMingxiCreateInfo createInfo = new DingdanMingxiCreateInfo();
                     createInfo.Dingdan = dingdan;
+                    createInfo.Chanpin = this._coreManager.ChanpinManager.GetChanpinById(model.ChanpinId);
                     ClassPropertyHelper.ChangeProperty(createInfo, model);
                     DingdanMingxi mingxi = new DingdanMingxi(createInfo);
                     mingxiList.Add(mingxi);

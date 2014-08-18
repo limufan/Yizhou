@@ -39,6 +39,8 @@ namespace Yizhou.Website.Api
         public double ticheng { set; get; }
 
         public string beizhu { set; get; }
+
+        public string jiekuanFangshi { set; get; }
     }
 
     [Serializable]
@@ -56,14 +58,15 @@ namespace Yizhou.Website.Api
             this.yewuyuan = new UserInputModel(chanpin.Yewuyuan);
             this.jiekuanFangshi = chanpin.JiekuanFangshi;
             this.mingxiList = chanpin.MingxiList.Select(m => new DingdanMingxiDetailsModel(m)).ToList();
-            this.shoukuanList = chanpin.ShoukuanList.Select(m => new ShoukuanDetailsModel(m)).ToList();
+            if (chanpin.ShoukuanList != null)
+            {
+                this.shoukuanList = chanpin.ShoukuanList.Select(m => new ShoukuanDetailsModel(m)).ToList();
+            }
         }
 
         public KehuInputModel kehu { set; get; }
 
         public UserInputModel yewuyuan { set; get; }
-
-        public JiekuanFangshi jiekuanFangshi { set; get; }
 
         public List<DingdanMingxiDetailsModel> mingxiList { set; get; }
 
@@ -78,7 +81,6 @@ namespace Yizhou.Website.Api
             ClassPropertyHelper.ChangeProperty(this, chanpin);
             this.kehu = chanpin.Kehu.Name;
             this.yewuyuan = chanpin.Yewuyuan.Name;
-            this.jiekuanFangshi = YizhouHelper.GetName(chanpin.JiekuanFangshi);
         }
 
         public string danhao { set; get; }
@@ -86,8 +88,6 @@ namespace Yizhou.Website.Api
         public string kehu { set; get; }
 
         public string yewuyuan { set; get; }
-
-        public string jiekuanFangshi { set; get; }
     }
 
     [Serializable]

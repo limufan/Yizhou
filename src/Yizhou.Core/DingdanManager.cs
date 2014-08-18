@@ -22,9 +22,9 @@ namespace Yizhou.Core
             this._lock.AcquireReaderLock(0);
             try
             {
-                List<Dingdan> dingList = this._dingdanList.Where(d => d.XiadanRiqi.Year == DateTime.Today.Year && d.XiadanRiqi.Month == DateTime.Today.Month).ToList();
+                List<Dingdan> dingList = this._dingdanList.Where(d => d.CreateTime.Year == DateTime.Today.Year && d.CreateTime.Month == DateTime.Today.Month).ToList();
                 int sn = dingList.Count + 1;
-                return DateTime.Today.ToString("yyyyMM") + sn.ToString().PadLeft(3);
+                return DateTime.Today.ToString("yyyyMM") + sn.ToString().PadLeft(3, '0');
             }
             finally
             {
@@ -38,6 +38,7 @@ namespace Yizhou.Core
             try
             {
                 this._dingdanList.Add(dingdan);
+                this._dingdanList = this._dingdanList.OrderByDescending(d => d.CreateTime).ToList();
             }
             finally
             {

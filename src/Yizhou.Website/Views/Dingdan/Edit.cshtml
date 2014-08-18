@@ -1,12 +1,10 @@
 ﻿@{
-    ViewBag.Title = "编辑产品";
+    ViewBag.Title = "编辑订单";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="text-align:center">编辑产品</h2>
-<fieldset>
-    <legend>详细信息</legend>
-</fieldset>
+<script type="text/javascript" src='@this.Url.Content("~/js/dingdanDetailsForm.js")'></script>
+<h2 style="text-align:center">编辑订单</h2>
 <form id="detailsform" class="form-horizontal" role="form">
     @{this.Html.RenderPartial("Details");}
     <div class="form-group">
@@ -16,19 +14,19 @@
 		</div>
 	</div>
 </form>
+@{this.Html.RenderPartial("ChanpinDetailsModal");}
 <script type="text/javascript">
-    var chanpinId = '@Request["Id"]';
-    var chanpinModel = @this.Html.Raw(this.ViewBag.chanpinModelJson);
-    $("#detailsform").horizontalForm();
-	var form = $("#detailsform").form().data("form");
-    form.setValue(chanpinModel);
+    var dingdanId = '@Request["Id"]';
+    var dingdanModel = @this.Html.Raw(this.ViewBag.dingdanModelJson);
+    var form = $("#detailsform").dingdanDetailsForm().data("dingdanDetailsForm");
+    form.setValue(dingdanModel);
     $("#btnSave").click(function(){
         if(form.validate()){
             var value = form.getValue();
-            value.id = chanpinId;
-            $.post("/Chanpin/EditPost", {argsJson: $.toJSON(value)}, function(model){
+            value.id = dingdanId;
+            $.post("/Dingdan/EditPost", {argsJson: $.toJSON(value)}, function(model){
                 if(model.result){
-                    location = "/Chanpin";
+                    location = "/Dingdan";
                 }
                 else{
                     $.messageBox.info(model.message);
@@ -38,7 +36,7 @@
         return false;
     });
     $("#btnCancel").click(function(){
-        location = "/Chanpin";
+        location = "/Dingdan";
         return false;
     });
 </script>

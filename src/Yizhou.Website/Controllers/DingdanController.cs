@@ -103,5 +103,23 @@ namespace Yizhou.Website.Controllers
             }
             return Json(resultModel, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult JisuanDingdanMingxi()
+        {
+            ControllerResultModel resultModel = new ControllerResultModel();
+            try
+            {
+                DingdanMingxiDetailsModel model = JsonConvert.DeserializeObject<DingdanMingxiDetailsModel>(Request["argsJson"]);
+                model = WebHelper.DingdanService.JisuanMingxi(model);
+                resultModel.Add("dingdanMingxi", model);
+            }
+            catch (Exception ex)
+            {
+                resultModel.result = false;
+                resultModel.message = ex.Message;
+                WebHelper.Logger.Error(ex.Message, ex);
+            }
+            return Json(resultModel, JsonRequestBehavior.AllowGet);
+        }
     }
 }

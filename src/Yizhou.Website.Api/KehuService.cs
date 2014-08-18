@@ -18,7 +18,7 @@ namespace Yizhou.Website.Api
             this._dataManager = dataManager;
         }
 
-        public void Create(KehuDetailsModel createModel)
+        public KehuDetailsModel Create(KehuDetailsModel createModel)
         {
             Kehu kehu = new Kehu();
             kehu.Id = Guid.NewGuid().ToString();
@@ -26,6 +26,7 @@ namespace Yizhou.Website.Api
 
             this._dataManager.KehuDataProvider.Insert(kehu);
             this._coreManager.KehuManager.Add(kehu);
+            return new KehuDetailsModel(kehu);
         }
 
         public void Change(KehuDetailsModel changeModel)

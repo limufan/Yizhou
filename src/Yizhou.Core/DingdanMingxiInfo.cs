@@ -7,11 +7,7 @@ namespace Yizhou.Core
 {
     public class DingdanMingxiBaseInfo
     {
-        public string ChanpinName { set; get; }
-
-        public string ChanpinGuige { set; get; }
-
-        public string ChanpinDanwei { set; get; }
+        public Chanpin Chanpin { set; get; }
 
         public int Tongshu { set; get; }
 
@@ -23,7 +19,7 @@ namespace Yizhou.Core
 
         public double Yewulv { set; get; }
 
-        public YewulvFangshi YewulvFangshi { set; get; }
+        public string YewulvFangshi { set; get; }
 
         public bool ShifouKaipiao { set; get; }
 

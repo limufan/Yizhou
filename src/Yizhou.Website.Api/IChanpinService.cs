@@ -7,7 +7,7 @@ namespace Yizhou.Website.Api
 {
     public interface IChanpinService
     {
-        void Create(ChanpinDetailsModel createModel);
+        ChanpinDetailsModel Create(ChanpinDetailsModel createModel);
 
         void Change(ChanpinDetailsModel changeModel);
 

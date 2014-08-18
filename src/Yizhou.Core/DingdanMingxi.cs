@@ -14,11 +14,7 @@ namespace Yizhou.Core
 
         public Dingdan Dingdan { set; get; }
 
-        public string ChanpinName { set; get; }
-
-        public string ChanpinGuige { set; get; }
-
-        public string ChanpinDanwei { set; get; }
+        public Chanpin Chanpin { set; get; }
 
         public int Tongshu { set; get; }
 
@@ -30,7 +26,7 @@ namespace Yizhou.Core
 
         public double Yewulv { set; get; }
 
-        public YewulvFangshi YewulvFangshi { set; get; }
+        public string YewulvFangshi { set; get; }
 
         public bool ShifouKaipiao { set; get; }
 
@@ -64,7 +60,7 @@ namespace Yizhou.Core
 
         public void JisuanYewufei()
         {
-            if (this.YewulvFangshi == YewulvFangshi.Jine)
+            if (this.YewulvFangshi == "按金额")
             {
                 this.Yewufei = this.Yewulv * this.Zongjine;
             }
@@ -90,13 +86,16 @@ namespace Yizhou.Core
 
         private void JisuanTicheng()
         {
-            this.ShoukuanJine = 0;
-            this.Ticheng = 0;
-            foreach (Shoukuan shoukuan in this.Dingdan.ShoukuanList)
+            if (this.Dingdan != null)
             {
-                double chanpinShoukuan = this.Dingdan.JisuanChanpinShoukuan(this.Zongjine, shoukuan.ShoukuanJine);
-                this.ShoukuanJine += chanpinShoukuan;
-                this.Ticheng += this.JisuanTicheng(chanpinShoukuan, shoukuan.ShoukuanRiqi);
+                this.ShoukuanJine = 0;
+                this.Ticheng = 0;
+                foreach (Shoukuan shoukuan in this.Dingdan.ShoukuanList)
+                {
+                    double chanpinShoukuan = this.Dingdan.JisuanChanpinShoukuan(this.Zongjine, shoukuan.ShoukuanJine);
+                    this.ShoukuanJine += chanpinShoukuan;
+                    this.Ticheng += this.JisuanTicheng(chanpinShoukuan, shoukuan.ShoukuanRiqi);
+                }
             }
         }
 

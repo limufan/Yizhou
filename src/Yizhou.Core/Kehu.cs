@@ -18,9 +18,9 @@ namespace Yizhou.Core
 
         public double Yewulv { set; get; }
 
-        public YewulvFangshi YewulvFangshi { set; get; }
+        public string YewulvFangshi { set; get; }
 
-        public JiekuanFangshi JiekuanFangshi { set; get; }
+        public string JiekuanFangshi { set; get; }
 
         public string Lianxidianhua { set; get; }
 
@@ -59,9 +59,9 @@ namespace Yizhou.Core
 
         private void BuildKeyword()
         {
-            this._keywords = this.Beizhu + this.Chuanzhen + this.Email + this.GongsiDizhi + YizhouHelper.GetName(this.JiekuanFangshi)
+            this._keywords = this.Beizhu + this.Chuanzhen + this.Email + this.GongsiDizhi + this.JiekuanFangshi
                    + this.Lianxidianhua + this.Name + this.ShouhuoDizhi + this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan.Name
-                   + YizhouHelper.GetName(this.YewulvFangshi);
+                   + this.YewulvFangshi;
         }
 
         public Kehu Clone()

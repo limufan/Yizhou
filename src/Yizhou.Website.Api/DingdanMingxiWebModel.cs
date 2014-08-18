@@ -9,11 +9,21 @@ namespace Yizhou.Website.Api
     [Serializable]
     public class DingdanMingxiBaseModel
     {
-        public string chanpinName { set; get; }
+        public DingdanMingxiBaseModel()
+        {
 
-        public string chanpinGuige { set; get; }
+        }
 
-        public string chanpinDanwei { set; get; }
+        public DingdanMingxiBaseModel(DingdanMingxi mingxi)
+        {
+            ClassPropertyHelper.ChangeProperty(this, mingxi);
+            this.danwei = mingxi.Chanpin.Danwei;
+            this.guige = mingxi.Chanpin.Guige;
+        }
+
+        public string guige { set; get; }
+
+        public string danwei { set; get; }
 
         public int tongshu { set; get; }
 
@@ -25,36 +35,39 @@ namespace Yizhou.Website.Api
 
         public double yewulv { set; get; }
 
-        public YewulvFangshi yewulvFangshi { set; get; }
+        public string yewulvFangshi { set; get; }
 
         public bool shifouKaipiao { set; get; }
 
         public string beizhu { set; get; }
 
-        public double shijiDanjia { private set; get; }
+        public double shijiDanjia { set; get; }
 
-        public double zongjine { private set; get; }
+        public double zongjine { set; get; }
 
-        public double ticheng { private set; get; }
+        public double ticheng { set; get; }
 
-        public double butie { private set; get; }
+        public double butie { set; get; }
 
-        public double shoukuanJine { private set; get; }
+        public double shoukuanJine { set; get; }
 
-        public double yewufei { private set; get; }
+        public double yewufei { set; get; }
     }
 
     [Serializable]
     public class DingdanMingxiGridModel : DingdanMingxiBaseModel
     {
         public DingdanMingxiGridModel(DingdanMingxi mingxi)
+            :base(mingxi)
         {
-            ClassPropertyHelper.ChangeProperty(this, mingxi);
             this.dingdanhao = mingxi.Dingdan.Danhao;
             this.yewuyuan = mingxi.Dingdan.Yewuyuan.Name;
             this.fahuoRiqi = mingxi.Dingdan.FahuoRiqi;
             this.xiadanRiqi = mingxi.Dingdan.XiadanRiqi;
+            this.chanpinName = mingxi.Chanpin.Name;
         }
+
+        public string chanpinName { set; get; }
 
         public string dingdanhao { set; get; }
 
@@ -73,8 +86,11 @@ namespace Yizhou.Website.Api
         }
 
         public DingdanMingxiDetailsModel(DingdanMingxi mingxi)
+            : base(mingxi)
         {
-            ClassPropertyHelper.ChangeProperty(this, mingxi);
+            this.chanpin = new ChanpinInputModel(mingxi.Chanpin);
         }
+
+        public ChanpinInputModel chanpin { set; get; }
     }
 }

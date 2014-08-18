@@ -73,4 +73,21 @@ namespace Yizhou.Website.Api
 
         public int size;
     }
+
+    [Serializable]
+    public class ChanpinInputModel
+    {
+        public ChanpinInputModel()
+        {
+        }
+        public ChanpinInputModel(Chanpin chanpin)
+        {
+            this.id = chanpin.Id;
+            this.name = chanpin.Name;
+        }
+
+        public string id { set; get; }
+
+        public string name { set; get; }
+    }
 }

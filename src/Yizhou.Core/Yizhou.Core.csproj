@@ -68,7 +68,6 @@
     <Compile Include="DingdanInfo.cs" />
     <Compile Include="DingdanMingxi.cs" />
     <Compile Include="DingdanMingxiInfo.cs" />
-    <Compile Include="JiekuanFangshi.cs" />
     <Compile Include="JsonConvertHelper.cs" />
     <Compile Include="Kehu.cs" />
     <Compile Include="KehuFilter.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="SystemTime.cs" />
     <Compile Include="TEventHandler.cs" />
     <Compile Include="ThrowingLogger.cs" />
-    <Compile Include="YewulvFangshi.cs" />
     <Compile Include="YizhouCoreManager.cs" />
     <Compile Include="YizhouHelper.cs" />
     <Compile Include="DingdanManager.cs" />

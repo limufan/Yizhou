@@ -6,8 +6,8 @@
         <property name="CreateTime" type="DateTime" column="kehu_createTime"></property>
         <property name="Yewuyuan" type="String" column="kehu_yewuyuan"></property>
         <property name="Yewulv" type="double" column="kehu_yewulv"></property>
-        <property name="YewulvFangshi" type="int" column="kehu_yewulvFangshi"></property>
-        <property name="JiekuanFangshi" type="int" column="kehu_jiekuanFangshi"></property>
+        <property name="YewulvFangshi" type="string" column="kehu_yewulvFangshi"></property>
+        <property name="JiekuanFangshi" type="string" column="kehu_jiekuanFangshi"></property>
         <property name="Lianxidianhua" type="String" column="kehu_lianxidianhua"></property>
         <property name="GongsiDizhi" type="String" column="kehu_gongsiDizhi"></property>
         <property name="ShouhuoDizhi" type="String" column="kehu_shouhuoDizhi"></property>

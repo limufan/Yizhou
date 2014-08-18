@@ -16,5 +16,7 @@ namespace Yizhou.Website.Api
         DingdanDetailsModel GetDingdan(string dingdanId);
 
         List<DingdanGridModel> GetDingdan(DingdanFilterModel model, out int totalCount);
+
+        DingdanMingxiDetailsModel JisuanMingxi(DingdanMingxiDetailsModel model);
     }
 }

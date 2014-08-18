@@ -28,6 +28,8 @@ namespace Yizhou.Core
 
         public string Danhao { set; get; }
 
+        public DateTime CreateTime { set; get; }
+
         public DateTime XiadanRiqi { set; get; }
 
         public DateTime FahuoRiqi { set; get; }
@@ -42,7 +44,7 @@ namespace Yizhou.Core
 
         public string ShouhuoDizhi { set; get; }
 
-        public JiekuanFangshi JiekuanFangshi { set; get; }
+        public string JiekuanFangshi { set; get; }
 
         public DateTime JiekuanRiqi { private set; get; }
 
@@ -115,8 +117,10 @@ namespace Yizhou.Core
 
         private void BuildKeyword()
         {
-            this._keywords = this.Beizhu + this.Danhao + YizhouHelper.GetName(this.JiekuanFangshi) + this.Kehu.Name + this.ShouhuoDizhi +
-                this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan;
+            string kehuName = this.Kehu == null ? "" : this.Kehu.Name;
+            string yewuyuanName = this.Yewuyuan == null ? "" : this.Yewuyuan.Name;
+            this._keywords = this.Beizhu + this.Danhao + this.JiekuanFangshi + kehuName + this.ShouhuoDizhi +
+                this.Shouhuoren + this.ShouhuorenDianhua + yewuyuanName;
         }
 
         public Dingdan Clone()
@@ -135,24 +139,20 @@ namespace Yizhou.Core
         /// </summary>
         private void JisuanJiekuanRiqi()
         {
-            if (this.JiekuanFangshi == JiekuanFangshi.Yigeyue)
+            if (this.JiekuanFangshi == "1个月月结")
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(1);
                 this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
-            else if (this.JiekuanFangshi == JiekuanFangshi.Lianggeyue)
+            else if (this.JiekuanFangshi == "2个月月结")
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(2);
                 this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
-            else if (this.JiekuanFangshi == JiekuanFangshi.Sangeyue)
+            else if (this.JiekuanFangshi == "3个月月结")
             {
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(3);
                 this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
-            }
-            else
-            {
-                throw new YizhouException("未知月结方式");
             }
         }
 

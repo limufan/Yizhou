@@ -11,6 +11,7 @@ namespace Yizhou.Website.Api
     {
         YizhouCoreManager _coreManager;
         YizhouDataManager _dataManager;
+        private object _lock = new object();
 
         public DingdanService(YizhouCoreManager coreManager, YizhouDataManager dataManager)
         {
@@ -20,29 +21,38 @@ namespace Yizhou.Website.Api
 
         public void Create(DingdanDetailsModel createModel)
         {
-            DingdanCreateInfo createInfo = new DingdanCreateInfo();
-            createInfo.Id = Guid.NewGuid().ToString();
-            createInfo.Kehu = this._coreManager.KehuManager.GetKehuById(createModel.kehu.id);
-            ClassPropertyHelper.ChangeProperty(createInfo, createModel);
-            createInfo.Danhao = this._coreManager.DingdanManager.ShengchengDingdanhao();
-            Dingdan dingdan = new Dingdan(createInfo);
-            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
-            changeInfo.MingxiList = createModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
-            changeInfo.ShoukuanList = createModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
-            dingdan.Change(changeInfo);
+            lock (this._lock)
+            {
+                DingdanCreateInfo createInfo = new DingdanCreateInfo();
+                ClassPropertyHelper.ChangeProperty(createInfo, createModel);
+                createInfo.Id = Guid.NewGuid().ToString();
+                createInfo.Kehu = this._coreManager.KehuManager.GetKehuById(createModel.kehu.id);
+                createInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(createModel.yewuyuan.account);
+                createInfo.Danhao = this._coreManager.DingdanManager.ShengchengDingdanhao();
+                createInfo.CreateTime = DateTime.Now;
+                Dingdan dingdan = new Dingdan(createInfo);
+                DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+                changeInfo.MingxiList = createModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
+                if (createModel.shoukuanList != null)
+                {
+                    changeInfo.ShoukuanList = createModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
+                }
+                dingdan.Change(changeInfo);
 
-            this._dataManager.DingdanDataProvider.Insert(dingdan);
-            this._coreManager.DingdanManager.Add(dingdan);
+                this._dataManager.DingdanDataProvider.Insert(dingdan);
+                this._coreManager.DingdanManager.Add(dingdan);
+            }
         }
 
         public void Change(DingdanDetailsModel changeModel)
         {
             Dingdan dingdan = this._coreManager.DingdanManager.GetDingdanById(changeModel.id);
             DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+            ClassPropertyHelper.ChangeProperty(changeInfo, changeModel);
+            changeInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(changeModel.yewuyuan.account);
             changeInfo.Kehu = this._coreManager.KehuManager.GetKehuById(changeModel.kehu.id);
             changeInfo.MingxiList = changeModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
             changeInfo.ShoukuanList = changeModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
-            ClassPropertyHelper.ChangeProperty(changeInfo, changeModel);
             //update to clone 
             Dingdan dingdanClone = dingdan.Clone();
             dingdanClone.Change(changeInfo);
@@ -56,6 +66,7 @@ namespace Yizhou.Website.Api
             DingdanMingxiCreateInfo mingxiInfo = new DingdanMingxiCreateInfo(); 
             ClassPropertyHelper.ChangeProperty(mingxiInfo, detailsModel);
             mingxiInfo.Dingdan = dingdan;
+            mingxiInfo.Chanpin = this._coreManager.ChanpinManager.GetChanpinById(detailsModel.chanpin.id);
             return new DingdanMingxi(mingxiInfo);
         }
 
@@ -88,6 +99,13 @@ namespace Yizhou.Website.Api
             List<Dingdan> dingdanList = this._coreManager.DingdanManager.GetDingdan(filter);
             totalCount = dingdanList.Count;
             return dingdanList.Skip(skipCount).Take(model.size).Select(k => new DingdanGridModel(k)).ToList();
+        }
+
+        public DingdanMingxiDetailsModel JisuanMingxi(DingdanMingxiDetailsModel model)
+        {
+            DingdanMingxi mingxi = this.CreateDingdanMingxi(null, model);
+            mingxi.Jisuan();
+            return new DingdanMingxiDetailsModel(mingxi);
         }
     }
 }
