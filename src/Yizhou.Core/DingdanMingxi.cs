@@ -10,6 +10,7 @@ namespace Yizhou.Core
         public DingdanMingxi(DingdanMingxiCreateInfo createInfo)
         {
             ClassPropertyHelper.ChangeProperty(this, createInfo);
+            this.BuildKeyword();
         }
 
         public Dingdan Dingdan { set; get; }
@@ -43,6 +44,25 @@ namespace Yizhou.Core
         public double ShoukuanJine { private set; get; }
 
         public double Yewufei { private set; get; }
+
+        private string _keywords;
+
+        public string Keywords
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this._keywords))
+                {
+                    this.BuildKeyword();
+                }
+                return this._keywords;
+            }
+        }
+
+        private void BuildKeyword()
+        {
+            this._keywords = this.Dingdan.Keywords + this.Chanpin.Name;
+        }
 
         public void Jisuan()
         {

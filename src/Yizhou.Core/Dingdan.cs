@@ -132,6 +132,7 @@ namespace Yizhou.Core
         {
             this.JisuanJiekuanRiqi();
             this.MingxiList.ForEach(m => m.Jisuan());
+            this.ShoukuanList.ForEach(s => s.Jisuan());
         }
 
         /// <summary>
@@ -154,24 +155,6 @@ namespace Yizhou.Core
                 DateTime nextMonth = this.XiadanRiqi.AddMonths(3);
                 this.JiekuanRiqi = new DateTime(nextMonth.Year, nextMonth.Month, DateTime.DaysInMonth(nextMonth.Year, nextMonth.Month)).Date;
             }
-        }
-
-        /// <summary>
-        /// 计算收款提成
-        /// </summary>
-        /// <param name="chanpinList"></param>
-        /// <param name="shoukuan"></param>
-        /// <param name="dingdanJine"></param>
-        /// <returns></returns>
-        public double JisuanTicheng(Shoukuan shoukuan)
-        {
-            double ticheng = 0;
-            foreach (DingdanMingxi mingxi in this.MingxiList)
-            {
-                double chanpinShoukuan = this.JisuanChanpinShoukuan(mingxi.Zongjine, shoukuan.ShoukuanJine);
-                ticheng += mingxi.JisuanTicheng(chanpinShoukuan, shoukuan.ShoukuanRiqi);
-            }
-            return ticheng;
         }
 
         /// <summary>

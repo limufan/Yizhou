@@ -1,0 +1,48 @@
+﻿<div class="modal fade" id="shoukuanDetailsModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">收款信息</h3>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">收款日期<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-dateInput" name="shoukuanRiqi" data-required="true"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">收款金额<span style="color: Red">*</span></label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="shoukuanJine" data-precision="2" data-required="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">提成</label>
+                                <div class="col-md-8" >
+                                    <input type="text" class="form-control webui-numberInput" name="ticheng" data-precision="2" data-readonly="true"/>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btnOk" type="submit">确定</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal" aria-hidden="true" >关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -77,7 +77,21 @@ namespace Yizhou.Core
             this._lock.AcquireReaderLock(0);
             try
             {
-                return filter.Filtrate(this._dingdanList);
+                return filter.Filtrate(this._dingdanList).OrderByDescending(d => d.CreateTime).ToList(); ;
+            }
+            finally
+            {
+                this._lock.ReleaseReaderLock();
+            }
+        }
+
+        public List<DingdanMingxi> GetDingdanMingxi(DingdanMingxiFilter filter)
+        {
+            this._lock.AcquireReaderLock(0);
+            try
+            {
+                List<DingdanMingxi> mingxiList = this._dingdanList.SelectMany(d => d.MingxiList).ToList();
+                return filter.Filtrate(mingxiList).OrderByDescending(m => m.Dingdan.CreateTime).ToList();
             }
             finally
             {

@@ -16,6 +16,8 @@ namespace Yizhou.Website.Api
 
         public string id { set; get; }
 
+        public string danhao { set; get; }
+
         public DateTime xiadanRiqi { set; get; }
 
         public DateTime fahuoRiqi { set; get; }
@@ -83,8 +85,6 @@ namespace Yizhou.Website.Api
             this.yewuyuan = chanpin.Yewuyuan.Name;
         }
 
-        public string danhao { set; get; }
-
         public string kehu { set; get; }
 
         public string yewuyuan { set; get; }
@@ -98,5 +98,21 @@ namespace Yizhou.Website.Api
         public int start;
 
         public int size;
+    }
+
+    [Serializable]
+    public class DingdanListModel
+    {
+        public List<DingdanGridModel> dingdanList;
+
+        public int totalCount;
+
+        public double yingshoukuanJineSum;
+
+        public double yishoukuanJineSum;
+
+        public double weishoukuanJineSum;
+
+        public double tichengSum;
     }
 }

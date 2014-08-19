@@ -13,32 +13,47 @@
                 this._kehuInput = this._form.getInput("kehu");
                 this._chanpinGrid = $("#chanpinGrid").datagrid({
                     columns:[
-			            {title: "产品名称", width: 80, field:"chanpin", render: "name"},
-			            {title: "规格", width: 80, field:"guige"},
-			            {title: "单位", width: 80, field:"danwei"},
+			            {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
+			            {title: "规格", width: 50, field:"guige"},
+			            {title: "单位", width: 50, field:"danwei"},
 			            {title: "数量", width: 80, field:"shuliang"},
-			            {title: "桶数", width: 80, field:"tongshu"},
+			            {title: "桶数", width: 50, field:"tongshu"},
 			            {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
 			            {title: "实际单价", width: 80, field:"shijiDanjia"},
 			            {title: "销售底价", width: 80, field:"xiaoshouDijia"},
-			            {title: "总金额", width: 80, field:"zongjine"},
+			            {title: "总金额", width: 80, field:"zongjine", name:"zongjine"},
 			            {title: "业务率", width: 80, field:"yewulv"},
 			            {title: "业务率方式", width: 80, field:"yewulvFangshi"},
-			            {title: "业务费", width: 80, field:"yewufei"},
+			            {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
 			            {title: "是否开票", width: 80, field:"shifouKaipiao", render: "shifou"}
                     ],
-                    required: true
+                    required: true,
+                    footer:[
+                        {columnName: "chanpin", valueType: "fixed", value: "合计"}, 
+                        {columnName: "zongjine", valueType:"sum"},
+                        {columnName: "yewufei", valueType:"sum"}
+                    ]
                 }).data("datagrid");
                 this._form.setInput("mingxiList", this._chanpinGrid);
                 this._shoukuanGrid = $("#shoukuanGrid").datagrid({
                     columns:[
-			            {title: "收款日期", width: 80, field:"shoukuanRiqi", render: "date"},
-			            {title: "收款金额", width: 80, field:"shoukuanJine"},
-			            {title: "提成", width: 80, field:"ticheng"}
+			            {title: "收款日期", width: 80, field:"shoukuanRiqi", name:"shoukuanRiqi", render: "date"},
+			            {title: "收款金额", width: 80, field:"shoukuanJine", name:"shoukuanJine"},
+			            {title: "提成", width: 80, field:"ticheng", name:"ticheng", render: "number2"}
+                    ],
+                    footer:[
+                        {columnName: "shoukuanRiqi", valueType: "fixed", value: "合计"}, 
+                        {columnName:"shoukuanJine", valueType:"sum"},
+                        {columnName:"ticheng", valueType:"sum"},
                     ]
                 }).data("datagrid");
                 this._form.setInput("shoukuanList", this._shoukuanGrid);
                 this._chanpinDetailsModal = $("#chanpinDetailsModal").chanpinDetailsModal().data("chanpinDetailsModal");
+                this._shoukuanDetailsModal = $("#shoukuanDetailsModal").shoukuanDetailsModal({dingdanForm: this._form}).data("shoukuanDetailsModal");
+                this._bindEvent();
+            },
+            _bindEvent: function(){
+                var thiz = this;
                 $("#btnAddChanpin").click(function(){
                     thiz._chanpinDetailsModal.add(function(value){
                         thiz._chanpinGrid.appendRow(value);
@@ -53,10 +68,32 @@
                     }, rowValue);
                     return false;
                 });
-                this._bindEvent();
-            },
-            _bindEvent: function(){
-                var thiz = this;
+                $("#btnDeleteChanpin").click(function(){
+                    $.messageBox.confirm("确实要删除吗?", function(){
+                        thiz._chanpinGrid.deleteSelectedRows();
+                    });
+                    return false;
+                });
+                $("#btnAddShoukuan").click(function(){
+                    thiz._shoukuanDetailsModal.add(function(value){
+                        thiz._shoukuanGrid.appendRow(value);
+                    });
+                    return false;
+                });
+                $("#btnEditShoukuan").click(function(){
+                    var selectedRow = thiz._shoukuanGrid.getSelectedRow();
+                    var rowValue = selectedRow.datarow("getValue");
+                    thiz._shoukuanDetailsModal.edit(function(value){
+                        selectedRow.datarow("setValue", value);
+                    }, rowValue);
+                    return false;
+                });
+                $("#btnDeleteShoukuan").click(function(){
+                    $.messageBox.confirm("确实要删除吗?", function(){
+                        thiz._shoukuanGrid.deleteSelectedRows();
+                    });
+                    return false;
+                });
                 this._kehuInput.changed(function(input, value){
                     thiz.setValue({
                         jiekuanFangshi: value.jiekuanFangshi, shouhuoren: value.shouhuoren,
@@ -77,6 +114,7 @@
         }
     );
 })(jQuery);
+
 (function($){
     $.widget("ui.chanpinDetailsModal", {
             options: {
@@ -119,6 +157,69 @@
                     }
                     thiz.setValue(defaultValue);
                 });
+                this.element.find(".btnOk").click(function(){
+                    if(thiz._form.validate()){
+                        var value = thiz._form.getValue();
+                        thiz._callback(value);
+                        thiz.hide();
+                    }
+                    return false;
+                });
+            },
+            validate: function(){
+                return this._form.validate();
+            },
+            getValue: function(){
+                return this._form.getValue();
+            },
+            setValue: function(value){
+                this._form.setValue(value);
+            },
+            edit: function(callback, value){
+                this._callback = callback;
+                this._modal.show();
+                this.setValue(value);
+            },
+            add: function(callback){
+                this._callback = callback;
+                this._modal.show();
+                this._form.reset();
+            },
+            hide: function(){
+                this._modal.hide();
+            },
+            setKehu: function(kehu){
+                this._kehu = kehu;
+            }
+        }
+    );
+})(jQuery);
+
+(function($){
+    $.widget("ui.shoukuanDetailsModal", {
+            options: {
+                dingdanForm: null
+	        },
+            _create: function(){
+                this._dingdanForm = this.options.dingdanForm;
+                this._modal = this.element.modal({ show: false, backdrop: "static" }).data("bs.modal");
+	            this._form = this.element.find("form").form().data("form");
+                this._bindEvent();
+            },
+            _bindEvent: function(){
+                var thiz = this;
+                this._form.inputing(function(input, value){
+                    if(thiz._form.validate()){
+                        var dingdan = thiz._dingdanForm.getValue();
+                        var shoukuan = thiz._form.getValue();
+                        shoukuan.ticheng = 0;
+                        $.post("/Dingdan/JisuanShoukuanTicheng", {dingdanJson: $.toJSON(dingdan), shoukuanJson: $.toJSON(shoukuan)}, function(model){
+                            if(model.result){
+                                thiz._form.setValue({ticheng: model.ticheng});
+                            }
+                        });
+                    }
+                }, 500);
                 this.element.find(".btnOk").click(function(){
                     if(thiz._form.validate()){
                         var value = thiz._form.getValue();

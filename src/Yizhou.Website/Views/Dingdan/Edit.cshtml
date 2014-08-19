@@ -15,6 +15,7 @@
 	</div>
 </form>
 @{this.Html.RenderPartial("ChanpinDetailsModal");}
+@{this.Html.RenderPartial("ShoukuanDetailsModal");}
 <script type="text/javascript">
     var dingdanId = '@Request["Id"]';
     var dingdanModel = @this.Html.Raw(this.ViewBag.dingdanModelJson);

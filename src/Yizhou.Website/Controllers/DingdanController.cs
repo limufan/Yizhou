@@ -25,10 +25,13 @@ namespace Yizhou.Website.Controllers
             try
             {
                 DingdanFilterModel model = JsonConvert.DeserializeObject<DingdanFilterModel>(Request["argsJson"]);
-                int totalCount;
-                List<DingdanGridModel> models = WebHelper.DingdanService.GetDingdan(model, out totalCount);
-                resultModel.Add("dingdanList", models);
-                resultModel.Add("totalCount", totalCount);
+                DingdanListModel listModel = WebHelper.DingdanService.GetDingdan(model);
+                resultModel.Add("dingdanList", listModel.dingdanList);
+                resultModel.Add("totalCount", listModel.totalCount);
+                resultModel.Add("tichengSum", listModel.tichengSum.ToString("0.00"));
+                resultModel.Add("weishoukuanJineSum", listModel.weishoukuanJineSum.ToString("0.00"));
+                resultModel.Add("yingshoukuanJineSum", listModel.yingshoukuanJineSum.ToString("0.00"));
+                resultModel.Add("yishoukuanJineSum", listModel.yishoukuanJineSum.ToString("0.00"));
             }
             catch (Exception ex)
             {
@@ -112,6 +115,25 @@ namespace Yizhou.Website.Controllers
                 DingdanMingxiDetailsModel model = JsonConvert.DeserializeObject<DingdanMingxiDetailsModel>(Request["argsJson"]);
                 model = WebHelper.DingdanService.JisuanMingxi(model);
                 resultModel.Add("dingdanMingxi", model);
+            }
+            catch (Exception ex)
+            {
+                resultModel.result = false;
+                resultModel.message = ex.Message;
+                WebHelper.Logger.Error(ex.Message, ex);
+            }
+            return Json(resultModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult JisuanShoukuanTicheng()
+        {
+            ControllerResultModel resultModel = new ControllerResultModel();
+            try
+            {
+                DingdanDetailsModel dingdanModel = JsonConvert.DeserializeObject<DingdanDetailsModel>(Request["dingdanJson"]);
+                ShoukuanDetailsModel shoukuanModel = JsonConvert.DeserializeObject<ShoukuanDetailsModel>(Request["shoukuanJson"]);
+                double ticheng = WebHelper.DingdanService.JisuanTicheng(dingdanModel, shoukuanModel);
+                resultModel.Add("ticheng", ticheng);
             }
             catch (Exception ex)
             {

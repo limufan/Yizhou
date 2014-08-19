@@ -107,6 +107,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ChanpinController.cs" />
+    <Compile Include="Controllers\DingdanMingxiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,8 +188,6 @@
     <Content Include="js\webui.min.js" />
     <Content Include="js\userInput.js" />
     <Content Include="js\dingdanDetailsForm.js" />
-    <Content Include="ltlorg-js\chanpinEditDialog.js" />
-    <Content Include="ltlorg-js\shoukuanEditDialog.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
@@ -260,6 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Dingdan\ChanpinDetailsModal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\ShoukuanDetailsModal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DingdanMingxi\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

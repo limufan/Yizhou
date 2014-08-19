@@ -104,9 +104,10 @@ namespace Yizhou.Data
             {
                 foreach (ShoukuanDataModel model in models)
                 {
-                    Shoukuan shoukuan = new Shoukuan();
-                    shoukuan.Dingdan = dingdan;
-                    ClassPropertyHelper.ChangeProperty(shoukuan, model);
+                    ShoukuanCreateInfo createInfo = new ShoukuanCreateInfo();
+                    ClassPropertyHelper.ChangeProperty(createInfo, model);
+                    createInfo.Dingdan = dingdan;
+                    Shoukuan shoukuan = new Shoukuan(createInfo);
                     mingxiList.Add(shoukuan);
                 }
             }

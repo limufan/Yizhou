@@ -21,7 +21,8 @@ namespace Yizhou.UnitTest
             DingdanMingxiCreateInfo mingxiCreateInfo = new DingdanMingxiCreateInfo { Dingdan = dingdan, XiaoshouDijia = 9, XiaoshouDanjia = 10, Shuliang = 1000, Yewulv = 0.03, YewulvFangshi = "按金额" };
             DingdanMingxi mingxi = new DingdanMingxi(mingxiCreateInfo);
             changeInfo.MingxiList.Add(mingxi);
-            Shoukuan shoukuan = new Shoukuan { ShoukuanJine = 300, ShoukuanRiqi = dingdan.XiadanRiqi };
+            ShoukuanCreateInfo shoukuanCreateInfo = new ShoukuanCreateInfo { Dingdan = dingdan, ShoukuanJine = 300, ShoukuanRiqi = dingdan.XiadanRiqi };
+            Shoukuan shoukuan = new Shoukuan(shoukuanCreateInfo);
             changeInfo.ShoukuanList.Add(shoukuan);
             dingdan.Change(changeInfo);
 

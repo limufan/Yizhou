@@ -19,7 +19,10 @@ namespace Yizhou.Website.Api
             ClassPropertyHelper.ChangeProperty(this, mingxi);
             this.danwei = mingxi.Chanpin.Danwei;
             this.guige = mingxi.Chanpin.Guige;
+            this.chanpin = new ChanpinInputModel(mingxi.Chanpin);
         }
+
+        public ChanpinInputModel chanpin { set; get; }
 
         public string guige { set; get; }
 
@@ -64,10 +67,7 @@ namespace Yizhou.Website.Api
             this.yewuyuan = mingxi.Dingdan.Yewuyuan.Name;
             this.fahuoRiqi = mingxi.Dingdan.FahuoRiqi;
             this.xiadanRiqi = mingxi.Dingdan.XiadanRiqi;
-            this.chanpinName = mingxi.Chanpin.Name;
         }
-
-        public string chanpinName { set; get; }
 
         public string dingdanhao { set; get; }
 
@@ -88,9 +88,30 @@ namespace Yizhou.Website.Api
         public DingdanMingxiDetailsModel(DingdanMingxi mingxi)
             : base(mingxi)
         {
-            this.chanpin = new ChanpinInputModel(mingxi.Chanpin);
         }
+    }
 
-        public ChanpinInputModel chanpin { set; get; }
+    [Serializable]
+    public class DingdanMingxiListModel
+    {
+        public List<DingdanMingxiGridModel> dingdanMingxiList;
+
+        public int totalCount;
+
+        public double zongjineSum;
+
+        public double yewufeiSum;
+
+        public double tichengSum;
+    }
+
+    [Serializable]
+    public class DingdanMingxiFilterModel
+    {
+        public string keyword;
+
+        public int start;
+
+        public int size;
     }
 }

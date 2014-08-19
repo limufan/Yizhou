@@ -13,6 +13,8 @@ namespace Yizhou.Website.Api
 
         public double shoukuanJine { set; get; }
 
+        public double ticheng { set; get; }
+
         public string beizhu { set; get; }
     }
 
