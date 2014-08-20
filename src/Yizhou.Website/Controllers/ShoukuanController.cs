@@ -11,27 +11,26 @@ using Yizhou.Website.Models;
 
 namespace Yizhou.Website.Controllers
 {
-    public class DingdanMingxiController : BaseController
+    public class ShoukuanController : BaseController
     {
         //
-        // GET: /DingdanMingxi/
+        // GET: /Shoukuan/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult GetDingdanMingxiList()
+        public ActionResult GetShoukuanList()
         {
             ControllerResultModel resultModel = new ControllerResultModel();
             try
             {
-                DingdanMingxiFilterModel model = JsonConvert.DeserializeObject<DingdanMingxiFilterModel>(Request["argsJson"]);
-                DingdanMingxiListModel listModel = WebHelper.DingdanService.GetDingdanMingxi(model);
-                resultModel.Add("dingdanMingxiList", listModel.dingdanMingxiList);
+                ShoukuanFilterModel model = JsonConvert.DeserializeObject<ShoukuanFilterModel>(Request["argsJson"]);
+                ShoukuanListModel listModel = WebHelper.DingdanService.GetShoukuan(model);
+                resultModel.Add("shoukuanList", listModel.shoukuanList);
                 resultModel.Add("totalCount", listModel.totalCount);
-                resultModel.Add("zongjineSum", listModel.zongjineSum);
-                resultModel.Add("yewufeiSum", listModel.yewufeiSum);
+                resultModel.Add("shoukuanJineSum", listModel.shoukuanJineSum);
                 resultModel.Add("tichengSum", listModel.tichengSum);
             }
             catch (Exception ex)
@@ -48,11 +47,11 @@ namespace Yizhou.Website.Controllers
             ControllerResultModel resultModel = new ControllerResultModel();
             try
             {
-                DingdanMingxiFilterModel model = JsonConvert.DeserializeObject<DingdanMingxiFilterModel>(Request["argsJson"]);
+                ShoukuanFilterModel model = JsonConvert.DeserializeObject<ShoukuanFilterModel>(Request["argsJson"]);
                 model.start = 0;
                 model.size = 5000;
-                DingdanMingxiListModel listModel = WebHelper.DingdanService.GetDingdanMingxi(model);
-                string fileName = this.ShengchengExcel(listModel.dingdanMingxiList);
+                ShoukuanListModel listModel = WebHelper.DingdanService.GetShoukuan(model);
+                string fileName = this.ShengchengExcel(listModel.shoukuanList);
                 resultModel.Add("fileName", fileName);
             }
             catch (Exception ex)
@@ -67,18 +66,18 @@ namespace Yizhou.Website.Controllers
         public ActionResult Download(string fileName)
         {
             string tempPath = Server.MapPath("~/Temp");
-            return this.File(Path.Combine(tempPath, fileName), "application/x-xls", "订单明细.xls");
+            return this.File(Path.Combine(tempPath, fileName), "application/x-xls", "收款明细.xls");
         }
 
-        private string ShengchengExcel(List<DingdanMingxiGridModel> models)
+        private string ShengchengExcel(List<ShoukuanGridModel> models)
         {
-            string path = Server.MapPath("~/DingdanMingxiTemplate.xls");
+            string path = Server.MapPath("~/ShoukuanTemplate.xls");
             FileStream stream = System.IO.File.OpenRead(path);
             HSSFWorkbook workbook = new HSSFWorkbook(stream);
             HSSFSheet sheet = workbook.GetSheetAt(0);
 
             int dataRowIndex = 1;
-            foreach (DingdanMingxiGridModel model in models)
+            foreach (ShoukuanGridModel model in models)
             {
                 HSSFRow dataRow = sheet.CreateRow(dataRowIndex);
                 var cell = dataRow.CreateCell(0);
@@ -90,24 +89,10 @@ namespace Yizhou.Website.Controllers
                 cell = dataRow.CreateCell(3);
                 cell.SetCellValue(model.xiadanRiqi.ToString("yyyy-MM-dd"));
                 cell = dataRow.CreateCell(4);
-                cell.SetCellValue(model.fahuoRiqi.ToString("yyyy-MM-dd"));
+                cell.SetCellValue(model.jiekuanRiqi.ToString("yyyy-MM-dd"));
                 cell = dataRow.CreateCell(5);
-                cell.SetCellValue(model.chanpin.name);
+                cell.SetCellValue(Math.Round(model.shoukuanJine));
                 cell = dataRow.CreateCell(6);
-                cell.SetCellValue(model.shuliang);
-                cell = dataRow.CreateCell(7);
-                cell.SetCellValue(model.xiaoshouDanjia);
-                cell = dataRow.CreateCell(8);
-                cell.SetCellValue(Math.Round(model.shijiDanjia, 2));
-                cell = dataRow.CreateCell(9);
-                cell.SetCellValue(model.xiaoshouDijia);
-                cell = dataRow.CreateCell(10);
-                cell.SetCellValue(Math.Round(model.zongjine, 2));
-                cell = dataRow.CreateCell(11);
-                cell.SetCellValue(model.yewulv);
-                cell = dataRow.CreateCell(12);
-                cell.SetCellValue(Math.Round(model.yewufei, 2));
-                cell = dataRow.CreateCell(13);
                 cell.SetCellValue(Math.Round(model.ticheng, 2));
                 dataRowIndex++;
             }

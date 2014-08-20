@@ -1,0 +1,64 @@
+﻿<div id="searchPopover" class="popover bottom" style="width:700px; max-width: none; z-index: 3 ">
+    <div class="arrow">
+    </div>
+    <h3 class="popover-title">查询</h3>
+    <div class="popover-content" >
+        <form class="form-horizontal">
+            <div style="height: 300px;overflow:auto;" class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+			                <label style="width: 80px" class="control-label">下单日期</label>
+			                <div class="control-input" >
+                                <div name='xiadanRiqi' class='input-group webui-dateRangeInput'>
+                                    <input class="form-control" type='text'/>
+                                    <span class="input-group-addon" >到</span>
+                                    <input class="form-control" type='text' />
+                                </div>
+			                </div>
+		                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+			                <label style="width: 80px"  class="control-label">结款日期</label>
+			                <div class="control-input">
+                                <div name='jiekuanRiqi' class='input-group webui-dateRangeInput'>
+                                    <input class="form-control" type='text'/>
+                                    <span class="input-group-addon" >到</span>
+                                    <input class="form-control" type='text' />
+                                </div>
+			                </div>
+		                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+			                <label style="width: 80px" class="control-label">收款日期</label>
+			                <div class="control-input" >
+                                <div name='shoukuanRiqi' class='input-group webui-dateRangeInput'>
+                                    <input class="form-control" type='text'/>
+                                    <span class="input-group-addon" >到</span>
+                                    <input class="form-control" type='text' />
+                                </div>
+			                </div>
+		                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+			                <label style="width: 80px" class="control-label">关键字</label>
+			                <div class="control-input" >
+                                <input name='keyword' type='text' class='form-control webui-textbox'/>
+			                </div>
+		                </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btnOk">确定</button>
+        <button type="button" class="btn btn-default btnCancel">取消</button>
+        <button type="reset" class="btn btn-default btnReset">重置</button>
+    </div>
+</div>

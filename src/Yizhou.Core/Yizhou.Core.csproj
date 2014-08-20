@@ -119,6 +119,7 @@
     <Compile Include="DingdanManager.cs" />
     <Compile Include="DingdanFilter.cs" />
     <Compile Include="DingdanMingxiFilter.cs" />
+    <Compile Include="ShoukuanFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yizhou.Api\Yizhou.Api.csproj">

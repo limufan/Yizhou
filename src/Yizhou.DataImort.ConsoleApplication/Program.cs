@@ -10,10 +10,10 @@ namespace Yizhou.DataImort.ConsoleApplication
     {
         static void Main(string[] args)
         {
-            //KehuImporter kehuImporter = new KehuImporter();
-            //kehuImporter.Import();
-            //ChanpinImporter chanpinImporter = new ChanpinImporter();
-            //chanpinImporter.Import();
+            KehuImporter kehuImporter = new KehuImporter();
+            kehuImporter.Import();
+            ChanpinImporter chanpinImporter = new ChanpinImporter();
+            chanpinImporter.Import();
             DingdanImporter dingdanImporter = new DingdanImporter();
             dingdanImporter.Import();
             Console.WriteLine("imported");

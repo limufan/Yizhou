@@ -153,10 +153,25 @@ namespace Yizhou.Website.Api
             int skipCount = filterModel.start;
             List<DingdanMingxi> dingdanMingxiList = this._coreManager.DingdanManager.GetDingdanMingxi(filter);
             listModel.totalCount = dingdanMingxiList.Count;
-            listModel.zongjineSum = dingdanMingxiList.Sum(m => m.Zongjine);
-            listModel.yewufeiSum = dingdanMingxiList.Sum(m => m.Yewufei);
-            listModel.tichengSum = dingdanMingxiList.Sum(m => m.Ticheng);
+            listModel.zongjineSum = Math.Round(dingdanMingxiList.Sum(m => m.Zongjine), 2);
+            listModel.yewufeiSum = Math.Round(dingdanMingxiList.Sum(m => m.Yewufei), 2);
+            listModel.tichengSum = Math.Round(dingdanMingxiList.Sum(m => m.Ticheng), 2);
             listModel.dingdanMingxiList = dingdanMingxiList.Skip(skipCount).Take(filterModel.size).Select(m => new DingdanMingxiGridModel(m)).ToList();
+            return listModel;
+        }
+
+        public ShoukuanListModel GetShoukuan(ShoukuanFilterModel filterModel)
+        {
+            ShoukuanListModel listModel = new ShoukuanListModel();
+            ShoukuanFilter filter = new ShoukuanFilter();
+            ClassPropertyHelper.ChangeProperty(filter, filterModel);
+            filter.KeywordRegex = RegexHelper.GetRegexList(filterModel.keyword);
+            int skipCount = filterModel.start;
+            List<Shoukuan> shoukuanList = this._coreManager.DingdanManager.GetShoukuan(filter);
+            listModel.totalCount = shoukuanList.Count;
+            listModel.shoukuanJineSum = shoukuanList.Sum(m => m.ShoukuanJine);
+            listModel.tichengSum = Math.Round(shoukuanList.Sum(m => m.Ticheng), 2);
+            listModel.shoukuanList = shoukuanList.Skip(skipCount).Take(filterModel.size).Select(m => new ShoukuanGridModel(m)).ToList();
             return listModel;
         }
     }

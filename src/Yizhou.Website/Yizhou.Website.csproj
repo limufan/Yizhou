@@ -45,6 +45,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI2">
+      <HintPath>..\..\lib\NPOI2.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Core">
       <HintPath>..\..\lib\Spring.Core.dll</HintPath>
     </Reference>
@@ -108,6 +111,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ChanpinController.cs" />
     <Compile Include="Controllers\DingdanMingxiController.cs" />
+    <Compile Include="Controllers\ShoukuanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +194,7 @@
     <Content Include="js\dingdanDetailsForm.js" />
     <Content Include="js\dingdanGuanliPage.js" />
     <Content Include="js\dingdanMingxiGuanliPage.js" />
+    <Content Include="js\shoukuanGuanliPage.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
@@ -274,6 +279,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DingdanMingxi\SearchPopover.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DingdanMingxiTemplate.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DingdanTemplate.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shoukuan\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shoukuan\SearchPopover.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShoukuanTemplate.xls" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -21,6 +21,8 @@ namespace Yizhou.Website.Api
 
         DingdanMingxiListModel GetDingdanMingxi(DingdanMingxiFilterModel model);
 
+        ShoukuanListModel GetShoukuan(ShoukuanFilterModel model);
+
         DingdanMingxiDetailsModel JisuanMingxi(DingdanMingxiDetailsModel model);
 
         double JisuanTicheng(DingdanDetailsModel dingdanModel, ShoukuanDetailsModel model);

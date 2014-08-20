@@ -26,17 +26,20 @@ namespace Yizhou.Website.Api
             ClassPropertyHelper.ChangeProperty(this, shoukuan);
             this.dingdanhao = shoukuan.Dingdan.Danhao;
             this.yewuyuan = shoukuan.Dingdan.Yewuyuan.Name;
-            this.fahuoRiqi = shoukuan.Dingdan.FahuoRiqi;
+            this.jiekuanRiqi = shoukuan.Dingdan.JiekuanRiqi;
             this.xiadanRiqi = shoukuan.Dingdan.XiadanRiqi;
+            this.kehu = shoukuan.Dingdan.Kehu.Name;
         }
 
         public string dingdanhao { set; get; }
 
         public string yewuyuan { set; get; }
 
-        public DateTime fahuoRiqi { set; get; }
+        public string kehu { set; get; }
 
         public DateTime xiadanRiqi { set; get; }
+
+        public DateTime jiekuanRiqi { set; get; }
     }
 
     [Serializable]
@@ -51,5 +54,33 @@ namespace Yizhou.Website.Api
         {
             ClassPropertyHelper.ChangeProperty(this, shoukuan);
         }
+    }
+
+    [Serializable]
+    public class ShoukuanListModel
+    {
+        public List<ShoukuanGridModel> shoukuanList;
+
+        public int totalCount;
+
+        public double shoukuanJineSum;
+
+        public double tichengSum;
+    }
+
+    [Serializable]
+    public class ShoukuanFilterModel
+    {
+        public string keyword;
+
+        public DateRange xiadanRiqi { set; get; }
+
+        public DateRange jiekuanRiqi { set; get; }
+
+        public DateRange shoukuanRiqi { set; get; }
+
+        public int start;
+
+        public int size;
     }
 }

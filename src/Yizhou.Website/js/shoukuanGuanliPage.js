@@ -1,5 +1,5 @@
 ﻿(function($){
-    $.widget("ui.dingdanMingxiGuanliPage", {
+    $.widget("ui.shoukuanGuanliPage", {
             options: {
                 
 	        },
@@ -8,27 +8,20 @@
                 this._searchPopover = $("#searchPopover");
                 this._searchForm = this._searchPopover.find("form").form().data("form");
                 this._searchPopoverTrigger = $("#btnPopoverSearch").popoverTrigger({popover: this._searchPopover}).data("popoverTrigger");
-                this._dingdanMingxiGrid = $("#dingdanMingxiGrid").datagrid({
+                this._shoukuanGrid = $("#shoukuanGrid").datagrid({
                         columns:[
 			                {title: "订单号", width: 80, field:"dingdanhao", name:"dingdanhao"},
 			                {title: "业务员", width: 50, field:"yewuyuan"},
 			                {title: "客户", width: 100, field:"kehu"},
 			                {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
-			                {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
-			                {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
-			                {title: "数量", width: 80, field:"shuliang", name: "shuliang"},
-			                {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
-			                {title: "实际单价", width: 80, field:"shijiDanjia"},
-			                {title: "销售底价", width: 80, field:"xiaoshouDijia"},
-			                {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
-			                {title: "业务率", width: 80, field:"yewulv"},
-			                {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
+			                {title: "结款日期", width: 80, field:"jiekuanRiqi", render: "date"},
+			                {title: "收款金额", width: 80, field:"shoukuanJine", name:"shoukuanJine", render: "number2"},
 			                {title: "提成", width: 80, field:"ticheng", name: "ticheng", render: "number2"}
                         ],
                         height: "auto"
                     }).data("datagrid");
         
-                this._dingdanMingxiGridPager = $("#dingdanMingxiGridPager").pager({change: function(event, args){
+                this._shoukuanGridPager = $("#shoukuanGridPager").pager({change: function(event, args){
                         thiz.search(args.start, thiz._searchInfo);
                     }}).data("pager");
         
@@ -63,17 +56,16 @@
                 this._searchInfo = searchInfo;
                 var args =  {start: start, size: 20};
                 $.extend(args, this._searchInfo);
-                $.get($.resolveUrl("DingdanMingxi/GetDingdanMingxiList"), {argsJson : $.toJSON(args)}, function(model){
+                $.get($.resolveUrl("Shoukuan/GetShoukuanList"), {argsJson : $.toJSON(args)}, function(model){
                     if(model.result){
-                        thiz._dingdanMingxiGrid.setValue(model.dingdanMingxiList);
+                        thiz._shoukuanGrid.setValue(model.shoukuanList);
                         var footer = [
                             {columnName: "dingdanhao", valueType: "fixed", value: "合计"},
-                            {columnName: "zongjine", valueType: "fixed", value: model.zongjineSum},
-                            {columnName: "yewufei", valueType: "fixed", value: model.yewufeiSum},
+                            {columnName: "shoukuanJine", valueType: "fixed", value: model.shoukuanJineSum},
                             {columnName: "ticheng", valueType: "fixed", value: model.tichengSum}
                         ]
-                        thiz._dingdanMingxiGrid.setFooter(footer);
-                        thiz._dingdanMingxiGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
+                        thiz._shoukuanGrid.setFooter(footer);
+                        thiz._shoukuanGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
                     }
                     else{
                         alert(model.message);
@@ -84,9 +76,9 @@
                 var thiz = this;
                 var args = {}; 
                 $.extend(args, this._searchInfo);
-                $.get($.resolveUrl("DingdanMingxi/ExportToExcel"), {argsJson : $.toJSON(args)}, function(model){
+                $.get($.resolveUrl("Shoukuan/ExportToExcel"), {argsJson : $.toJSON(args)}, function(model){
                     if(model.result){
-                        $.download("/DingdanMingxi/Download?fileName=" + model.fileName);
+                        $.download("/Shoukuan/Download?fileName=" + model.fileName);
                     }
                     else{
                         alert(model.message);

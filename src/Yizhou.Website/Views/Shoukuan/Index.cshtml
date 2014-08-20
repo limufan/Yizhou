@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "订单";
+    ViewBag.Title = "收款明细";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript" src='@this.Url.Content("~/js/dingdanGuanliPage.js")'></script>
+<script type="text/javascript" src='@this.Url.Content("~/js/shoukuanGuanliPage.js")'></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -20,26 +20,25 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group">
-                        <a id="btnCreate" href="@this.Url.Action("Create")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>创建</a>
-                        <button id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
                         <button id="btnExport" class="btn btn-default">导出Excel</button> 
                     </div>
                 </div>
             </div>
 
-            <div id="dingdanGrid">
+            <div id="shoukuanGrid">
                 
             </div>
         
-            <div id="dingdanGridPager" class="pull-right" style="height: 30px">
+            <div id="shoukuanGridPager" class="pull-right" style="height: 30px">
             
             </div>
         </div>
     </div>
 </div>
 @{this.Html.RenderPartial("SearchPopover");}
+
 <script type="text/javascript">
     $(function(){
-        $("body").dingdanGuanliPage();
+        $("body").shoukuanGuanliPage();
     })
 </script>

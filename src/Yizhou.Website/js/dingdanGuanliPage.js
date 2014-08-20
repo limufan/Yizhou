@@ -13,6 +13,8 @@
 			            {title: "订单号", width: 80, field:"danhao", name:"danhao", render: function(datarow, args){ 
                             return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Dingdan/Edit", {id: args.data.id})) ;
                         }},
+			            {title: "业务员", width: 80, field:"yewuyuan"},
+			            {title: "客户名称", width: 150, field:"kehu"},
 			            {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
 			            {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
 			            {title: "结款日期", width: 80, field:"jiekuanRiqi", render: "date"},
@@ -20,8 +22,6 @@
 			            {title: "已收款金额", width: 80, field:"yishoukuanJine", name:"yishoukuanJine", render: "number2"},
 			            {title: "未收款金额", width: 80, field:"weishoukuanJine", name:"weishoukuanJine", render: "number2"},
 			            {title: "提成", width: 50, field:"ticheng", name:"ticheng", render: "number2"},
-			            {title: "业务员", width: 80, field:"yewuyuan"},
-			            {title: "客户名称", width: 150, field:"kehu"},
 			            {title: "收货地址", width: 150, field:"shouhuoDizhi"}
                     ],
                     height: "auto"
@@ -63,6 +63,10 @@
                     });
                     return false;
                 });
+                $("#btnExport").click(function(){
+                    thiz.exportToExcel();
+                    return false;
+                });
                 this._searchPopover.find(".btnOk").click(function(){
                     var searchValue = thiz._searchForm.getValue();
                     thiz._searchPopover.hide();
@@ -92,6 +96,19 @@
                             ];
                         thiz._dingdanGrid.setFooter(footer);
                         thiz._dingdanGridPager.setPageInfo({start: start, size: 20, count: model.totalCount});
+                    }
+                    else{
+                        alert(model.message);
+                    }
+                });
+            },
+            exportToExcel: function(){
+                var thiz = this;
+                var args = {}; 
+                $.extend(args, this._searchInfo);
+                $.get($.resolveUrl("Dingdan/ExportToExcel"), {argsJson : $.toJSON(args)}, function(model){
+                    if(model.result){
+                        $.download("/Dingdan/Download?fileName=" + model.fileName);
                     }
                     else{
                         alert(model.message);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Yizhou.Website.Api;
@@ -71,6 +72,7 @@ namespace Yizhou.DataImort.ConsoleApplication
             models = models.OrderBy(m => m.xiadanRiqi).ToList();
             foreach (DingdanDetailsModel model in models)
             {
+                Thread.Sleep(1000);
                 this._dingdanService.Create(model);
             }
         }

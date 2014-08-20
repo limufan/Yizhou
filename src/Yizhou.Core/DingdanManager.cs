@@ -98,5 +98,19 @@ namespace Yizhou.Core
                 this._lock.ReleaseReaderLock();
             }
         }
+
+        public List<Shoukuan> GetShoukuan(ShoukuanFilter filter)
+        {
+            this._lock.AcquireReaderLock(0);
+            try
+            {
+                List<Shoukuan> shoukuaniList = this._dingdanList.SelectMany(d => d.ShoukuanList).ToList();
+                return filter.Filtrate(shoukuaniList).OrderByDescending(m => m.Dingdan.CreateTime).ToList();
+            }
+            finally
+            {
+                this._lock.ReleaseReaderLock();
+            }
+        }
     }
 }
