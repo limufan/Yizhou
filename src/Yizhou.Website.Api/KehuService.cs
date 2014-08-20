@@ -73,7 +73,7 @@ namespace Yizhou.Website.Api
         public List<KehuGridModel> GetKehu(KehuFilterModel model, out int totalCount)
         {
             KehuFilter filter = new KehuFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
+            filter.KeywordRegex = RegexHelper.GetRegexList(model.keyword);
             int skipCount = model.start;
             List<Kehu> kehuList = this._coreManager.KehuManager.GetKehu(filter);
             totalCount = kehuList.Count;

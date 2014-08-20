@@ -1,7 +1,7 @@
 ﻿(function($){
     $.widget("ui.dingdanGuanliPage", {
             options: {
-                zhipaiUrl: null
+                
 	        },
 	        _create: function(){
                 var thiz = this;

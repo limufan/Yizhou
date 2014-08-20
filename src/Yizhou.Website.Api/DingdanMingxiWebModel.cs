@@ -67,11 +67,14 @@ namespace Yizhou.Website.Api
             this.yewuyuan = mingxi.Dingdan.Yewuyuan.Name;
             this.fahuoRiqi = mingxi.Dingdan.FahuoRiqi;
             this.xiadanRiqi = mingxi.Dingdan.XiadanRiqi;
+            this.kehu = mingxi.Dingdan.Kehu.Name;
         }
 
         public string dingdanhao { set; get; }
 
         public string yewuyuan { set; get; }
+
+        public string kehu { set; get; }
 
         public DateTime fahuoRiqi { set; get; }
 
@@ -109,6 +112,10 @@ namespace Yizhou.Website.Api
     public class DingdanMingxiFilterModel
     {
         public string keyword;
+
+        public DateRange xiadanRiqi { set; get; }
+
+        public DateRange fahuoRiqi { set; get; }
 
         public int start;
 

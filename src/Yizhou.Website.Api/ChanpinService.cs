@@ -60,7 +60,7 @@ namespace Yizhou.Website.Api
         public List<ChanpinGridModel> GetChanpin(ChanpinFilterModel model, out int totalCount)
         {
             ChanpinFilter filter = new ChanpinFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
+            filter.KeywordRegex = RegexHelper.GetRegexList(model.keyword);
             int skipCount = model.start;
             List<Chanpin> chanpinList = this._coreManager.ChanpinManager.GetChanpin(filter);
             totalCount = chanpinList.Count;

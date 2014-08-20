@@ -8,7 +8,7 @@ namespace Yizhou.Core
 {
     public class RegexHelper
     {
-        public static List<string> GetKeywords(string keyword)
+        private static List<string> GetKeywords(string keyword)
         {
             List<string> keywords = null;
             if (!string.IsNullOrEmpty(keyword))
@@ -20,34 +20,19 @@ namespace Yizhou.Core
             return keywords;
         }
 
-        public static List<Regex> GetRegexes(string keyword)
+        public static RegexList GetRegexList(string keyword)
         {
-            List<string> keywords = null;
-            if (!string.IsNullOrEmpty(keyword))
+            List<string> keywords = GetKeywords(keyword);
+            List<Regex> regexList = null;
+            if (keywords == null)
             {
-                Regex regex = new Regex("\\s+");
-                keyword = regex.Replace(keyword, " ");
-                keywords = keyword.Split(' ').ToList();
+                regexList = new List<Regex>();
             }
-            return GetRegexes(keywords);
-        }
-
-        public static List<Regex> GetRegexes(List<string> keywords)
-        {
-            if (keywords == null || keywords.Count == 0)
+            else
             {
-                return new List<Regex>();
+                regexList = keywords.Select(x => new Regex(x, RegexOptions.IgnoreCase)).ToList();
             }
-            return keywords.Select(x => new Regex(x.ToLower())).ToList();
-        }
-
-        public static Regex GetRegex(string keyword)
-        {
-            if (keyword == null)
-            {
-                keyword = "";
-            }
-            return new Regex(keyword, RegexOptions.IgnoreCase);
+            return new RegexList(regexList);
         }
     }
 }

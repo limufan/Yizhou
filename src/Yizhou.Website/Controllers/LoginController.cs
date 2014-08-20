@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Yizhou.Website.Models;
 using Yizhou.Api;
-using Yizhou.Website.Models;
 
 namespace Yizhou.Website.Controllers
 {

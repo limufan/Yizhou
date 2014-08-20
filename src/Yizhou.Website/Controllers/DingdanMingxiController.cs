@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,6 +40,28 @@ namespace Yizhou.Website.Controllers
                 WebHelper.Logger.Error(ex.Message, ex);
             }
             return Json(resultModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ExportToExcel()
+        {
+            ControllerResultModel resultModel = new ControllerResultModel();
+            try
+            {
+                resultModel.Add("fileName", "simple.docx");
+            }
+            catch (Exception ex)
+            {
+                resultModel.result = false;
+                resultModel.message = ex.Message;
+                WebHelper.Logger.Error(ex.Message, ex);
+            }
+            return Json(resultModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Download(string fileName)
+        {
+            string tempPath = Server.MapPath("~/Temp");
+            return this.File(Path.Combine(tempPath, fileName), "application/msword", fileName);
         }
     }
 }

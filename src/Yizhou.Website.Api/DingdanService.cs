@@ -104,7 +104,8 @@ namespace Yizhou.Website.Api
         public List<DingdanGridModel> GetDingdan(DingdanFilterModel model, out int totalCount)
         {
             DingdanFilter filter = new DingdanFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
+            ClassPropertyHelper.ChangeProperty(filter, model);
+            filter.KeywordRegex = RegexHelper.GetRegexList(model.keyword);
             int skipCount = model.start;
             List<Dingdan> dingdanList = this._coreManager.DingdanManager.GetDingdan(filter);
             totalCount = dingdanList.Count;
@@ -126,34 +127,36 @@ namespace Yizhou.Website.Api
             return shoukuan.Ticheng;
         }
 
-        public DingdanListModel GetDingdan(DingdanFilterModel model)
+        public DingdanListModel GetDingdan(DingdanFilterModel filterModel)
         {
             DingdanListModel listModel = new DingdanListModel();
             DingdanFilter filter = new DingdanFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
-            int skipCount = model.start;
+            filter.KeywordRegex = RegexHelper.GetRegexList(filterModel.keyword);
+            ClassPropertyHelper.ChangeProperty(filter, filterModel);
+            int skipCount = filterModel.start;
             List<Dingdan> dingdanList = this._coreManager.DingdanManager.GetDingdan(filter);
             listModel.tichengSum = dingdanList.Sum(d => d.Ticheng);
             listModel.totalCount = dingdanList.Count;
             listModel.weishoukuanJineSum = dingdanList.Sum(d => d.WeishoukuanJine);
             listModel.yingshoukuanJineSum = dingdanList.Sum(d => d.YingshoukuanJine);
             listModel.yishoukuanJineSum = dingdanList.Sum(d => d.YishoukuanJine);
-            listModel.dingdanList = dingdanList.Skip(skipCount).Take(model.size).Select(k => new DingdanGridModel(k)).ToList();
+            listModel.dingdanList = dingdanList.Skip(skipCount).Take(filterModel.size).Select(k => new DingdanGridModel(k)).ToList();
             return listModel;
         }
 
-        public DingdanMingxiListModel GetDingdanMingxi(DingdanMingxiFilterModel model)
+        public DingdanMingxiListModel GetDingdanMingxi(DingdanMingxiFilterModel filterModel)
         {
             DingdanMingxiListModel listModel = new DingdanMingxiListModel();
             DingdanMingxiFilter filter = new DingdanMingxiFilter();
-            filter.KeywordRegex = RegexHelper.GetRegex(model.keyword);
-            int skipCount = model.start;
+            ClassPropertyHelper.ChangeProperty(filter, filterModel);
+            filter.KeywordRegex = RegexHelper.GetRegexList(filterModel.keyword);
+            int skipCount = filterModel.start;
             List<DingdanMingxi> dingdanMingxiList = this._coreManager.DingdanManager.GetDingdanMingxi(filter);
             listModel.totalCount = dingdanMingxiList.Count;
             listModel.zongjineSum = dingdanMingxiList.Sum(m => m.Zongjine);
             listModel.yewufeiSum = dingdanMingxiList.Sum(m => m.Yewufei);
             listModel.tichengSum = dingdanMingxiList.Sum(m => m.Ticheng);
-            listModel.dingdanMingxiList = dingdanMingxiList.Skip(skipCount).Take(model.size).Select(m => new DingdanMingxiGridModel(m)).ToList();
+            listModel.dingdanMingxiList = dingdanMingxiList.Skip(skipCount).Take(filterModel.size).Select(m => new DingdanMingxiGridModel(m)).ToList();
             return listModel;
         }
     }

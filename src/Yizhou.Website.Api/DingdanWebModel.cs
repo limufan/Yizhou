@@ -95,6 +95,10 @@ namespace Yizhou.Website.Api
     {
         public string keyword;
 
+        public DateRange xiadanRiqi { set; get; }
+
+        public DateRange fahuoRiqi { set; get; }
+
         public int start;
 
         public int size;

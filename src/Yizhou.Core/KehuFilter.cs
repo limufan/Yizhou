@@ -8,7 +8,7 @@ namespace Yizhou.Core
 {
     public class KehuFilter
     {
-        public Regex KeywordRegex;
+        public RegexList KeywordRegex;
 
         public List<Kehu> Filtrate(List<Kehu> list)
         {

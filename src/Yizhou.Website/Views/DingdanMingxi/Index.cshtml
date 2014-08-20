@@ -2,21 +2,25 @@
     ViewBag.Title = "订单明细";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript" src='@this.Url.Content("~/js/dingdanMingxiGuanliPage.js")'></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="row btn-toolbar" >
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <form class="input-group">
                         <input id="txtKeyword" type="text" class="form-control">
                         <div class="input-group-btn">
                             <button type="submit" id="btnSearch" class="btn btn-default">查询</button>
+                            <button id="btnPopoverSearch" class="btn btn-default" >
+                                <span class="caret"></span>
+                            </button>
                         </div><!-- /btn-group -->
                     </form>
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group">
-                        
+                        <button id="btnExport" class="btn btn-default">导出Excel</button> 
                     </div>
                 </div>
             </div>
@@ -31,54 +35,11 @@
         </div>
     </div>
 </div>
+@{this.Html.RenderPartial("SearchPopover");}
+<iframe id="downIFrame" src></iframe>
 
 <script type="text/javascript">
     $(function(){
-        var dingdanMingxiGrid = $("#dingdanMingxiGrid").datagrid({
-                columns:[
-			        {title: "订单号", width: 80, field:"dingdanhao", name:"dingdanhao"},
-			        {title: "业务员", width: 50, field:"yewuyuan"},
-			        {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
-			        {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
-			        {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
-			        {title: "数量", width: 80, field:"shuliang", name: "shuliang"},
-			        {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
-			        {title: "实际单价", width: 80, field:"shijiDanjia"},
-			        {title: "销售底价", width: 80, field:"xiaoshouDijia"},
-			        {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
-			        {title: "业务率", width: 80, field:"yewulv"},
-			        {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
-			        {title: "提成", width: 80, field:"ticheng", name: "ticheng", render: "number2"}
-                ],
-                height: "auto"
-            }).data("datagrid");
-        var dingdanMingxiGridPager = $("#dingdanMingxiGridPager").pager({change: function(event, args){
-                search(args.start);
-            }}).data("pager");
-        function search(start){
-            var keyword = $("#txtKeyword").val();
-            var args = {keyword: keyword, start: start, size: 20};
-            $.get($.resolveUrl("DingdanMingxi/GetDingdanMingxiList"), {argsJson : $.toJSON(args)}, function(model){
-                if(model.result){
-                    dingdanMingxiGrid.setValue(model.dingdanMingxiList);
-                    var footer = [
-                        {columnName: "dingdanhao", valueType: "fixed", value: "合计"},
-                        {columnName: "zongjine", valueType: "fixed", value: model.zongjineSum},
-                        {columnName: "yewufei", valueType: "fixed", value: model.yewufeiSum},
-                        {columnName: "ticheng", valueType: "fixed", value: model.tichengSum}
-                    ]
-                    dingdanMingxiGrid.setFooter(footer);
-                    dingdanMingxiGridPager.setPageInfo({start: start, size: 20, count: model.totalCount})
-                }
-                else{
-                    alert(model.message);
-                }
-            });
-        }
-        $("#btnSearch").click(function(){
-            search(0);
-            return false;
-        });
-        search(0);
+        $("body").dingdanMingxiGuanliPage();
     })
 </script>

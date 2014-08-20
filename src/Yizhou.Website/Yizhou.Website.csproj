@@ -188,11 +188,14 @@
     <Content Include="js\webui.min.js" />
     <Content Include="js\userInput.js" />
     <Content Include="js\dingdanDetailsForm.js" />
+    <Content Include="js\dingdanGuanliPage.js" />
+    <Content Include="js\dingdanMingxiGuanliPage.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -265,6 +268,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DingdanMingxi\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Dingdan\SearchPopover.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DingdanMingxi\SearchPopover.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

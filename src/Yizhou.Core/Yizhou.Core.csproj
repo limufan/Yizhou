@@ -63,15 +63,18 @@
     <Compile Include="ChanpinManager.cs" />
     <Compile Include="ClassPropertyHelper.cs" />
     <Compile Include="CreatedEventArgs.cs" />
+    <Compile Include="DateRange.cs" />
     <Compile Include="DeleteEventArgs.cs" />
     <Compile Include="Dingdan.cs" />
     <Compile Include="DingdanInfo.cs" />
     <Compile Include="DingdanMingxi.cs" />
     <Compile Include="DingdanMingxiInfo.cs" />
+    <Compile Include="FloagRange.cs" />
     <Compile Include="JsonConvertHelper.cs" />
     <Compile Include="Kehu.cs" />
     <Compile Include="KehuFilter.cs" />
     <Compile Include="KehuManager.cs" />
+    <Compile Include="NumberRange.cs" />
     <Compile Include="OperationEventArgs.cs" />
     <Compile Include="Organization\AuthenticatedUser.cs" />
     <Compile Include="Organization\AuthenticatedUserManagement.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Organization\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexHelper.cs" />
+    <Compile Include="RegexList.cs" />
     <Compile Include="Shoukuan.cs" />
     <Compile Include="ShoukuanInfo.cs" />
     <Compile Include="SystemTime.cs" />

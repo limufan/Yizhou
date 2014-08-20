@@ -8,7 +8,7 @@ namespace Yizhou.Core
 {
     public class ChanpinFilter
     {
-        public Regex KeywordRegex;
+        public RegexList KeywordRegex;
 
         public List<Chanpin> Filtrate(List<Chanpin> list)
         {
