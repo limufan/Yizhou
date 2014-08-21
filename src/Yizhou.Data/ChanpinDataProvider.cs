@@ -35,6 +35,11 @@ namespace Yizhou.Data
 
         public void Delete(Chanpin chanpin)
         {
+            List<Dingdan> dingdanList = this._coreManager.DingdanManager.GetDingdan(chanpin);
+            if (dingdanList.Count > 0)
+            {
+                throw new Exception(string.Format("无法删除，{0}有{1}个订单", chanpin.Name, dingdanList.Count));
+            }
             ChanpinDataModel model = NHibernateHelper.CurrentSession.Get<ChanpinDataModel>(chanpin.Id);
             NHibernateHelper.CurrentSession.Delete(model);
             NHibernateHelper.CurrentSession.Flush();

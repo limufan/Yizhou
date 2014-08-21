@@ -85,6 +85,32 @@ namespace Yizhou.Core
             }
         }
 
+        public List<Dingdan> GetDingdan(Kehu kehu)
+        {
+            this._lock.AcquireReaderLock(0);
+            try
+            {
+                return this._dingdanList.Where(d => d.Kehu == kehu).ToList();
+            }
+            finally
+            {
+                this._lock.ReleaseReaderLock();
+            }
+        }
+
+        public List<Dingdan> GetDingdan(Chanpin chanpin)
+        {
+            this._lock.AcquireReaderLock(0);
+            try
+            {
+                return this._dingdanList.Where(d => d.MingxiList.Any(m => m.Chanpin == chanpin)).ToList();
+            }
+            finally
+            {
+                this._lock.ReleaseReaderLock();
+            }
+        }
+
         public List<DingdanMingxi> GetDingdanMingxi(DingdanMingxiFilter filter)
         {
             this._lock.AcquireReaderLock(0);

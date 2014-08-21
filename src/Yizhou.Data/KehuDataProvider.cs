@@ -35,6 +35,12 @@ namespace Yizhou.Data
 
         public void Delete(Kehu kehu)
         {
+            List<Dingdan> dingdanList = this._coreManager.DingdanManager.GetDingdan(kehu);
+            if (dingdanList.Count > 0)
+            {
+                throw new Exception(string.Format("无法删除，{0}有{1}个订单", kehu.Name, dingdanList.Count));
+            }
+
             KehuDataModel model = NHibernateHelper.CurrentSession.Get<KehuDataModel>(kehu.Id);
             NHibernateHelper.CurrentSession.Delete(model);
             NHibernateHelper.CurrentSession.Flush();

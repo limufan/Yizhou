@@ -32,4 +32,24 @@ namespace Yizhou.Website.Api
 
         public string account;
     }
+
+    public class UserDetailsModel
+    {
+        public UserDetailsModel()
+        { 
+        }
+
+        public UserDetailsModel(User user)
+        {
+            this.id = user.ID;
+            this.account = user.Account;
+            this.name = user.Name;
+            this.email = user.Email;
+        }
+
+        public string id;
+        public string account;
+        public string name;
+        public string email;
+    }
 }
