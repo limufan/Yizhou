@@ -61,7 +61,10 @@ namespace Yizhou.Core
 
         private void BuildKeyword()
         {
-            this._keywords = this.Dingdan.Keywords + this.Chanpin.Name;
+            if (this.Dingdan != null)
+            {
+                this._keywords = this.Dingdan.Keywords + this.Chanpin.Name;
+            }
         }
 
         public void Jisuan()
@@ -131,7 +134,7 @@ namespace Yizhou.Core
             double chajiaTicheng = 0;
             if (this.ShijiDanjia > this.XiaoshouDijia)
             {
-                chajiaTicheng = (this.ShijiDanjia - this.XiaoshouDijia) * 0.2 * shoukuanJine;
+                chajiaTicheng = (this.ShijiDanjia - this.XiaoshouDijia) * 0.2 * this.Shuliang;
             }
             double ticheng = jijiaTicheng + chajiaTicheng;
             //开票提成扣0.08
