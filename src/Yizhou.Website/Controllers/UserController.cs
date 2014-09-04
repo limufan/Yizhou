@@ -15,7 +15,7 @@ namespace Yizhou.Website.Controllers
 
         public ActionResult ComplexSelectSource()
         {
-            IList<UserInfo> userInfoList = WebHelper.UserService.GetAllUser();
+            IList<UserInfo> userInfoList = WebHelper.UserService.GetAllNormalUser();
             List<UserComplexSelectSourceModel> models = userInfoList.Select(u => new UserComplexSelectSourceModel { account = u.Account, name = u.Name }).ToList();
             return Json(models, JsonRequestBehavior.AllowGet); 
         }

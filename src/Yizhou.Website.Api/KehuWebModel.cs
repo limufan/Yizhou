@@ -16,49 +16,38 @@ namespace Yizhou.Website.Api
 
         public KehuBaseModel(Kehu kehu)
         {
-            this.beizhu = kehu.Beizhu;
-            this.chuanzhen = kehu.Chuanzhen;
-            this.createTime = kehu.CreateTime;
-            this.email = kehu.Email;
-            this.gongsiDizhi = kehu.GongsiDizhi;
-            this.id = kehu.Id;
-            this.lianxidianhua = kehu.Lianxidianhua;
-            this.name = kehu.Name;
-            this.shouhuoDizhi = kehu.ShouhuoDizhi;
-            this.shouhuoren = kehu.Shouhuoren;
-            this.shouhuorenDianhua = kehu.ShouhuorenDianhua;
-            this.yewulv = kehu.Yewulv;
-            this.yewulvFangshi = kehu.YewulvFangshi;
-            this.jiekuanFangshi = kehu.JiekuanFangshi;
+            ClassPropertyHelper.ChangeProperty(this, kehu);
         }
 
-        public string id;
+        public string id { set; get; }
 
-        public string name;
+        public string name{ set; get; }
 
-        public DateTime createTime;
+        public double yewulv{ set; get; }
 
-        public double yewulv;
+        public string lianxidianhua{ set; get; }
 
-        public string lianxidianhua;
+        public string gongsiDizhi{ set; get; }
 
-        public string gongsiDizhi;
+        public string shouhuoDizhi{ set; get; }
 
-        public string shouhuoDizhi;
+        public string shouhuoren{ set; get; }
 
-        public string shouhuoren;
+        public string shouhuorenDianhua{ set; get; }
 
-        public string shouhuorenDianhua;
+        public string shoukuanren{ set; get; }
 
-        public string chuanzhen;
+        public string shoukuanrenDianhua{ set; get; }
 
-        public string email;
+        public string chuanzhen{ set; get; }
 
-        public string beizhu;
+        public string email{ set; get; }
 
-        public string yewulvFangshi;
+        public string beizhu{ set; get; }
 
-        public string jiekuanFangshi;
+        public string yewulvFangshi{ set; get; }
+
+        public string jiekuanFangshi{ set; get; }
     }
 
     [Serializable]

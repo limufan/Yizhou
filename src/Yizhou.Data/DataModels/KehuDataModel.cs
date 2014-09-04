@@ -37,5 +37,9 @@ namespace Yizhou.Data.DataModels
         public virtual string Email { set; get; }
 
         public virtual string Beizhu { set; get; }
+
+        public virtual string Shoukuanren { set; get; }
+
+        public virtual string ShoukuanrenDianhua { set; get; }
     }
 }

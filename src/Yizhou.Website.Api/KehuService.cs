@@ -21,8 +21,9 @@ namespace Yizhou.Website.Api
         public KehuDetailsModel Create(KehuDetailsModel createModel)
         {
             Kehu kehu = new Kehu();
-            kehu.Id = Guid.NewGuid().ToString();
             this.SetKehuInfo(kehu, createModel);
+            kehu.Id = Guid.NewGuid().ToString();
+            kehu.CreateTime = DateTime.Now;
 
             this._dataManager.KehuDataProvider.Insert(kehu);
             this._coreManager.KehuManager.Add(kehu);
@@ -41,19 +42,7 @@ namespace Yizhou.Website.Api
 
         private void SetKehuInfo(Kehu kehu, KehuDetailsModel detailsModel)
         {
-            kehu.Beizhu = detailsModel.beizhu;
-            kehu.Chuanzhen = detailsModel.chuanzhen;
-            kehu.CreateTime = DateTime.Now;
-            kehu.Email = detailsModel.email;
-            kehu.GongsiDizhi = detailsModel.gongsiDizhi;
-            kehu.JiekuanFangshi = detailsModel.jiekuanFangshi;
-            kehu.Lianxidianhua = detailsModel.lianxidianhua;
-            kehu.Name = detailsModel.name;
-            kehu.ShouhuoDizhi = detailsModel.shouhuoDizhi;
-            kehu.Shouhuoren = detailsModel.shouhuoren;
-            kehu.ShouhuorenDianhua = detailsModel.shouhuorenDianhua;
-            kehu.Yewulv = detailsModel.yewulv;
-            kehu.YewulvFangshi = detailsModel.yewulvFangshi;
+            ClassPropertyHelper.ChangeProperty(kehu, detailsModel);
             kehu.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(detailsModel.yewuyuan.account);
         }
 

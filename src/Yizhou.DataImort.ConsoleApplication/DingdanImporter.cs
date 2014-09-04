@@ -79,7 +79,7 @@ namespace Yizhou.DataImort.ConsoleApplication
 
         private KehuGridModel CreateKehu(string kehuName)
         {
-            KehuDetailsModel model = new KehuDetailsModel{ name = kehuName, createTime = DateTime.Now, jiekuanFangshi ="1个月月结", yewuyuan = new UserInputModel{ account = "admin" } };
+            KehuDetailsModel model = new KehuDetailsModel{ name = kehuName, jiekuanFangshi ="1个月月结", yewuyuan = new UserInputModel{ account = "admin" } };
             model = this._kehuService.Create(model);
             
             return new KehuGridModel { id = model.id, name = model.name };

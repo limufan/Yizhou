@@ -16,5 +16,7 @@
         <property name="Chuanzhen" type="String" column="kehu_chuanzhen"></property>
         <property name="Email" type="String" column="kehu_email"></property>
         <property name="Beizhu" type="String" column="kehu_beizhu" length="20000"></property>
+        <property name="Shoukuanren" type="String" column="kehu_shoukuanren"></property>
+        <property name="ShoukuanrenDianhua" type="String" column="kehu_shoukuanrenDianhua"></property>
     </class>
 </hibernate-mapping>

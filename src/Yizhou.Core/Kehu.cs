@@ -32,6 +32,10 @@ namespace Yizhou.Core
 
         public string ShouhuorenDianhua { set; get; }
 
+        public string Shoukuanren { set; get; }
+
+        public string ShoukuanrenDianhua { set; get; }
+
         public string Chuanzhen { set; get; }
 
         public string Email { set; get; }
@@ -61,7 +65,7 @@ namespace Yizhou.Core
         {
             this._keywords = this.Beizhu + this.Chuanzhen + this.Email + this.GongsiDizhi + this.JiekuanFangshi
                    + this.Lianxidianhua + this.Name + this.ShouhuoDizhi + this.Shouhuoren + this.ShouhuorenDianhua + this.Yewuyuan.Name
-                   + this.YewulvFangshi;
+                   + this.YewulvFangshi + this.Shoukuanren + this.ShoukuanrenDianhua;
         }
 
         public Kehu Clone()
