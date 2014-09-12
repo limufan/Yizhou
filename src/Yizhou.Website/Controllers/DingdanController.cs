@@ -260,8 +260,6 @@ namespace Yizhou.Website.Controllers
                 cell.SetCellValue("");
                 cell = dataRow.GetCell(1);
                 cell.SetCellValue(mingxiModel.chanpin.name);
-                cell = dataRow.GetCell(2);
-                cell.SetCellValue(mingxiModel.guige);
                 cell = dataRow.GetCell(3);
                 cell.SetCellValue(mingxiModel.danwei);
                 cell = dataRow.GetCell(4);
