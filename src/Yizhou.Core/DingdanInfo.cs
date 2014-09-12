@@ -8,8 +8,6 @@ namespace Yizhou.Core
 {
     public class DingdanBaseInfo
     {
-        public string Danhao { set; get; }
-
         public DateTime XiadanRiqi { set; get; }
 
         public DateTime FahuoRiqi { set; get; }
@@ -27,13 +25,15 @@ namespace Yizhou.Core
         public string JiekuanFangshi { set; get; }
 
         public string Beizhu { set; get; }
-
-        public DateTime CreateTime { set; get; }
     }
 
     public class DingdanCreateInfo : DingdanBaseInfo
     {
+        public string Danhao { set; get; }
+
         public string Id { set; get; }
+
+        public DateTime CreateTime { set; get; }
     }
 
     public class DingdanChangeInfo : DingdanBaseInfo

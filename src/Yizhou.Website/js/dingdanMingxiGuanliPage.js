@@ -27,7 +27,6 @@
                         ],
                         height: "auto"
                     }).data("datagrid");
-        
                 this._dingdanMingxiGridPager = $("#dingdanMingxiGridPager").pager({change: function(event, args){
                         thiz.search(args.start, thiz._searchInfo);
                     }}).data("pager");

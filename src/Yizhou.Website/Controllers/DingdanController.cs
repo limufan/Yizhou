@@ -224,5 +224,67 @@ namespace Yizhou.Website.Controllers
 
             return Path.GetFileName(tempPath);
         }
+
+        public ActionResult ShengchengChuhuodan(string dingdanId)
+        {
+            string path = Server.MapPath("~/锐涂出货申请单.xls");
+            FileStream stream = System.IO.File.OpenRead(path);
+            HSSFWorkbook workbook = new HSSFWorkbook(stream);
+            HSSFSheet sheet = workbook.GetSheetAt(0);
+
+            DingdanDetailsModel dingdan = WebHelper.DingdanService.GetDingdan(dingdanId);
+            HSSFRow dataRow = sheet.GetRow(1);
+            var cell = dataRow.GetCell(6);
+            cell.SetCellValue(DateTime.Today.ToString("yyyy 年"));
+            cell = dataRow.GetCell(7);
+            cell.SetCellValue(DateTime.Today.ToString("MM 月 dd 日"));
+
+            dataRow = sheet.GetRow(2);
+            cell = dataRow.GetCell(1);
+            cell.SetCellValue(dingdan.kehu.name);
+            cell = dataRow.GetCell(5);
+            cell.SetCellValue(dingdan.shouhuoDizhi);
+
+            dataRow = sheet.GetRow(3);
+            cell = dataRow.GetCell(1);
+            cell.SetCellValue(dingdan.shouhuoren);
+            cell = dataRow.GetCell(3);
+            cell.SetCellValue(dingdan.shouhuorenDianhua);
+            cell = dataRow.GetCell(7);
+            cell.SetCellValue(dingdan.fahuoRiqi.ToString("MM 月 dd 日"));
+            int dataRowIndex = 6;
+            foreach (DingdanMingxiDetailsModel mingxiModel in dingdan.mingxiList)
+            {
+                dataRow = sheet.GetRow(dataRowIndex);
+                cell = dataRow.GetCell(0);
+                cell.SetCellValue("");
+                cell = dataRow.GetCell(1);
+                cell.SetCellValue(mingxiModel.chanpin.name);
+                cell = dataRow.GetCell(2);
+                cell.SetCellValue(mingxiModel.guige);
+                cell = dataRow.GetCell(3);
+                cell.SetCellValue(mingxiModel.danwei);
+                cell = dataRow.GetCell(4);
+                cell.SetCellValue(mingxiModel.shuliang);
+                cell = dataRow.GetCell(5);
+                cell.SetCellValue(mingxiModel.beizhu);
+                dataRowIndex++;
+            }
+
+            string tempPath = Server.MapPath(string.Format("~/Temp/{0}.xls", Guid.NewGuid().ToString()));
+            if (!Directory.Exists(Path.GetDirectoryName(tempPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(tempPath));
+            }
+            Stream newStream = System.IO.File.Open(tempPath, FileMode.Create);
+            workbook.Write(newStream);
+            newStream.Close();
+
+            stream.Close();
+            workbook = null;
+            sheet = null;
+
+            return this.File(tempPath, "application/x-xls", dingdan.danhao + "出货申请单.xls");
+        } 
     }
 }

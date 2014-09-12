@@ -30,6 +30,7 @@
                 this._dingdanGridPager = $("#dingdanGridPager").pager({change: function(event, args){
                         thiz.search(args.start, thiz._searchInfo);
                     }}).data("pager");
+                this._btnShengchengChuhuodan = $("#btnShengchengChuhuodan");
         
                 this._bindEvent();
                 this.search(0);
@@ -65,6 +66,18 @@
                 });
                 $("#btnExport").click(function(){
                     thiz.exportToExcel();
+                    return false;
+                });
+                this._btnShengchengChuhuodan.click(function(){
+                    var rows = thiz._dingdanGrid.getSelectedRows();
+                    if(!rows.length){
+                        $.messageBox.info("请先选择订单！");
+                        return false;
+                    }
+                    $.each(rows, function(){
+                        var dingdanId = this.datarow("getValue").id;
+                        thiz.shengchengChuhuodan(dingdanId);
+                    })
                     return false;
                 });
                 this._searchPopover.find(".btnOk").click(function(){
@@ -114,6 +127,10 @@
                         alert(model.message);
                     }
                 });
+            },
+            shengchengChuhuodan: function(dingdanId){
+                var thiz = this;
+                $.download($.resolveUrl("Dingdan/ShengchengChuhuodan", {dingdanId: dingdanId}));
             }
         }
     );
