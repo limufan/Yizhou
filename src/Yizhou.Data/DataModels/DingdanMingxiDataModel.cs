@@ -12,7 +12,7 @@ namespace Yizhou.Data.DataModels
 
         public int Tongshu { set; get; }
 
-        public int Shuliang { set; get; }
+        public double Shuliang { set; get; }
 
         public double XiaoshouDanjia { set; get; }
 

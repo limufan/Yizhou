@@ -30,7 +30,7 @@ namespace Yizhou.Website.Api
 
         public int tongshu { set; get; }
 
-        public int shuliang { set; get; }
+        public double shuliang { set; get; }
 
         public double xiaoshouDanjia { set; get; }
 

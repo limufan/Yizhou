@@ -16,6 +16,14 @@ namespace Yizhou.Data
             {
                 this.InitOrg(yizhouManager, dataManager);
             }
+
+            User yaohuiqing = yizhouManager.OrgManager.UserManager.GetUserByAccount("yaohuiqing");
+            if (yaohuiqing == null)
+            {
+                User yujiacheng = yizhouManager.OrgManager.UserManager.GetUserByAccount("yujiacheng");
+                yaohuiqing = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo { Account = "yaohuiqing", Name = "姚慧清", MainPositionId = yujiacheng.MainPosition.ID, Password = "123456", Role = UserRole.User, Status = UserStatus.Normal });
+                dataManager.UserDataProvider.Insert(yaohuiqing);
+            }
         }
 
         private void InitOrg(YizhouCoreManager yizhouManager, YizhouDataManager dataManager)
