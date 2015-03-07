@@ -15,5 +15,7 @@
         <property name="ShoukuanListJson" type="String" column="dingdan_shoukuanListJson" length="20000"></property>
         <property name="Beizhu" type="String" column="dingdan_beizhu" length="20000"></property>
         <property name="CreateTime" type="DateTime" column="dingdan_createTime"></property>
+        <property name="FahuoShuliang" type="double" column="dingdan_fahuoShuliang"></property>
+        <property name="FahuoDanhao" type="string" column="dingdan_fahuoDanhao"></property>
     </class>
 </hibernate-mapping>

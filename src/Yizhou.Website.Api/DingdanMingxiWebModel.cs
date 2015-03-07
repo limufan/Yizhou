@@ -19,10 +19,13 @@ namespace Yizhou.Website.Api
             ClassPropertyHelper.ChangeProperty(this, mingxi);
             this.danwei = mingxi.Chanpin.Danwei;
             this.guige = mingxi.Chanpin.Guige;
+            this.xinghao = mingxi.Chanpin.Xinghao;
             this.chanpin = new ChanpinInputModel(mingxi.Chanpin);
         }
 
         public ChanpinInputModel chanpin { set; get; }
+
+        public string xinghao { set; get; }
 
         public string guige { set; get; }
 
@@ -31,6 +34,11 @@ namespace Yizhou.Website.Api
         public int tongshu { set; get; }
 
         public double shuliang { set; get; }
+
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public double fahuoShuliang { set; get; }
 
         public double xiaoshouDanjia { set; get; }
 

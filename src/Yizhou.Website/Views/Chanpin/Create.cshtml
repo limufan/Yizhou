@@ -10,11 +10,11 @@
 <form id="detailsform" class="form-horizontal" role="form">
     @{this.Html.RenderPartial("Details");}
     <div class="form-group">
-		<div class="col-sm-offset-3 control-input">
-		  	<button id="btnSave" type="submit" class="btn btn-default">保存</button>
-		  	<button id="btnCancel" type="button" class="btn btn-default">取消</button>
-		</div>
-	</div>
+	    <div style="text-align: center">
+		    <button id="btnSave" type="submit" class="btn btn-default">保存</button>
+		    <button id="btnCancel" type="button" class="btn btn-default">取消</button>
+	    </div>
+    </div>
 </form>
 <script type="text/javascript">
     $("#detailsform").horizontalForm();

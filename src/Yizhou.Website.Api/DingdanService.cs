@@ -37,7 +37,6 @@ namespace Yizhou.Website.Api
             createInfo.Id = Guid.NewGuid().ToString();
             createInfo.Kehu = this._coreManager.KehuManager.GetKehuById(createModel.kehu.id);
             createInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(createModel.yewuyuan.account);
-            createInfo.Danhao = this._coreManager.DingdanManager.ShengchengDingdanhao();
             createInfo.CreateTime = DateTime.Now;
             Dingdan dingdan = new Dingdan(createInfo);
             DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
@@ -56,18 +55,25 @@ namespace Yizhou.Website.Api
         public void Change(DingdanDetailsModel changeModel)
         {
             Dingdan dingdan = this._coreManager.DingdanManager.GetDingdanById(changeModel.id);
-            DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
-            ClassPropertyHelper.ChangeProperty(changeInfo, changeModel);
-            changeInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(changeModel.yewuyuan.account);
-            changeInfo.Kehu = this._coreManager.KehuManager.GetKehuById(changeModel.kehu.id);
-            changeInfo.MingxiList = changeModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
-            changeInfo.ShoukuanList = changeModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
-            //update to clone 
-            Dingdan dingdanClone = dingdan.Clone();
-            dingdanClone.Change(changeInfo);
-            this._dataManager.DingdanDataProvider.Update(dingdanClone);
-            //update
-            dingdan.Change(changeInfo);
+            DingdanChangeInfo backupChangeInfo = new DingdanChangeInfo(dingdan);
+
+            try
+            {
+                DingdanChangeInfo changeInfo = new DingdanChangeInfo(dingdan);
+                ClassPropertyHelper.ChangeProperty(changeInfo, changeModel);
+                changeInfo.Yewuyuan = this._coreManager.OrgManager.UserManager.GetUserByAccount(changeModel.yewuyuan.account);
+                changeInfo.Kehu = this._coreManager.KehuManager.GetKehuById(changeModel.kehu.id);
+                changeInfo.MingxiList = changeModel.mingxiList.Select(m => this.CreateDingdanMingxi(dingdan, m)).ToList();
+                changeInfo.ShoukuanList = changeModel.shoukuanList.Select(m => this.CreateShoukuan(dingdan, m)).ToList();
+                //update
+                dingdan.Change(changeInfo);
+                this._dataManager.DingdanDataProvider.Update(dingdan);
+            }
+            catch
+            {
+                dingdan.Change(backupChangeInfo);
+                throw;
+            }
         }
 
         private DingdanMingxi CreateDingdanMingxi(Dingdan dingdan, DingdanMingxiDetailsModel detailsModel)

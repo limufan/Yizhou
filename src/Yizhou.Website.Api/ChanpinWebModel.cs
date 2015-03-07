@@ -23,6 +23,8 @@ namespace Yizhou.Website.Api
 
         public string name { set; get; }
 
+        public string xinghao { set; get; }
+
         public string guige { set; get; }
 
         public string danwei { set; get; }
@@ -60,8 +62,10 @@ namespace Yizhou.Website.Api
         public ChanpinGridModel(Chanpin chanpin)
             : base(chanpin)
         {
-            
+            this.summary = chanpin.Xinghao + " " + chanpin.Guige + " " + this.danwei;
         }
+
+        public string summary { set; get; }
     }
 
     [Serializable]

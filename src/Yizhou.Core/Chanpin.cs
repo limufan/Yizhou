@@ -11,6 +11,8 @@ namespace Yizhou.Core
 
         public string Name { set; get; }
 
+        public string Xinghao { set; get; }
+
         public string Guige { set; get; }
 
         public string Danwei { set; get; }
@@ -42,7 +44,7 @@ namespace Yizhou.Core
 
         private void BuildKeyword()
         {
-            this._keywords = this.Beizhu + this.Danwei + this.Guige + this.Name;
+            this._keywords = this.Beizhu + this.Danwei + this.Guige + this.Name + this.Xinghao;
         }
 
         public Chanpin Clone()

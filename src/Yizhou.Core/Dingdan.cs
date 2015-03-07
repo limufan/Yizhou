@@ -32,7 +32,20 @@ namespace Yizhou.Core
 
         public DateTime XiadanRiqi { set; get; }
 
+        /// <summary>
+        /// 发货日期
+        /// </summary>
         public DateTime FahuoRiqi { set; get; }
+
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public double FahuoShuliang { set; get; }
+
+        /// <summary>
+        /// 发货单号
+        /// </summary>
+        public string FahuoDanhao { set; get; }
 
         public User Yewuyuan { set; get; }
 
@@ -121,11 +134,6 @@ namespace Yizhou.Core
             string yewuyuanName = this.Yewuyuan == null ? "" : this.Yewuyuan.Name;
             this._keywords = this.Beizhu + this.Danhao + this.JiekuanFangshi + kehuName + this.ShouhuoDizhi +
                 this.Shouhuoren + this.ShouhuorenDianhua + yewuyuanName;
-        }
-
-        public Dingdan Clone()
-        {
-            return this.MemberwiseClone() as Dingdan;
         }
 
         public void Jisuan()

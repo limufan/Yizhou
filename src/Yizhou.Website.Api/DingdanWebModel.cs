@@ -22,6 +22,16 @@ namespace Yizhou.Website.Api
 
         public DateTime fahuoRiqi { set; get; }
 
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public double fahuoShuliang { set; get; }
+
+        /// <summary>
+        /// 发货单号
+        /// </summary>
+        public string fahuoDanhao { set; get; }
+
         public string shouhuoren { set; get; }
 
         public string shouhuorenDianhua { set; get; }

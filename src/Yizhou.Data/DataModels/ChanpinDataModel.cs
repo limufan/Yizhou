@@ -21,5 +21,7 @@ namespace Yizhou.Data.DataModels
         public virtual double Chengbenjia { set; get; }
 
         public virtual string Beizhu { set; get; }
+
+        public virtual string Xinghao { set; get; }
     }
 }

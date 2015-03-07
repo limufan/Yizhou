@@ -8,5 +8,6 @@
         <property name="XiaoshouDijia" type="double" column="chanpin_xiaoshouDijia"></property>
         <property name="Chengbenjia" type="double" column="chanpin_chengbenjia"></property>
         <property name="Beizhu" type="String" column="chanpin_beizhu" length="20000"></property>
+        <property name="Xinghao" type="String" column="chanpin_xinghao"></property>
     </class>
 </hibernate-mapping>

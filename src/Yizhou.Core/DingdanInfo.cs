@@ -8,9 +8,21 @@ namespace Yizhou.Core
 {
     public class DingdanBaseInfo
     {
+        public string Danhao { set; get; }
+
         public DateTime XiadanRiqi { set; get; }
 
         public DateTime FahuoRiqi { set; get; }
+
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public double FahuoShuliang { set; get; }
+
+        /// <summary>
+        /// 发货单号
+        /// </summary>
+        public string FahuoDanhao { set; get; }
 
         public User Yewuyuan { set; get; }
 
@@ -29,8 +41,6 @@ namespace Yizhou.Core
 
     public class DingdanCreateInfo : DingdanBaseInfo
     {
-        public string Danhao { set; get; }
-
         public string Id { set; get; }
 
         public DateTime CreateTime { set; get; }

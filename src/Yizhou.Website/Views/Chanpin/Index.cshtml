@@ -4,9 +4,9 @@
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="row btn-toolbar" >
-                <div class="col-sm-3">
+                <div class="col-3">
                     <form class="input-group">
                         <input id="txtKeyword" type="text" class="form-control">
                         <div class="input-group-btn">
@@ -14,7 +14,7 @@
                         </div><!-- /btn-group -->
                     </form>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-8">
                     <div class="btn-group">
                         <a id="btnCreate" href="@this.Url.Action("Create")" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>创建</a>
                         <button id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
@@ -40,6 +40,7 @@
 			        {title: "产品名称", width: 180, field:"name", render: function(datarow, args){ 
                         return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Chanpin/Edit", {id: args.data.id})) ;
                     }},
+			        {title: "型号", width: 80, field:"xinghao"},
 			        {title: "规格", width: 80, field:"guige"},
 			        {title: "单位", width: 80, field:"danwei"},
 			        {title: "销售底价", width: 80, field:"xiaoshouDijia"},

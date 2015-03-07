@@ -43,45 +43,57 @@
 </head>
 
 <body>
-    <div class="container">
-      <form class="form-signin form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-md-3"></label>
-            <div class="col-md-5">
-                <h2 >用户登录</h2>
+    <div class="container-fluid">
+        <form class="form-signin form-horizontal">
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-3"></label>
+                    <div class="col-5">
+                        <h2>用户登录</h2>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3" for="inputEmail">用户名</label>
-            <div class="col-md-5">
-                <input id="txtAccount" name="account" type="text" class="form-control" />
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-3" for="inputEmail">用户名</label>
+                    <div class="col-5">
+                        <input id="txtAccount" name="account" type="text" class="form-control" />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3" for="inputEmail">密码</label>
-            <div class="col-md-5">
-                <input id="txtPassword" type="password" name="passowrd" class="form-control" />
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-3" for="inputEmail">密码</label>
+                    <div class="col-5">
+                        <input id="txtPassword" type="password" name="passowrd" class="form-control" />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3"></label>
-            <div class="col-md-5">
-                <label class="checkbox">
-                  <input id="chkRemember" type="checkbox" value="true" /> 记住我
-                </label>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-3"></label>
+                    <div class="col-5">
+                        <label class="checkbox">
+                            <input id="chkRemember" type="checkbox" value="true" />
+                            记住我
+                   
+                        </label>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3"></label>
-            <div class="col-md-5">
-                <button id="btnSingIn" class="btn btn-primary btn-lg" data-loading-text="登录中..." type="submit">登录</button>
-                <label id="txtMessage" style="color: Red"></label>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-3"></label>
+                    <div class="col-5">
+                        <button id="btnSingIn" class="btn btn-primary btn-lg" data-loading-text="登录中..." type="submit">登录</button>
+                        <label id="txtMessage" style="color: Red"></label>
+                    </div>
+                </div>
             </div>
-        </div>
-      </form>
-      <div style="width: 200px; margin: auto; color: #ffffff">Copyright © 2013 </div>
-    </div> 
-      
+        </form>
+        <div style="width: 200px; margin: auto; color: #ffffff">Copyright © 2013 </div>
+    </div>
+
 </body>
 </html>
 <script language="javascript" type="text/javascript">

@@ -14,16 +14,18 @@
 			                {title: "业务员", width: 50, field:"yewuyuan"},
 			                {title: "客户", width: 100, field:"kehu"},
 			                {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
+			                {title: "产品名称", width: 80, field:"chanpin", name:"chanpin", render: "name"},
+			                {title: "型号", width: 80, field:"xinghao", name:"xinghao"},
+			                {title: "数量", width: 60, field:"shuliang", name: "shuliang"},
 			                {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
-			                {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
-			                {title: "数量", width: 80, field:"shuliang", name: "shuliang"},
-			                {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
-			                {title: "实际单价", width: 80, field:"shijiDanjia"},
-			                {title: "销售底价", width: 80, field:"xiaoshouDijia"},
+			                {title: "发货数量", width: 70, field:"fahuoShuliang", name: "shuliang"},
+			                {title: "销售单价", width: 70, field:"xiaoshouDanjia"},
+			                {title: "实际单价", width: 70, field:"shijiDanjia"},
+			                {title: "销售底价", width: 70, field:"xiaoshouDijia"},
 			                {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
-			                {title: "业务率", width: 80, field:"yewulv"},
-			                {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
-			                {title: "提成", width: 80, field:"ticheng", name: "ticheng", render: "number2"}
+			                {title: "业务率", width: 70, field:"yewulv"},
+			                {title: "业务费", width: 70, field:"yewufei", name:"yewufei", render: "number2"},
+			                {title: "提成", width: 70, field:"ticheng", name:"ticheng", render: "number2"}
                         ],
                         height: "auto"
                     }).data("datagrid");

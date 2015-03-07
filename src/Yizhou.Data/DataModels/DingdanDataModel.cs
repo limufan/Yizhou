@@ -35,5 +35,15 @@ namespace Yizhou.Data.DataModels
         public virtual string Beizhu { set; get; }
 
         public virtual DateTime CreateTime { set; get; }
+
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public virtual double FahuoShuliang { set; get; }
+
+        /// <summary>
+        /// 发货单号
+        /// </summary>
+        public virtual string FahuoDanhao { set; get; }
     }
 }

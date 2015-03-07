@@ -10,7 +10,7 @@
                 this._searchPopoverTrigger = $("#btnPopoverSearch").popoverTrigger({popover: this._searchPopover}).data("popoverTrigger");
                 this._dingdanGrid = $("#dingdanGrid").datagrid({
                     columns:[
-			            {title: "订单号", width: 80, field:"danhao", name:"danhao", render: function(datarow, args){ 
+			            {title: "订单号", width: 100, field:"danhao", name:"danhao", render: function(datarow, args){ 
                             return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Dingdan/Edit", {id: args.data.id})) ;
                         }},
 			            {title: "业务员", width: 80, field:"yewuyuan"},

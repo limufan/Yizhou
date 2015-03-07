@@ -191,6 +191,7 @@
     <Content Include="js\userCreateDialog.js" />
     <Content Include="js\userEditDialog.js" />
     <Content Include="js\userInfoMoidfyDialog.js" />
+    <Content Include="js\webui.js" />
     <Content Include="js\webui.min.js" />
     <Content Include="js\userInput.js" />
     <Content Include="js\dingdanDetailsForm.js" />

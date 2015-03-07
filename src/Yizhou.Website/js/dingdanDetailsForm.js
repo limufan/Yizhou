@@ -14,14 +14,15 @@
                 this._chanpinGrid = $("#chanpinGrid").datagrid({
                     columns:[
 			            {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
+			            {title: "型号", width: 80, field:"xinghao"},
 			            {title: "规格", width: 50, field:"guige"},
 			            {title: "单位", width: 50, field:"danwei"},
 			            {title: "数量", width: 80, field:"shuliang"},
-			            {title: "桶数", width: 50, field:"tongshu"},
+			            {title: "发货数量", width: 80, field:"fahuoShuliang"},
 			            {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
 			            {title: "实际单价", width: 80, field:"shijiDanjia"},
 			            {title: "销售底价", width: 80, field:"xiaoshouDijia"},
-			            {title: "总金额", width: 80, field:"zongjine", name:"zongjine"},
+			            {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
 			            {title: "业务率", width: 80, field:"yewulv"},
 			            {title: "业务率方式", width: 80, field:"yewulvFangshi"},
 			            {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
@@ -130,7 +131,7 @@
                 var thiz = this;
                 this._form.changed(function(input, value){
                     var formValue = thiz._form.getValue();
-                    var numberInputs = ["shuliang", "tongshu", "xiaoshouDanjia", "xiaoshouDijia", "zongjine", "yewuwei", "shijiDanjia", "zongjine", "ticheng", "butie", "yewufei", "yewulv"]
+                    var numberInputs = ["shuliang", "tongshu", "fahuoShuliang", "xiaoshouDanjia", "xiaoshouDijia", "zongjine", "yewuwei", "shijiDanjia", "zongjine", "ticheng", "butie", "yewufei", "yewulv"]
                     $.each(numberInputs, function(){
                         if(formValue[this] == null){
                             formValue[this] = 0;
@@ -151,7 +152,7 @@
                     });
                 });
                 this._chanpinInput.changed(function(input, chanpin){
-                    var defaultValue = {guige: chanpin.guige, danwei: chanpin.danwei, xiaoshouDijia: chanpin.xiaoshouDijia};
+                    var defaultValue = {xinghao: chanpin.xinghao, guige: chanpin.guige, danwei: chanpin.danwei, xiaoshouDijia: chanpin.xiaoshouDijia};
                     if(thiz._kehu){
                         $.extend(defaultValue, {yewulv: thiz._kehu.yewulv, yewulvFangshi: thiz._kehu.yewulvFangshi});
                     }
