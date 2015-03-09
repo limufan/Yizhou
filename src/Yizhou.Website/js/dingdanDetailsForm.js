@@ -11,29 +11,36 @@
                 this.element.horizontalForm();
 	            this._form = this.element.form().data("form");
                 this._kehuInput = this._form.getInput("kehu");
-                this._chanpinGrid = $("#chanpinGrid").datagrid({
-                    columns:[
-			            {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
-			            {title: "型号", width: 80, field:"xinghao"},
-			            {title: "规格", width: 50, field:"guige"},
-			            {title: "单位", width: 50, field:"danwei"},
-			            {title: "数量", width: 80, field:"shuliang"},
-			            {title: "发货数量", width: 80, field:"fahuoShuliang"},
-			            {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
+                var chanpinGridColumns = [
+			        {title: "产品名称", width: 100, field:"chanpin", name:"chanpin", render: "name"},
+			        {title: "型号", width: 80, field:"xinghao"},
+			        {title: "规格", width: 50, field:"guige"},
+			        {title: "单位", width: 50, field:"danwei"},
+			        {title: "数量", width: 80, field:"shuliang"},
+			        {title: "发货数量", width: 80, field:"fahuoShuliang"},
+			        {title: "销售单价", width: 80, field:"xiaoshouDanjia"},
+			        {title: "销售底价", width: 80, field:"xiaoshouDijia"},
+			        {title: "是否开票", width: 80, field:"shifouKaipiao", render: "shifou"}
+                ];
+                var chanpinGridFooter = null;
+                if($.hasCaiwuQuanxian){
+                    chanpinGridColumns = chanpinGridColumns.concat([
 			            {title: "实际单价", width: 80, field:"shijiDanjia"},
-			            {title: "销售底价", width: 80, field:"xiaoshouDijia"},
 			            {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
 			            {title: "业务率", width: 80, field:"yewulv"},
 			            {title: "业务率方式", width: 80, field:"yewulvFangshi"},
-			            {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"},
-			            {title: "是否开票", width: 80, field:"shifouKaipiao", render: "shifou"}
-                    ],
-                    required: true,
-                    footer:[
+			            {title: "业务费", width: 80, field:"yewufei", name:"yewufei", render: "number2"}
+                    ]);
+                    chanpinGridFooter = [
                         {columnName: "chanpin", valueType: "fixed", value: "合计"}, 
                         {columnName: "zongjine", valueType:"sum"},
                         {columnName: "yewufei", valueType:"sum"}
-                    ]
+                    ];
+                }
+                this._chanpinGrid = $("#chanpinGrid").datagrid({
+                    columns: chanpinGridColumns,
+                    required: true,
+                    footer: chanpinGridFooter
                 }).data("datagrid");
                 this._form.setInput("mingxiList", this._chanpinGrid);
                 this._shoukuanGrid = $("#shoukuanGrid").datagrid({
@@ -125,6 +132,9 @@
                 this._modal = this.element.modal({ show: false, backdrop: "static" }).data("bs.modal");
 	            this._form = this.element.find("form").form().data("form");
                 this._chanpinInput = this._form.getInput("chanpin");
+                if(!$.hasCaiwuQuanxian){
+                    $(".chanpinCaiwuForm").hide();
+                }
                 this._bindEvent();
             },
             _bindEvent: function(){

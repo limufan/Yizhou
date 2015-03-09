@@ -10,19 +10,29 @@ namespace Yizhou.Data
 {
     public class DataInitializer
     {
+        YizhouCoreManager _yizhouManager;
+        YizhouDataManager _dataManager;
+
         public DataInitializer(YizhouCoreManager yizhouManager, YizhouDataManager dataManager)
         {
+            this._yizhouManager = yizhouManager;
+            this._dataManager = dataManager;
+
             if (yizhouManager.OrgManager.DepartmentManager.Departments.Count == 0)
             {
                 this.InitOrg(yizhouManager, dataManager);
             }
 
-            User yaohuiqing = yizhouManager.OrgManager.UserManager.GetUserByAccount("yaohuiqing");
-            if (yaohuiqing == null)
+            Position wenyuanPosition = yizhouManager.OrgManager.PositionManager.GetPositionByName("文员");
+            if (wenyuanPosition == null)
             {
-                User yujiacheng = yizhouManager.OrgManager.UserManager.GetUserByAccount("yujiacheng");
-                yaohuiqing = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo { Account = "yaohuiqing", Name = "姚慧清", MainPositionId = yujiacheng.MainPosition.ID, Password = "123456", Role = UserRole.User, Status = UserStatus.Normal });
-                dataManager.UserDataProvider.Insert(yaohuiqing);
+                Position topPosition = yizhouManager.OrgManager.PositionManager.TopPosition;
+                wenyuanPosition = yizhouManager.OrgManager.PositionManager.Create(yizhouManager.OrgManager.System, new PositionCreateInfo { Name = "文员", ParentId = topPosition.ID });
+                dataManager.PositionDataProvider.Insert(wenyuanPosition);
+                this.CreateUser("heyuchi", "何玉池", wenyuanPosition.ID);
+                this.CreateUser("liangminxia", "梁敏霞", wenyuanPosition.ID);
+                this.CreateUser("lishuxing", "黎淑兴", wenyuanPosition.ID);
+                this.CreateUser("lirong", "李荣", wenyuanPosition.ID);
             }
         }
 
@@ -100,6 +110,31 @@ namespace Yizhou.Data
                 MainPositionId = yewuyuanPosition.ID
             });
             dataManager.UserDataProvider.Insert(qudenggui);
+
+            User yaohuiqing = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System,
+                new UserCreateInfo
+                {
+                    Account = "yaohuiqing",
+                    Name = "姚慧清",
+                    MainPositionId = yewuyuanPosition.ID, 
+                    Password = "123456", Role = UserRole.User, Status = UserStatus.Normal });
+            dataManager.UserDataProvider.Insert(yaohuiqing);
+
+        }
+
+        private void CreateUser(string account, string name, string positionId)
+        {
+            User yaohuiqing = this._yizhouManager.OrgManager.UserManager.Create(this._yizhouManager.OrgManager.System,
+                new UserCreateInfo
+                {
+                    Account = account,
+                    Name = name,
+                    MainPositionId = positionId,
+                    Password = "123456",
+                    Role = UserRole.User,
+                    Status = UserStatus.Normal
+                });
+            this._dataManager.UserDataProvider.Insert(yaohuiqing);
         }
     }
 }

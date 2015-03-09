@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>订单号</label>
+			<label  class="control-label"><span style="color: Red">*</span>订单号</label>
 			<div class="control-input">
 				<input name='danhao' type='text' class='form-control webui-textbox' data-required="true"/>
 			</div>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>下单日期</label>
+			<label  class="control-label"><span style="color: Red">*</span>下单日期</label>
 			<div class="control-input">
                 <input name='xiadanRiqi' type='text' class='form-control webui-dateInput' data-default-value="@DateTime.Today.ToString("yyyy-MM-dd")" data-required="true"/>
 			</div>
@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>业务员</label>
+			<label  class="control-label"><span style="color: Red">*</span>业务员</label>
 			<div class="control-input">
                 <div name="yewuyuan" class="form-control webui-complexSelect"  data-required="true" data-single="true" data-text-field="name" data-source="/User/ComplexSelectSource">
 							
@@ -30,7 +30,7 @@
     </div>
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>客户</label>
+			<label  class="control-label"><span style="color: Red">*</span>客户</label>
 			<div class="control-input">
                 <div name="kehu" class="form-control webui-complexSelect"  data-required="true" data-single="true" data-text-field="name" data-source="/Kehu/ComplexSelectSource">
 							
@@ -42,7 +42,7 @@
 <div class="row">
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>结款方式</label>
+			<label  class="control-label"><span style="color: Red">*</span>结款方式</label>
 			<div class="control-input">
                 <select name='jiekuanFangshi' class='form-control webui-simpleSelect'>
 		    		<option>1个月月结</option>
@@ -54,7 +54,7 @@
     </div>
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><i class="fa fa-asterisk" style="color:red;"></i>收货人</label>
+			<label  class="control-label"><span style="color: Red">*</span>收货人</label>
 			<div class="control-input">
 				<input name='shouhuoren' type='text' class='form-control webui-textbox' data-required="true"/>
 			</div>

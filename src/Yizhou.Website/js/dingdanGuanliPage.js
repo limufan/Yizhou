@@ -14,15 +14,14 @@
                             return $("<a></a>").text(args.value).attr("href", $.resolveUrl("Dingdan/Edit", {id: args.data.id})) ;
                         }},
 			            {title: "业务员", width: 80, field:"yewuyuan"},
-			            {title: "客户名称", width: 150, field:"kehu"},
+			            {title: "客户名称", width: "50%", field:"kehu"},
 			            {title: "下单日期", width: 80, field:"xiadanRiqi", render: "date"},
 			            {title: "发货日期", width: 80, field:"fahuoRiqi", render: "date"},
 			            {title: "结款日期", width: 80, field:"jiekuanRiqi", render: "date"},
 			            {title: "应收款金额", width: 80, field:"yingshoukuanJine", name:"yingshoukuanJine", render: "number2"},
 			            {title: "已收款金额", width: 80, field:"yishoukuanJine", name:"yishoukuanJine", render: "number2"},
 			            {title: "未收款金额", width: 80, field:"weishoukuanJine", name:"weishoukuanJine", render: "number2"},
-			            {title: "提成", width: 50, field:"ticheng", name:"ticheng", render: "number2"},
-			            {title: "收货地址", width: 150, field:"shouhuoDizhi"}
+			            {title: "收货地址", width: "50%", field:"shouhuoDizhi"}
                     ],
                     height: "auto"
                 }).data("datagrid");
@@ -104,8 +103,7 @@
                                 {columnName: "danhao", valueType: "fixed", value: "合计"},
                                 {columnName: "yingshoukuanJine", valueType: "fixed", value: model.yingshoukuanJineSum},
                                 {columnName: "yishoukuanJine", valueType: "fixed", value: model.yishoukuanJineSum},
-                                {columnName: "weishoukuanJine", valueType: "fixed", value: model.weishoukuanJineSum},
-                                {columnName: "ticheng", valueType: "fixed", value: model.tichengSum}
+                                {columnName: "weishoukuanJine", valueType: "fixed", value: model.weishoukuanJineSum}
                             ];
                         thiz._dingdanGrid.setFooter(footer);
                         thiz._dingdanGridPager.setPageInfo({start: start, size: 20, count: model.totalCount});

@@ -203,8 +203,6 @@ namespace Yizhou.Website.Controllers
                 cell = dataRow.CreateCell(8);
                 cell.SetCellValue(Math.Round(model.weishoukuanJine, 2));
                 cell = dataRow.CreateCell(9);
-                cell.SetCellValue(Math.Round(model.ticheng, 2));
-                cell = dataRow.CreateCell(10);
                 cell.SetCellValue(model.shouhuoDizhi);
                 dataRowIndex++;
             }
