@@ -81,33 +81,39 @@ namespace Yizhou.Website.Controllers
             foreach (DingdanMingxiGridModel model in models)
             {
                 HSSFRow dataRow = sheet.CreateRow(dataRowIndex);
-                var cell = dataRow.CreateCell(0);
+                int cellIndex = -1;
+                var cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.dingdanhao);
-                cell = dataRow.CreateCell(1);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.yewuyuan);
-                cell = dataRow.CreateCell(2);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.kehu);
-                cell = dataRow.CreateCell(3);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.xiadanRiqi.ToString("yyyy-MM-dd"));
-                cell = dataRow.CreateCell(4);
-                cell.SetCellValue(model.fahuoRiqi.ToString("yyyy-MM-dd"));
-                cell = dataRow.CreateCell(5);
+                cell = dataRow.CreateCell(++cellIndex);
+                if (model.fahuoRiqi.HasValue)
+                {
+                    cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
+                }
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.chanpin.name);
-                cell = dataRow.CreateCell(6);
+                cell = dataRow.CreateCell(++cellIndex);
+                cell.SetCellValue(model.xinghao);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.shuliang);
-                cell = dataRow.CreateCell(7);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.xiaoshouDanjia);
-                cell = dataRow.CreateCell(8);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.shijiDanjia, 2));
-                cell = dataRow.CreateCell(9);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.xiaoshouDijia);
-                cell = dataRow.CreateCell(10);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.zongjine, 2));
-                cell = dataRow.CreateCell(11);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.yewulv);
-                cell = dataRow.CreateCell(12);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.yewufei, 2));
-                cell = dataRow.CreateCell(13);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.ticheng, 2));
                 dataRowIndex++;
             }

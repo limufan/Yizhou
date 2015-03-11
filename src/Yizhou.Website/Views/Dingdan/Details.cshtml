@@ -54,9 +54,9 @@
     </div>
     <div class="col-6">
         <div class="form-group">
-			<label  class="control-label"><span style="color: Red">*</span>收货人</label>
+			<label  class="control-label">收货人</label>
 			<div class="control-input">
-				<input name='shouhuoren' type='text' class='form-control webui-textbox' data-required="true"/>
+				<input name='shouhuoren' type='text' class='form-control webui-textbox'/>
 			</div>
 		</div>
     </div>
@@ -66,7 +66,7 @@
         <div class="form-group">
 			<label  class="control-label">收货人电话</label>
 			<div class="control-input">
-				<input name='shouhuorenDianhua' type='text' class='form-control webui-textbox' data-required="true"/>
+				<input name='shouhuorenDianhua' type='text' class='form-control webui-textbox'/>
 			</div>
 		</div>
     </div>
@@ -105,8 +105,8 @@
                 <div class="btn-toolbar" >
                     <div class="btn-group">
                         <button id="btnAddChanpin" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>添加</button>
-                        <button id="btnEditChanpin" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>编辑</button>
-                        <button id="btnDeleteChanpin" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
+                        <button id="btnEditChanpin" disabled="disabled" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>编辑</button>
+                        <button id="btnDeleteChanpin" disabled="disabled" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
                     </div>
                 </div>
 				<div id="chanpinGrid"></div>
@@ -122,8 +122,8 @@
                 <div class="btn-toolbar" >
                     <div class="btn-group">
                         <button id="btnAddShoukuan" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i>添加</button>
-                        <button id="btnEditShoukuan" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>编辑</button>
-                        <button id="btnDeleteShoukuan" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
+                        <button id="btnEditShoukuan"  disabled="disabled" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>编辑</button>
+                        <button id="btnDeleteShoukuan"  disabled="disabled" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</button> 
                     </div>
                 </div>
 				<div id="shoukuanGrid"></div>

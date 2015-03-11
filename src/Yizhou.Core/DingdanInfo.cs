@@ -12,12 +12,12 @@ namespace Yizhou.Core
 
         public DateTime XiadanRiqi { set; get; }
 
-        public DateTime FahuoRiqi { set; get; }
+        public DateTime? FahuoRiqi { set; get; }
 
         /// <summary>
         /// 发货数量
         /// </summary>
-        public double FahuoShuliang { set; get; }
+        public double? FahuoShuliang { set; get; }
 
         /// <summary>
         /// 发货单号

@@ -193,7 +193,10 @@ namespace Yizhou.Website.Controllers
                 cell = dataRow.CreateCell(3);
                 cell.SetCellValue(model.xiadanRiqi.ToString("yyyy-MM-dd"));
                 cell = dataRow.CreateCell(4);
-                cell.SetCellValue(model.fahuoRiqi.ToString("yyyy-MM-dd"));
+                if (model.fahuoRiqi.HasValue)
+                {
+                    cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
+                }
                 cell = dataRow.CreateCell(5);
                 cell.SetCellValue(model.jiekuanRiqi.ToString("yyyy-MM-dd"));
                 cell = dataRow.CreateCell(6);
@@ -231,26 +234,29 @@ namespace Yizhou.Website.Controllers
             HSSFSheet sheet = workbook.GetSheetAt(0);
 
             DingdanDetailsModel dingdan = WebHelper.DingdanService.GetDingdan(dingdanId);
-            HSSFRow dataRow = sheet.GetRow(1);
+            HSSFRow dataRow = sheet.GetRow(2);
             var cell = dataRow.GetCell(6);
             cell.SetCellValue(DateTime.Today.ToString("yyyy 年"));
             cell = dataRow.GetCell(7);
             cell.SetCellValue(DateTime.Today.ToString("MM 月 dd 日"));
 
-            dataRow = sheet.GetRow(2);
+            dataRow = sheet.GetRow(3);
             cell = dataRow.GetCell(1);
             cell.SetCellValue(dingdan.kehu.name);
             cell = dataRow.GetCell(5);
             cell.SetCellValue(dingdan.shouhuoDizhi);
 
-            dataRow = sheet.GetRow(3);
+            dataRow = sheet.GetRow(4);
             cell = dataRow.GetCell(1);
             cell.SetCellValue(dingdan.shouhuoren);
             cell = dataRow.GetCell(3);
             cell.SetCellValue(dingdan.shouhuorenDianhua);
             cell = dataRow.GetCell(7);
-            cell.SetCellValue(dingdan.fahuoRiqi.ToString("MM 月 dd 日"));
-            int dataRowIndex = 6;
+            if (dingdan.fahuoRiqi.HasValue)
+            {
+                cell.SetCellValue(dingdan.fahuoRiqi.Value.ToString("MM 月 dd 日"));
+            }
+            int dataRowIndex = 7;
             foreach (DingdanMingxiDetailsModel mingxiModel in dingdan.mingxiList)
             {
                 dataRow = sheet.GetRow(dataRowIndex);
@@ -258,6 +264,8 @@ namespace Yizhou.Website.Controllers
                 cell.SetCellValue("");
                 cell = dataRow.GetCell(1);
                 cell.SetCellValue(mingxiModel.chanpin.name);
+                cell = dataRow.GetCell(2);
+                cell.SetCellValue(mingxiModel.xinghao);
                 cell = dataRow.GetCell(3);
                 cell.SetCellValue(mingxiModel.danwei);
                 cell = dataRow.GetCell(4);

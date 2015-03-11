@@ -40,7 +40,13 @@
                 this._chanpinGrid = $("#chanpinGrid").datagrid({
                     columns: chanpinGridColumns,
                     required: true,
-                    footer: chanpinGridFooter
+                    footer: chanpinGridFooter,
+                    selectedRow: function(){
+                        thiz._refreshChanpinGridToolbar();
+                    },
+                    unselectedRow: function(){
+                        thiz._refreshChanpinGridToolbar();
+                    }
                 }).data("datagrid");
                 this._form.setInput("mingxiList", this._chanpinGrid);
                 this._shoukuanGrid = $("#shoukuanGrid").datagrid({
@@ -53,11 +59,21 @@
                         {columnName: "shoukuanRiqi", valueType: "fixed", value: "合计"}, 
                         {columnName:"shoukuanJine", valueType:"sum"},
                         {columnName:"ticheng", valueType:"sum"},
-                    ]
+                    ],
+                    selectedRow: function(){
+                        thiz._refreshShoukuanGridToolbar();
+                    },
+                    unselectedRow: function(){
+                        thiz._refreshShoukuanGridToolbar();
+                    }
                 }).data("datagrid");
                 this._form.setInput("shoukuanList", this._shoukuanGrid);
                 this._chanpinDetailsModal = $("#chanpinDetailsModal").chanpinDetailsModal().data("chanpinDetailsModal");
                 this._shoukuanDetailsModal = $("#shoukuanDetailsModal").shoukuanDetailsModal({dingdanForm: this._form}).data("shoukuanDetailsModal");
+                this._btnEditChanpin = $("#btnEditChanpin");
+                this._btnDeleteChanpin = $("#btnDeleteChanpin");
+                this._btnEditShoukuan = $("#btnEditShoukuan");
+                this._btnDeleteShoukuan = $("#btnDeleteShoukuan");
                 this._bindEvent();
             },
             _bindEvent: function(){
@@ -68,7 +84,7 @@
                     });
                     return false;
                 });
-                $("#btnEditChanpin").click(function(){
+                this._btnEditChanpin.click(function(){
                     var selectedRow = thiz._chanpinGrid.getSelectedRow();
                     var rowValue = selectedRow.datarow("getValue");
                     thiz._chanpinDetailsModal.edit(function(value){
@@ -76,7 +92,7 @@
                     }, rowValue);
                     return false;
                 });
-                $("#btnDeleteChanpin").click(function(){
+                this._btnDeleteChanpin.click(function(){
                     $.messageBox.confirm("确实要删除吗?", function(){
                         thiz._chanpinGrid.deleteSelectedRows();
                     });
@@ -88,7 +104,7 @@
                     });
                     return false;
                 });
-                $("#btnEditShoukuan").click(function(){
+                this._btnEditShoukuan.click(function(){
                     var selectedRow = thiz._shoukuanGrid.getSelectedRow();
                     var rowValue = selectedRow.datarow("getValue");
                     thiz._shoukuanDetailsModal.edit(function(value){
@@ -96,7 +112,7 @@
                     }, rowValue);
                     return false;
                 });
-                $("#btnDeleteShoukuan").click(function(){
+                this._btnDeleteShoukuan.click(function(){
                     $.messageBox.confirm("确实要删除吗?", function(){
                         thiz._shoukuanGrid.deleteSelectedRows();
                     });
@@ -109,6 +125,16 @@
                     });
                     thiz._chanpinDetailsModal.setKehu(value);
                 });
+            },
+            _refreshChanpinGridToolbar: function(){
+                var selectedRows = this._chanpinGrid.getSelectedRows();
+                this._btnEditChanpin.prop("disabled", selectedRows.length != 1);
+                this._btnDeleteChanpin.prop("disabled", selectedRows.length == 0);
+            },
+            _refreshShoukuanGridToolbar: function(){
+                var selectedRows = this._shoukuanGrid.getSelectedRows();
+                this._btnEditShoukuan.prop("disabled", selectedRows.length != 1);
+                this._btnDeleteShoukuan.prop("disabled", selectedRows.length == 0);
             },
             validate: function(){
                 return this._form.validate();

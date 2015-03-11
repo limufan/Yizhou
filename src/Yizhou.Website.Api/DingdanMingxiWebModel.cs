@@ -38,7 +38,7 @@ namespace Yizhou.Website.Api
         /// <summary>
         /// 发货数量
         /// </summary>
-        public double fahuoShuliang { set; get; }
+        public double? fahuoShuliang { set; get; }
 
         public double xiaoshouDanjia { set; get; }
 
@@ -84,7 +84,7 @@ namespace Yizhou.Website.Api
 
         public string kehu { set; get; }
 
-        public DateTime fahuoRiqi { set; get; }
+        public DateTime? fahuoRiqi { set; get; }
 
         public DateTime xiadanRiqi { set; get; }
     }

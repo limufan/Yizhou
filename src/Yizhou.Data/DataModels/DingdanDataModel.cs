@@ -14,7 +14,7 @@ namespace Yizhou.Data.DataModels
 
         public virtual DateTime XiadanRiqi { set; get; }
 
-        public virtual DateTime FahuoRiqi { set; get; }
+        public virtual DateTime? FahuoRiqi { set; get; }
 
         public virtual string Yewuyuan { set; get; }
 
@@ -39,7 +39,7 @@ namespace Yizhou.Data.DataModels
         /// <summary>
         /// 发货数量
         /// </summary>
-        public virtual double FahuoShuliang { set; get; }
+        public virtual double? FahuoShuliang { set; get; }
 
         /// <summary>
         /// 发货单号

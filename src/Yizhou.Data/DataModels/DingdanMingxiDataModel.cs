@@ -17,7 +17,7 @@ namespace Yizhou.Data.DataModels
         /// <summary>
         /// 发货数量
         /// </summary>
-        public double FahuoShuliang { set; get; }
+        public double? FahuoShuliang { set; get; }
 
         public double XiaoshouDanjia { set; get; }
 
