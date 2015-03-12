@@ -84,6 +84,8 @@ namespace Yizhou.Website.Controllers
                 HSSFRow dataRow = sheet.CreateRow(dataRowIndex);
                 int cellIndex = -1;
                 var cell = dataRow.CreateCell(++cellIndex);
+                cell.SetCellValue(model.fahuoDanhao);
+                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.dingdanhao);
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.yewuyuan);
@@ -91,11 +93,6 @@ namespace Yizhou.Website.Controllers
                 cell.SetCellValue(model.kehu);
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.xiadanRiqi.ToString("yyyy-MM-dd"));
-                cell = dataRow.CreateCell(++cellIndex);
-                if (model.fahuoRiqi.HasValue)
-                {
-                    cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
-                }
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.chanpin.name);
                 cell = dataRow.CreateCell(++cellIndex);
@@ -105,17 +102,24 @@ namespace Yizhou.Website.Controllers
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.xiaoshouDanjia);
                 cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(Math.Round(model.shijiDanjia, 2));
-                cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(model.xiaoshouDijia);
-                cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.zongjine, 2));
                 cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(model.yewulv);
+                if (model.fahuoRiqi.HasValue)
+                {
+                    cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
+                }
+                cell = dataRow.CreateCell(++cellIndex);
+                if (model.fahuoShuliang.HasValue)
+                {
+                    cell.SetCellValue(Math.Round(model.fahuoShuliang.Value, 2));
+                }
+                cell = dataRow.CreateCell(++cellIndex);
+                if (model.fahuoJine.HasValue)
+                {
+                    cell.SetCellValue(Math.Round(model.fahuoJine.Value, 2));
+                }
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(Math.Round(model.yewufei, 2));
-                cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(Math.Round(model.ticheng, 2));
                 dataRowIndex++;
             }
 
