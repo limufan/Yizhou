@@ -35,11 +35,6 @@ namespace Yizhou.Website.Api
 
         public double shuliang { set; get; }
 
-        /// <summary>
-        /// 发货数量
-        /// </summary>
-        public double? fahuoShuliang { set; get; }
-
         public double xiaoshouDanjia { set; get; }
 
         public double xiaoshouDijia { set; get; }
@@ -63,6 +58,11 @@ namespace Yizhou.Website.Api
         public double shoukuanJine { set; get; }
 
         public double yewufei { set; get; }
+
+        /// <summary>
+        /// 发货数量
+        /// </summary>
+        public double? fahuoShuliang { set; get; }
     }
 
     [Serializable]
@@ -86,6 +86,11 @@ namespace Yizhou.Website.Api
         public string kehu { set; get; }
 
         public string fahuoDanhao { set; get; }
+
+        /// <summary>
+        /// 发货金额
+        /// </summary>
+        public double? fahuoJine { set; get; }
 
         public DateTime? fahuoRiqi { set; get; }
 
@@ -117,6 +122,8 @@ namespace Yizhou.Website.Api
         public double yewufeiSum;
 
         public double tichengSum;
+
+        public double fahuoJineSum;
     }
 
     [Serializable]

@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "订单明细";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.topMenu = "DingdanMingxi";
 }
-<script type="text/javascript" src='@this.Url.Content("~/js/dingdanMingxiGuanliPage.js")'></script>
+@using Yizhou.Website;
+<script type="text/javascript" src='@this.Url.Content("~/js/dingdanMingxiGuanliPage.js?" + WebHelper.Version)'></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">

@@ -33,6 +33,7 @@ namespace Yizhou.Website.Controllers
                 resultModel.Add("zongjineSum", listModel.zongjineSum);
                 resultModel.Add("yewufeiSum", listModel.yewufeiSum);
                 resultModel.Add("tichengSum", listModel.tichengSum);
+                resultModel.Add("fahuoJineSum", listModel.fahuoJineSum);
             }
             catch (Exception ex)
             {

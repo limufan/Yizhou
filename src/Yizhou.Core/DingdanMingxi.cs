@@ -26,6 +26,11 @@ namespace Yizhou.Core
         /// </summary>
         public double? FahuoShuliang { set; get; }
 
+        /// <summary>
+        /// 发货金额
+        /// </summary>
+        public double? FahuoJine { set; get; }
+
         public double XiaoshouDanjia { set; get; }
 
         public double XiaoshouDijia { set; get; }
@@ -83,7 +88,8 @@ namespace Yizhou.Core
 
         private void JisuanZongjine()
         {
-            this.Zongjine = this.Shuliang * XiaoshouDanjia;
+            this.Zongjine = this.Shuliang * this.XiaoshouDanjia;
+            this.FahuoJine = this.FahuoShuliang * this.XiaoshouDanjia;
         }
 
         public void JisuanYewufei()

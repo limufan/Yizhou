@@ -22,6 +22,7 @@ namespace Yizhou.Website
             KehuService = (IKehuService)ctx["KehuService"];
             ChanpinService = (IChanpinService)ctx["ChanpinService"];
             DingdanService = (IDingdanService)ctx["DingdanService"];
+            Version = "1.0.1";
         }
 
         public static ILog Logger { private set; get; }
@@ -87,5 +88,7 @@ namespace Yizhou.Website
             }
             HttpContext.Current.Response.Cookies.Add(tokenCookie);
         }
+
+        public static string Version { set; get; }
     }
 }

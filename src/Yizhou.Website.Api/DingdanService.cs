@@ -162,6 +162,7 @@ namespace Yizhou.Website.Api
             listModel.zongjineSum = Math.Round(dingdanMingxiList.Sum(m => m.Zongjine), 2);
             listModel.yewufeiSum = Math.Round(dingdanMingxiList.Sum(m => m.Yewufei), 2);
             listModel.tichengSum = Math.Round(dingdanMingxiList.Sum(m => m.Ticheng), 2);
+            listModel.fahuoJineSum = Math.Round(dingdanMingxiList.Sum(m => m.FahuoJine.HasValue ? m.FahuoJine.Value : 0), 2);
             listModel.dingdanMingxiList = dingdanMingxiList.Skip(skipCount).Take(filterModel.size).Select(m => new DingdanMingxiGridModel(m)).ToList();
             return listModel;
         }
