@@ -73,6 +73,7 @@ namespace Yizhou.Website.Api
         {
             this.dingdanhao = mingxi.Dingdan.Danhao;
             this.yewuyuan = mingxi.Dingdan.Yewuyuan.Name;
+            this.fahuoDanhao = mingxi.Dingdan.FahuoDanhao;
             this.fahuoRiqi = mingxi.Dingdan.FahuoRiqi;
             this.xiadanRiqi = mingxi.Dingdan.XiadanRiqi;
             this.kehu = mingxi.Dingdan.Kehu.Name;
@@ -83,6 +84,8 @@ namespace Yizhou.Website.Api
         public string yewuyuan { set; get; }
 
         public string kehu { set; get; }
+
+        public string fahuoDanhao { set; get; }
 
         public DateTime? fahuoRiqi { set; get; }
 

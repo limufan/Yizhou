@@ -10,6 +10,7 @@
                 this._searchForm = this._searchPopover.find("form").form().data("form");
                 this._searchPopoverTrigger = $("#btnPopoverSearch").popoverTrigger({popover: this._searchPopover}).data("popoverTrigger");
                 var dingdanMingxiGridColumns = [
+			        {title: "发货单号", width: 100, field:"fahuoDanhao", name:"fahuoDanhao"},
 			        {title: "订单号", width: 80, field:"dingdanhao", name:"dingdanhao"},
 			        {title: "业务员", width: 50, field:"yewuyuan"},
 			        {title: "客户", width: "100%", field:"kehu"},
@@ -26,9 +27,7 @@
                     dingdanMingxiGridColumns = dingdanMingxiGridColumns.concat([
                         {title: "实际单价", width: 70, field:"shijiDanjia"},
 			            {title: "总金额", width: 80, field:"zongjine", name:"zongjine", render: "number2"},
-			            {title: "业务率", width: 70, field:"yewulv"},
-			            {title: "业务费", width: 70, field:"yewufei", name:"yewufei", render: "number2"},
-			            {title: "提成", width: 70, field:"ticheng", name:"ticheng", render: "number2"}
+			            {title: "业务费", width: 70, field:"yewufei", name:"yewufei", render: "number2"}
                     ]);
                     this._btnExport.show();
                 }
@@ -79,8 +78,7 @@
                             footer = [
                                 {columnName: "dingdanhao", valueType: "fixed", value: "合计"},
                                 {columnName: "zongjine", valueType: "fixed", value: model.zongjineSum},
-                                {columnName: "yewufei", valueType: "fixed", value: model.yewufeiSum},
-                                {columnName: "ticheng", valueType: "fixed", value: model.tichengSum}
+                                {columnName: "yewufei", valueType: "fixed", value: model.yewufeiSum}
                             ]
                         }
                         thiz._dingdanMingxiGrid.setFooter(footer);
