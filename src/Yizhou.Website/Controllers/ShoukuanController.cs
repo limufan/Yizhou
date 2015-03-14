@@ -112,5 +112,11 @@ namespace Yizhou.Website.Controllers
 
             return Path.GetFileName(tempPath);
         }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.ExecuteQuanxianFilter(filterContext);
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

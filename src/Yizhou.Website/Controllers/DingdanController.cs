@@ -289,6 +289,12 @@ namespace Yizhou.Website.Controllers
             sheet = null;
 
             return this.File(tempPath, "application/x-xls", dingdan.danhao + "出货申请单.xls");
-        } 
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.ExecuteQuanxianFilter(filterContext);
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

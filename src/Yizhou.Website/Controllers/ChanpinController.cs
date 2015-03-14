@@ -111,5 +111,11 @@ namespace Yizhou.Website.Controllers
             List<ChanpinGridModel> chanpinModels = WebHelper.ChanpinService.GetChanpin(model, out totalCount).OrderBy(c => c.name).ToList();
             return Json(chanpinModels, JsonRequestBehavior.AllowGet);
         }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.ExecuteQuanxianFilter(filterContext);
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

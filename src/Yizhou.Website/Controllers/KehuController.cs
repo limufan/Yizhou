@@ -111,5 +111,11 @@ namespace Yizhou.Website.Controllers
             List<KehuGridModel> kehuModels = WebHelper.KehuService.GetKehu(model, out totalCount).OrderBy(k => k.name).ToList();
             return Json(kehuModels, JsonRequestBehavior.AllowGet);
         }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            this.ExecuteQuanxianFilter(filterContext);
+            base.OnActionExecuting(filterContext);
+        }
     }
 }
