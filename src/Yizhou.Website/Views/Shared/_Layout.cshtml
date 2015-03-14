@@ -36,11 +36,17 @@
               string ChanpinMenuClass = this.ViewBag.topMenu == "Chanpin" ? "class='active'" : "";
         }
         <ul class="nav navbar-nav">
+            @if (WebHelper.HasDingdanGuanliQuanxian)
+            {
             <li @this.Html.Raw(DingdanMenuClass)><a href="@this.Url.Action("Index", "Dingdan")" >订单管理</a></li>
             <li @this.Html.Raw(KehuDanganMenuClass)><a href="@this.Url.Action("Index", "Kehu")" >客户管理</a></li>
+            }
             <li @this.Html.Raw(DingdanMingxiMenuClass)><a href="@this.Url.Action("Index", "DingdanMingxi")" >订单明细</a></li>
+            @if (WebHelper.HasDingdanGuanliQuanxian)
+            {
             <li @this.Html.Raw(ShoukuanMenuClass)><a href="@this.Url.Action("Index", "Shoukuan")" >收款明细</a></li>
             <li @this.Html.Raw(ChanpinMenuClass)><a href="@this.Url.Action("Index", "Chanpin")" >产品管理</a></li>
+            }
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a id="linkCurrentUserInfo" href="#" class="navbar-link">@WebHelper.CurrentUserInfo.Name</a></li>

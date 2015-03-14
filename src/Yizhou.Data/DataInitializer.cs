@@ -32,7 +32,7 @@ namespace Yizhou.Data
                 this.CreateUser("heyuchi", "何玉池", wenyuanPosition.ID);
                 this.CreateUser("liangminxia", "梁敏霞", wenyuanPosition.ID);
                 this.CreateUser("lishuxing", "黎淑兴", wenyuanPosition.ID);
-                this.CreateUser("lirong", "李荣", wenyuanPosition.ID);
+                this.CreateUser("lirong", "李蓉", wenyuanPosition.ID);
             }
         }
 

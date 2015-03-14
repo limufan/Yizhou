@@ -33,5 +33,13 @@ namespace Yizhou.Website.Controllers
             };
         }
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (!WebHelper.HasDingdanGuanliQuanxian && !(this is DingdanMingxiController))
+            {
+                filterContext.Result = this.RedirectToAction("Index", "DingdanMingxi");
+            }
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Yizhou.Website
             KehuService = (IKehuService)ctx["KehuService"];
             ChanpinService = (IChanpinService)ctx["ChanpinService"];
             DingdanService = (IDingdanService)ctx["DingdanService"];
-            Version = "1.0.1";
+            Version = "1.0.2";
         }
 
         public static ILog Logger { private set; get; }
@@ -90,5 +90,13 @@ namespace Yizhou.Website
         }
 
         public static string Version { set; get; }
+
+        public static bool HasDingdanGuanliQuanxian
+        {
+            get
+            {
+                return CurrentUserAccount != "lirong";
+            }
+        }
     }
 }

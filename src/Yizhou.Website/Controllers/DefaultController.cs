@@ -13,7 +13,14 @@ namespace Yizhou.Website.Controllers
 
         public ActionResult Index()
         {
-            return this.RedirectToAction("Index", "Dingdan");
+            if (WebHelper.HasDingdanGuanliQuanxian)
+            {
+                return this.RedirectToAction("Index", "Dingdan");
+            }
+            else
+            {
+                return this.RedirectToAction("Index", "DingdanMingxi");
+            }
         }
 
     }
