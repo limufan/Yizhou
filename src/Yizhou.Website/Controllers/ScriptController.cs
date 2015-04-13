@@ -10,14 +10,10 @@ namespace Yizhou.Website.Controllers
 {
     public class ScriptController : Controller
     {
-        private static string[] caiwuUserArray = new string[] { "heyuchi", "admin" };
-
-        //
-        // GET: /Script/
 
         public ActionResult Index()
         {
-            bool hasCaiwuQuanxian = caiwuUserArray.Contains(WebHelper.CurrentUserAccount);
+            bool hasCaiwuQuanxian = WebHelper.HasCaiwuQuanxian;
             string hasCaiwuQuanxianScript = string.Format("$.hasCaiwuQuanxian = {0};", hasCaiwuQuanxian.ToString().ToLower());
 
             return this.JavaScript(hasCaiwuQuanxianScript);

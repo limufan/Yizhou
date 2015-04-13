@@ -99,27 +99,30 @@ namespace Yizhou.Website.Controllers
                 cell.SetCellValue(model.xinghao);
                 cell = dataRow.CreateCell(++cellIndex);
                 cell.SetCellValue(model.shuliang);
-                cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(model.xiaoshouDanjia);
-                cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(Math.Round(model.zongjine, 2));
-                cell = dataRow.CreateCell(++cellIndex);
-                if (model.fahuoRiqi.HasValue)
+                if (WebHelper.HasCaiwuQuanxian)
                 {
-                    cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
+                    cell = dataRow.CreateCell(++cellIndex);
+                    cell.SetCellValue(model.xiaoshouDanjia);
+                    cell = dataRow.CreateCell(++cellIndex);
+                    cell.SetCellValue(Math.Round(model.zongjine, 2));
+                    cell = dataRow.CreateCell(++cellIndex);
+                    if (model.fahuoRiqi.HasValue)
+                    {
+                        cell.SetCellValue(model.fahuoRiqi.Value.ToString("yyyy-MM-dd"));
+                    }
+                    cell = dataRow.CreateCell(++cellIndex);
+                    if (model.fahuoShuliang.HasValue)
+                    {
+                        cell.SetCellValue(Math.Round(model.fahuoShuliang.Value, 2));
+                    }
+                    cell = dataRow.CreateCell(++cellIndex);
+                    if (model.fahuoJine.HasValue)
+                    {
+                        cell.SetCellValue(Math.Round(model.fahuoJine.Value, 2));
+                    }
+                    cell = dataRow.CreateCell(++cellIndex);
+                    cell.SetCellValue(Math.Round(model.yewufei, 2));
                 }
-                cell = dataRow.CreateCell(++cellIndex);
-                if (model.fahuoShuliang.HasValue)
-                {
-                    cell.SetCellValue(Math.Round(model.fahuoShuliang.Value, 2));
-                }
-                cell = dataRow.CreateCell(++cellIndex);
-                if (model.fahuoJine.HasValue)
-                {
-                    cell.SetCellValue(Math.Round(model.fahuoJine.Value, 2));
-                }
-                cell = dataRow.CreateCell(++cellIndex);
-                cell.SetCellValue(Math.Round(model.yewufei, 2));
                 dataRowIndex++;
             }
 

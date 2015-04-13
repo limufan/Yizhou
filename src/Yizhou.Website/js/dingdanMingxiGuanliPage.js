@@ -28,7 +28,6 @@
 			            {title: "发货金额", width: 70, field:"fahuoJine", name: "fahuoJine", render: "number2"},
 			            {title: "业务费", width: 70, field:"yewufei", name:"yewufei", render: "number2"}
                     ]);
-                    this._btnExport.show();
                 }
                 this._dingdanMingxiGrid = $("#dingdanMingxiGrid").datagrid({
                         columns: dingdanMingxiGridColumns,
