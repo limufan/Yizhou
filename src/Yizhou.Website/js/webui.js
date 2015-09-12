@@ -596,7 +596,7 @@ Array.prototype.sum = function(prop){
                 return this._value;
             },
             setValue: function(value){
-                $.extend(this._value, value);
+                this._value = value;
                 for(var name in value){
                     if(name in this._inputs){
                         this._inputs[name].setValue(value[name]);
