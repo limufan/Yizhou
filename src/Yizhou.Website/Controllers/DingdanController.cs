@@ -267,10 +267,12 @@ namespace Yizhou.Website.Controllers
                 cell = dataRow.GetCell(2);
                 cell.SetCellValue(mingxiModel.xinghao);
                 cell = dataRow.GetCell(3);
-                cell.SetCellValue(mingxiModel.danwei);
+                cell.SetCellValue("");
                 cell = dataRow.GetCell(4);
-                cell.SetCellValue(mingxiModel.shuliang);
+                cell.SetCellValue(mingxiModel.danwei);
                 cell = dataRow.GetCell(5);
+                cell.SetCellValue(mingxiModel.shuliang);
+                cell = dataRow.GetCell(6);
                 cell.SetCellValue(mingxiModel.beizhu);
                 dataRowIndex++;
             }

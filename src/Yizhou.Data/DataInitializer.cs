@@ -61,20 +61,10 @@ namespace Yizhou.Data
             Position yewuyuanPosition = yizhouManager.OrgManager.PositionManager.Create(yizhouManager.OrgManager.System, new PositionCreateInfo { Name = "业务员", ParentId = topPosition.ID });
             dataManager.PositionDataProvider.Insert(yewuyuanPosition);
 
-            User mengdong = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
-            {
-                Name = "刘燕",
-                Account = "liuyan",
-                Password = "123456",
-                Status = UserStatus.Normal,
-                MainPositionId = yewuyuanPosition.ID
-            });
-            dataManager.UserDataProvider.Insert(mengdong);
-
             User luohuaili = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {
-                Name = "李世全",
-                Account = "lishiquan",
+                Name = "罗怀莉",
+                Account = "luohuaili",
                 Password = "123456",
                 Status = UserStatus.Normal,
                 MainPositionId = yewuyuanPosition.ID
@@ -83,43 +73,43 @@ namespace Yizhou.Data
 
             User lianglin = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {
-                Name = "余佳承",
-                Account = "yujiacheng",
+                Name = "梁林",
+                Account = "lianglin",
                 Password = "123456",
                 Status = UserStatus.Normal,
                 MainPositionId = yewuyuanPosition.ID
             });
             dataManager.UserDataProvider.Insert(lianglin);
 
-            User yangke = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
+            User modongqing = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {
-                Name = "杨科",
-                Account = "yangke",
+                Name = "莫冬青",
+                Account = "modongqing",
                 Password = "123456",
                 Status = UserStatus.Normal,
                 MainPositionId = yewuyuanPosition.ID
             });
-            dataManager.UserDataProvider.Insert(yangke);
+            dataManager.UserDataProvider.Insert(modongqing);
 
-            User qudenggui = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
+            User hexiuling = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
             {
-                Name = "瞿灯桂",
-                Account = "qudenggui",
+                Name = "何秀玲",
+                Account = "hexiuling",
                 Password = "123456",
                 Status = UserStatus.Normal,
                 MainPositionId = yewuyuanPosition.ID
             });
-            dataManager.UserDataProvider.Insert(qudenggui);
+            dataManager.UserDataProvider.Insert(hexiuling);
 
-            User yaohuiqing = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System,
-                new UserCreateInfo
-                {
-                    Account = "yaohuiqing",
-                    Name = "姚慧清",
-                    MainPositionId = yewuyuanPosition.ID, 
-                    Password = "123456", Role = UserRole.User, Status = UserStatus.Normal });
-            dataManager.UserDataProvider.Insert(yaohuiqing);
-
+            User mengdong = yizhouManager.OrgManager.UserManager.Create(yizhouManager.OrgManager.System, new UserCreateInfo
+            {
+                Name = "蒙东",
+                Account = "mengdong",
+                Password = "123456",
+                Status = UserStatus.Normal,
+                MainPositionId = yewuyuanPosition.ID
+            });
+            dataManager.UserDataProvider.Insert(mengdong);
         }
 
         private void CreateUser(string account, string name, string positionId)
